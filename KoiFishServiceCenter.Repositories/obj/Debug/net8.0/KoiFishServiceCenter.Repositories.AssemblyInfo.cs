@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KoiFishServiceCenter.Repositories")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b37a067708353ed4bca826b2a8d9121cdf435834")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77494567f92c58956a5f3d2a0c107991c1dbbb9b")]
 [assembly: System.Reflection.AssemblyProductAttribute("KoiFishServiceCenter.Repositories")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KoiFishServiceCenter.Repositories")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

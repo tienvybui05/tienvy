@@ -1,0 +1,57 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\C#\\uthsoftwareengineer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}|KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj|d:\\c#\\uthsoftwareengineer\\koifishservicecenter.repositories\\koifishservicecenter.repositories.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}|KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj|solutionrelative:koifishservicecenter.repositories\\koifishservicecenter.repositories.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC05AF18-4403-4FCB-9237-EFDC2548E5BA}|KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj|d:\\c#\\uthsoftwareengineer\\koifishservicecenter.services\\koifishservicecenter.services.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CC05AF18-4403-4FCB-9237-EFDC2548E5BA}|KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj|solutionrelative:koifishservicecenter.services\\koifishservicecenter.services.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "KoiFishServiceCenter.Repositories.csproj",
+              "DocumentMoniker": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj",
+              "RelativeDocumentMoniker": "KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj",
+              "ToolTip": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj",
+              "RelativeToolTip": "KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-23T11:12:55.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "KoiFishServiceCenter.Services.csproj",
+              "DocumentMoniker": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj",
+              "RelativeDocumentMoniker": "KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj",
+              "ToolTip": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj",
+              "RelativeToolTip": "KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-23T11:12:53.06Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KoiFishServiceCenter.Repositories\KoiFishServiceCenter.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>
