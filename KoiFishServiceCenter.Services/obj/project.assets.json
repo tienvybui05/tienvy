@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj",
-      "projectName": "KoiFishServiceCenter.Repositories",
-      "projectPath": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj",
+      "projectUniqueName": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj",
+      "projectName": "KoiFishServiceCenter.Services",
+      "projectPath": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj",
       "packagesPath": "C:\\Users\\tienv\\.nuget\\packages\\",
-      "outputPath": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\obj\\",
+      "outputPath": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
