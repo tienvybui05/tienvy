@@ -7,6 +7,18 @@
       "RelativeMoniker": "D:0:0:{DAEFDB26-0160-465E-A3F9-9C5EB24D7D76}|KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj|solutionrelative:koiservicecenter.webapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}|KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj|d:\\c#\\uthsoftwareengineer\\koifishservicecenter.repositories\\entities\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}|KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj|solutionrelative:koifishservicecenter.repositories\\entities\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}|KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj|d:\\c#\\uthsoftwareengineer\\koifishservicecenter.repositories\\entities\\cost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}|KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj|solutionrelative:koifishservicecenter.repositories\\entities\\cost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}|KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj|d:\\c#\\uthsoftwareengineer\\koifishservicecenter.repositories\\entities\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}|KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj|solutionrelative:koifishservicecenter.repositories\\entities\\service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}|KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj|d:\\c#\\uthsoftwareengineer\\koifishservicecenter.repositories\\entities\\koivetservicesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}|KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj|solutionrelative:koifishservicecenter.repositories\\entities\\koivetservicesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -22,11 +34,48 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\Entities\\Customer.cs",
+              "RelativeDocumentMoniker": "KoiFishServiceCenter.Repositories\\Entities\\Customer.cs",
+              "ToolTip": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\Entities\\Customer.cs",
+              "RelativeToolTip": "KoiFishServiceCenter.Repositories\\Entities\\Customer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T08:46:14.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Cost.cs",
+              "DocumentMoniker": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\Entities\\Cost.cs",
+              "RelativeDocumentMoniker": "KoiFishServiceCenter.Repositories\\Entities\\Cost.cs",
+              "ToolTip": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\Entities\\Cost.cs",
+              "RelativeToolTip": "KoiFishServiceCenter.Repositories\\Entities\\Cost.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T08:46:04.171Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Service.cs",
+              "DocumentMoniker": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\Entities\\Service.cs",
+              "RelativeDocumentMoniker": "KoiFishServiceCenter.Repositories\\Entities\\Service.cs",
+              "ToolTip": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\Entities\\Service.cs",
+              "RelativeToolTip": "KoiFishServiceCenter.Repositories\\Entities\\Service.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T08:43:24.967Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "KoiVetServicesDbContext.cs",
               "DocumentMoniker": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\Entities\\KoiVetServicesDbContext.cs",
               "RelativeDocumentMoniker": "KoiFishServiceCenter.Repositories\\Entities\\KoiVetServicesDbContext.cs",
@@ -34,20 +83,18 @@
               "RelativeToolTip": "KoiFishServiceCenter.Repositories\\Entities\\KoiVetServicesDbContext.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAgwCMAAADRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T08:38:15.962Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T08:38:15.962Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "KoiServiceCenter.WebApp",
               "DocumentMoniker": "D:\\C#\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj",
               "RelativeDocumentMoniker": "KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj",
               "ToolTip": "D:\\C#\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj",
               "RelativeToolTip": "KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-10-24T08:38:07.685Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T08:38:07.685Z"
             },
             {
               "$type": "Document",
