@@ -546,7 +546,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.10"
         },
         "runtime": {
-          "KoiFishServiceCenter.Repositories.dll": {}
+          "KoiFishServiceCenter.Repositories.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "KoiFishServiceCenter.Services/1.0.0": {
@@ -554,7 +557,10 @@
           "KoiFishServiceCenter.Repositories": "1.0.0"
         },
         "runtime": {
-          "KoiFishServiceCenter.Services.dll": {}
+          "KoiFishServiceCenter.Services.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj": {}
+    "D:\\C#\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj": {}
   },
   "projects": {
-    "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj": {
+    "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj",
+        "projectUniqueName": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj",
         "projectName": "KoiFishServiceCenter.Repositories",
-        "projectPath": "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj",
-        "packagesPath": "C:\\Users\\QUOC DAT\\.nuget\\packages\\",
-        "outputPath": "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\obj\\",
+        "projectPath": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj",
+        "packagesPath": "C:\\Users\\tienv\\.nuget\\packages\\",
+        "outputPath": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\QUOC DAT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tienv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,6 +39,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -71,21 +81,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj": {
+    "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj",
+        "projectUniqueName": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj",
         "projectName": "KoiFishServiceCenter.Services",
-        "projectPath": "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj",
-        "packagesPath": "C:\\Users\\QUOC DAT\\.nuget\\packages\\",
-        "outputPath": "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\obj\\",
+        "projectPath": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj",
+        "packagesPath": "C:\\Users\\tienv\\.nuget\\packages\\",
+        "outputPath": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\QUOC DAT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tienv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -93,14 +107,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj": {
-                "projectPath": "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj"
+              "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj": {
+                "projectPath": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Repositories\\KoiFishServiceCenter.Repositories.csproj"
               }
             }
           }
@@ -109,6 +124,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -130,21 +150,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj": {
+    "D:\\C#\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj",
+        "projectUniqueName": "D:\\C#\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj",
         "projectName": "KoiServiceCenter.WebApp",
-        "projectPath": "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj",
-        "packagesPath": "C:\\Users\\QUOC DAT\\.nuget\\packages\\",
-        "outputPath": "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\obj\\",
+        "projectPath": "D:\\C#\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\KoiServiceCenter.WebApp.csproj",
+        "packagesPath": "C:\\Users\\tienv\\.nuget\\packages\\",
+        "outputPath": "D:\\C#\\uthsoftwareengineer\\KoiServiceCenter.WebApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\QUOC DAT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tienv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -152,14 +176,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj": {
-                "projectPath": "D:\\CNPM_CAKOI\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj"
+              "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj": {
+                "projectPath": "D:\\C#\\uthsoftwareengineer\\KoiFishServiceCenter.Services\\KoiFishServiceCenter.Services.csproj"
               }
             }
           }
@@ -168,6 +193,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -192,7 +222,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
