@@ -31,9 +31,9 @@ public partial class KoiVetServicesDbContext : DbContext
 
     public virtual DbSet<VetSchedule> VetSchedules { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=TIENVY;Initial Catalog=KoiVetServicesDB;Persist Security Info=True;User ID=sa;Password=TienVyBui-05;MultipleActiveResultSets=True;TrustServerCertificate=True");
+//    protected override void onconfiguring(dbcontextoptionsbuilder optionsbuilder)
+//#warning to protect potentially sensitive information in your connection string, you should move it out of source code. you can avoid scaffolding the connection string by using the name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. for more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?linkid=723263.
+//        => optionsbuilder.usesqlserver("data source=tienvy;initial catalog=koivetservicesdb;persist security info=true;user id=sa;password=tienvybui-05;multipleactiveresultsets=true;trustservercertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
