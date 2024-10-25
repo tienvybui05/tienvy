@@ -2,8 +2,8 @@
 .vs/
 
 # Ignore build directories
-bin/
-obj/
+*/bin/
+*/obj/
 
 # Ignore user-specific files
 *.user
