@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KoiFishServiceCenter.Services.Services
 {
-    internal class UserAccountService
+    public class UserAccountService
     {
     }
 }

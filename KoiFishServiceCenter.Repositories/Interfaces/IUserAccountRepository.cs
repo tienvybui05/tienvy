@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KoiFishServiceCenter.Repositories.Interfaces
 {
-    internal interface IUserAccountRepository
+    public interface IUserAccountRepository
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KoiFishServiceCenter.Repositories.Repositories
 {
-    internal class UserAccountRepository
+    public class UserAccountRepository
     {
     }
 }
