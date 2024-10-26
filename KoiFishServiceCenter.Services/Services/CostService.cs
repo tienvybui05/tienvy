@@ -17,25 +17,29 @@ namespace KoiFishServiceCenter.Services.Services
             _costRepository = costRepository;
         }
 
-        public Task<int> AddCostAsync(Cost cost)
+        public Task<bool> AddCostAsync(Cost cost)
         {
             return _costRepository.AddCostAsync(cost);
         }
-        public Task<bool> DeleteCostAsync(int costId)
+        public Task<bool> DeleteCostAsync(Cost cost)
         {
-            return _costRepository.DeleteCostAsync(costId);
+            return _costRepository.DeleteCostAsync(cost);
         }
-        public async Task<List<Cost>> GetCostAsync()
+        public async Task<List<Cost>> GetAllCostAsync()
         {
-            return await _costRepository.GetCosts();
+            return await _costRepository.GetAllCostAsync();
         }
-        public Task<int> RemoveCostAsync(int costId)
+        public Task<Cost> GetCostByIdAsync(int costId)
         {
-            return _costRepository.RemoveCostAsync(costId);
+            return _costRepository.GetCostByIdAsync(costId);
         }
-        public Task<int> UpdateCost(Cost cost)
+        public Task<bool> DeleteCostByIdAsync(int costId)
         {
-            return _costRepository.UpdateCost(cost);
+            return _costRepository.DeleteCostByIdAsync(costId);
+        }
+        public Task<bool> UpdateCostAsync(Cost cost)
+        {
+            return _costRepository.UpdateCostAsync(cost);
         }
     }
 }
