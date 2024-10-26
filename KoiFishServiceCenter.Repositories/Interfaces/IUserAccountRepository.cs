@@ -13,7 +13,7 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
         Task<UserAccount> GetUserByIdAsync(int id);   
         Task<UserAccount> GetUserByUsernameAsync(string username);  
         Task<int> AddUserAccountAsync(UserAccount userAccount);  
-        Task<int> RemoveUserAccountAsync(int userId);    
+        Task<bool> RemoveUserAccountAsync(int userId);    
         Task<bool> DeleteUserAccountAsync(int userId);  
         Task<int> UpdateUserAccountAsync(UserAccount userAccount);
     }

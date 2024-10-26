@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace KoiFishServiceCenter.Repositories.Repositories
 {
@@ -16,39 +17,110 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             _dbContext = dbContext;
         }
 
-        public Task<int> AddUserAccountAsync(UserAccount userAccount)
+        public async Task<int> AddUserAccountAsync(UserAccount userAccount)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _dbContext.UserAccounts.AddAsync(userAccount);
+                return await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Error adding UserAccount",ex);
+            }
         }
 
-        public Task<bool> DeleteUserAccountAsync(int userId)
+        public async Task<bool> DeleteUserAccountAsync(int userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var userAccount = await _dbContext.UserAccounts.FindAsync(userId);
+                if (userAccount != null)
+                {
+                    _dbContext.UserAccounts.Remove(userAccount);
+                    return await _dbContext.SaveChangesAsync() > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Error deleting UserAccount", ex);
+            }
         }
 
-        public Task<List<UserAccount>> GetUserAccountsAsync()
+        public async Task<List<UserAccount>> GetUserAccountsAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _dbContext.UserAccounts.ToListAsync();
+            }
+            catch
+            (Exception ex)
+            {
+                throw new InvalidOperationException("Error retrieving UserAccounts", ex);
+            }
         }
 
-        public Task<UserAccount> GetUserByIdAsync(int id)
+        public async Task<UserAccount> GetUserByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _dbContext.UserAccounts.FindAsync(id);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Error retrieving UserAccount by ID", ex);
+            }
         }
 
-        public Task<UserAccount> GetUserByUsernameAsync(string username)
+        public async Task<UserAccount> GetUserByUsernameAsync(string userName)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                throw new ArgumentException("Username cannot be null or empty", nameof(userName));
+            }
+
+            try
+            {
+                return await _dbContext.UserAccounts
+                                       .Where(p => p.UserName.Equals(userName, StringComparison.OrdinalIgnoreCase))
+                                       .FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Error retrieving UserAccount by username", ex);
+            }
         }
 
-        public Task<int> RemoveUserAccountAsync(int userId)
+        public async Task<bool> RemoveUserAccountAsync(int userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var userAccount = await _dbContext.UserAccounts.FindAsync(userId);
+                if (userAccount != null)
+                {
+                    _dbContext.UserAccounts.Remove(userAccount);
+                    return await _dbContext.SaveChangesAsync()>0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Error removing Account", ex);
+            }
         }
 
-        public Task<int> UpdateUserAccountAsync(UserAccount userAccount)
+        public async Task<int> UpdateUserAccountAsync(UserAccount userAccount)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbContext.UserAccounts.Update(userAccount);
+                return await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Error updating UserAccount", ex);
+            }
         }
     }
 }
