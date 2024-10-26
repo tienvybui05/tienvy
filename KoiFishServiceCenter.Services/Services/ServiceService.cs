@@ -32,14 +32,14 @@ namespace KoiFishServiceCenter.Services.Services
             return _repository.DelService(Id);
         }
 
-        public Task<Service> GetServiceById(int Id)
+        public Task<Service> GetServiceById(int Id) 
         {
             return _repository.GetServiceById(Id);
         }
 
-        public Task<List<Service>> GetServices()
+        public Task<List<Service>> GetServicesAsync()
         {
-            return _repository.GetServices();
+            return _repository.GetServicesAsync();
         }
 
         public bool UpdateService(Service service)

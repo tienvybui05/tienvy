@@ -70,7 +70,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return await _dbContext.Services.Where(p => p.ServiceId.Equals(id)).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Service>> GetServices()
+        public async Task<List<Service>> GetServicesAsync()
         {
             return await _dbContext.Services.ToListAsync();
         }

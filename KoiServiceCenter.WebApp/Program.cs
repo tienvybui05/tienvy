@@ -1,4 +1,8 @@
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Repositories.Interfaces;
+using KoiFishServiceCenter.Repositories.Repositories;
+using KoiFishServiceCenter.Services.Interfaces;
+using KoiFishServiceCenter.Services.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace KoiServiceCenter.WebApp
@@ -16,10 +20,10 @@ namespace KoiServiceCenter.WebApp
             });
 
             //DI Repositories
-
+            builder.Services.AddScoped<IReportRepository, ReportRepository >();
 
             //DI Services
-
+            builder.Services.AddScoped<IReportService, ReportService>();
 
 
             // Add services to the container.
