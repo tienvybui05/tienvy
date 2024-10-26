@@ -9,7 +9,7 @@ namespace KoiFishServiceCenter.Services.Interfaces
 {
     public interface IServiceService
     {
-        Task<List<Service>> GetServices();
+        Task<List<Service>> GetServicesAsync();
         Boolean AddService(Service service);
         Boolean DelService(Service service);
         Boolean DelService(int Id);
