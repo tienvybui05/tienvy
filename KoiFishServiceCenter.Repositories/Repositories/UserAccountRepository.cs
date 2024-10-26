@@ -26,7 +26,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Error adding UserAccount",ex);
+                throw new InvalidOperationException("Lỗi khi thêm tài khoản người dùng", ex);
             }
         }
 
@@ -44,7 +44,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Error deleting UserAccount", ex);
+                throw new InvalidOperationException("Lỗi khi xóa tài khoản người dùng", ex);
             }
         }
 
@@ -54,10 +54,9 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             {
                 return await _dbContext.UserAccounts.ToListAsync();
             }
-            catch
-            (Exception ex)
+            catch (Exception ex)
             {
-                throw new InvalidOperationException("Error retrieving UserAccounts", ex);
+                throw new InvalidOperationException("Lỗi khi lấy danh sách tài khoản người dùng", ex);
             }
         }
 
@@ -69,7 +68,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Error retrieving UserAccount by ID", ex);
+                throw new InvalidOperationException("Lỗi khi lấy tài khoản người dùng theo ID", ex);
             }
         }
 
@@ -77,7 +76,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             if (string.IsNullOrWhiteSpace(userName))
             {
-                throw new ArgumentException("Username cannot be null or empty", nameof(userName));
+                throw new ArgumentException("Tên người dùng không thể null hoặc rỗng", nameof(userName));
             }
 
             try
@@ -88,25 +87,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Error retrieving UserAccount by username", ex);
-            }
-        }
-
-        public async Task<bool> RemoveUserAccountAsync(int userId)
-        {
-            try
-            {
-                var userAccount = await _dbContext.UserAccounts.FindAsync(userId);
-                if (userAccount != null)
-                {
-                    _dbContext.UserAccounts.Remove(userAccount);
-                    return await _dbContext.SaveChangesAsync()>0;
-                }
-                return false;
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Error removing Account", ex);
+                throw new InvalidOperationException("Lỗi khi lấy tài khoản người dùng theo tên", ex);
             }
         }
 
@@ -119,7 +100,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Error updating UserAccount", ex);
+                throw new InvalidOperationException("Lỗi khi cập nhật tài khoản người dùng", ex);
             }
         }
     }
