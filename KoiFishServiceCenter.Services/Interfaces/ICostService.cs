@@ -9,10 +9,11 @@ namespace KoiFishServiceCenter.Services.Interfaces
 {
     public interface ICostService
     {
-        Task<List<Cost>>GetCostAsync();
-        Task<int> AddCostAsync(Cost cost);
-        Task<int> RemoveCostAsync(int costId);
-        Task<bool> DeleteCostAsync(int costId);
-        Task<int>UpdateCost(Cost cost);
+        Task<List<Cost>> GetAllCostAsync();
+        Task<Cost> GetCostByIdAsync(int costId);
+        Task<bool> AddCostAsync(Cost cost);
+        Task<bool> DeleteCostByIdAsync(int costId);
+        Task<bool> DeleteCostAsync(Cost cost);
+        Task<bool> UpdateCostAsync(Cost cost);
     }
 }
