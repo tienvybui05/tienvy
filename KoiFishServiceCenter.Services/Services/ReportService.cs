@@ -17,34 +17,112 @@ namespace KoiFishServiceCenter.Services.Services
             _repository = repository;
         }
 
-        public Task<bool> AddReport(Report report)
+        public async Task<bool> AddReportAsync(Report report)
         {
-            throw new NotImplementedException();
+            if (report == null)
+                throw new ArgumentNullException(nameof(report), "Báo cáo không được để trống.");
+
+            if (report.ReportId <= 0)
+                throw new ArgumentException("Mã báo cáo phải là số nguyên dương.", nameof(report.ReportId));
+
+            if (report.ReportDate == default(DateTime))
+                throw new ArgumentException("Ngày báo cáo không được để trống hoặc mặc định.", nameof(report.ReportDate));
+            else if (report.ReportDate > DateTime.Now)
+                throw new ArgumentException("Ngày báo cáo không được là một ngày trong tương lai.", nameof(report.ReportDate));
+            else
+            {
+                try
+                {
+                    DateTime ngayHopLe = new DateTime(report.ReportDate.Year, report.ReportDate.Month, report.ReportDate.Day);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    throw new ArgumentException("Ngày báo cáo không hợp lệ hoặc không tồn tại.", nameof(report.ReportDate));
+                }
+            }
+
+            if (report.TotalCustomers < 0)
+                throw new ArgumentException("Tổng khách hàng phải là số nguyên không âm.", nameof(report.TotalCustomers));
+
+            if (report.TotalServices < 0)
+                throw new ArgumentException("Tổng dịch vụ thực hiện phải là số nguyên không âm.", nameof(report.TotalServices));
+
+            if (report.AverageRating < 0 || report.AverageRating > 5)
+                throw new ArgumentException("Điểm đánh giá phải nằm trong khoảng từ 0 đến 5.", nameof(report.AverageRating));
+
+            if (string.IsNullOrWhiteSpace(report.Notes))
+                throw new ArgumentException("Ghi chú báo cáo không được để trống hoặc chỉ chứa khoảng trắng.", nameof(report.Notes));
+
+            return await _repository.AddReportAsync(report);
         }
 
-        public Task<bool> DelReport(int Id)
+        public async Task<bool> DelReportAsync(int Id)
         {
-            throw new NotImplementedException();
+            if (Id <= 0)
+            {
+                throw new ArgumentException("ID không hợp lệ, chỉ chấp nhận số nguyên dương", nameof(Id));
+            }
+            return await _repository.DelReportAsync(Id);
         }
 
-        public Task<bool> DelReport(Report report)
+        public async Task<bool> DelReportAsync(Report report)
         {
-            throw new NotImplementedException();
+            if (report == null)
+                throw new ArgumentNullException(nameof(report), "Báo cáo không được để trống.");
+            return await _repository.DelReportAsync(report);
         }
 
-        public Task<Report> GetReportById(int Id)
+        public async Task<Report> GetReportByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            if (Id <= 0)
+            {
+                throw new ArgumentException("ID không hợp lệ, chỉ chấp nhận số nguyên dương", nameof(Id));
+            }
+            return await _repository.GetReportByIdAsync(Id);
         }
 
-        public Task<List<Report>> GetReportsAsync()
+        public async Task<List<Report>> GetReportsAsync()
         {
-            throw new NotImplementedException();
+            return await _repository.GetReportsAsync();
         }
 
-        public Task<bool> UpdateReport(Report report)
+        public async Task<bool> UpdateReportAsync(Report report)
         {
-            throw new NotImplementedException();
+            if (report == null)
+                throw new ArgumentNullException(nameof(report), "Báo cáo không được để trống.");
+
+            if (report.ReportId <= 0)
+                throw new ArgumentException("Mã báo cáo phải là số nguyên dương.", nameof(report.ReportId));
+
+            if (report.ReportDate == default(DateTime))
+                throw new ArgumentException("Ngày báo cáo không được để trống hoặc mặc định.", nameof(report.ReportDate));
+            else if (report.ReportDate > DateTime.Now)
+                throw new ArgumentException("Ngày báo cáo không được là một ngày trong tương lai.", nameof(report.ReportDate));
+            else
+            {
+                try
+                {
+                    DateTime ngayHopLe = new DateTime(report.ReportDate.Year, report.ReportDate.Month, report.ReportDate.Day);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    throw new ArgumentException("Ngày báo cáo không hợp lệ hoặc không tồn tại.", nameof(report.ReportDate));
+                }
+            }
+
+            if (report.TotalCustomers < 0)
+                throw new ArgumentException("Tổng khách hàng phải là số nguyên không âm.", nameof(report.TotalCustomers));
+
+            if (report.TotalServices < 0)
+                throw new ArgumentException("Tổng dịch vụ thực hiện phải là số nguyên không âm.", nameof(report.TotalServices));
+
+            if (report.AverageRating < 0 || report.AverageRating > 5)
+                throw new ArgumentException("Điểm đánh giá phải nằm trong khoảng từ 0 đến 5.", nameof(report.AverageRating));
+
+            if (string.IsNullOrWhiteSpace(report.Notes))
+                throw new ArgumentException("Ghi chú báo cáo không được để trống hoặc chỉ chứa khoảng trắng.", nameof(report.Notes));
+
+            return await _repository.UpdateReportAsync(report);
         }
     }
 }
