@@ -10,10 +10,10 @@ namespace KoiFishServiceCenter.Services.Interfaces
     public interface IServiceService
     {
         Task<List<Service>> GetServicesAsync();
-        Boolean AddService(Service service);
-        Boolean DelService(Service service);
-        Boolean DelService(int Id);
-        Boolean UpdateService(Service service);
-        Task<Service> GetServiceById(int Id);
+        Task<Service> GetServicerById(int id);
+        Task<bool> DelService(int id);
+        Task<bool> DelService(Service service);
+        Task<bool> AddService(Service service);
+        Task<bool> UpdateService(Service service);
     }
 }

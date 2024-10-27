@@ -17,24 +17,25 @@ namespace KoiFishServiceCenter.Services.Services
         {
             _repository = repository;
         }
-        public bool AddService(Service service)
+
+        public Task<bool> AddService(Service service)
         {
             return _repository.AddService(service);
         }
 
-        public bool DelService(Service service)
+        public Task<bool> DelService(int id)
+        {
+            return _repository.DelService(id);
+        }
+
+        public Task<bool> DelService(Service service)
         {
             return _repository.DelService(service);
         }
 
-        public bool DelService(int Id)
+        public Task<Service> GetServicerById(int id)
         {
-            return _repository.DelService(Id);
-        }
-
-        public Task<Service> GetServiceById(int Id) 
-        {
-            return _repository.GetServiceById(Id);
+            return _repository.GetServicerById(id);
         }
 
         public Task<List<Service>> GetServicesAsync()
@@ -42,7 +43,7 @@ namespace KoiFishServiceCenter.Services.Services
             return _repository.GetServicesAsync();
         }
 
-        public bool UpdateService(Service service)
+        public Task<bool> UpdateService(Service service)
         {
             return _repository.UpdateService(service);
         }

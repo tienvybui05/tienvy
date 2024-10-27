@@ -18,54 +18,56 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             _dbContext = dbContext;
         }
-        public bool AddService(Service service)
+
+        public async Task<bool> AddService(Service service)
         {
             try
             {
                 _dbContext.Services.Add(service);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException(ex.ToString());
+                throw new InvalidOperationException("Lỗi khi thêm tài khoản người dùng", ex);
             }
         }
 
-        public bool DelService(Service service)
+        public async Task<bool> DelService(int id)
         {
             try
             {
-                _dbContext.Services.Remove(service);
-                _dbContext.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw new NotImplementedException(ex.ToString());
-            }
-        }
-
-        public bool DelService(int Id)
-        {
-            try
-            {
-                var objDel = _dbContext.Services.Where(p => p.ServiceId.Equals(Id)).FirstOrDefault();
+                var objDel = await _dbContext.Services.Where(p => p.ServiceId.Equals(id)).FirstOrDefaultAsync();
                 if (objDel != null)
                 {
                     _dbContext.Services.Remove(objDel);
-                    _dbContext.SaveChanges();
+                    await _dbContext.SaveChangesAsync();
                     return true;
+
                 }
                 return false;
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException(ex.ToString());
+                throw new InvalidOperationException("Lỗi", ex);
             }
         }
 
-        public async Task<Service> GetServiceById(int id)
+        public async Task<bool> DelService(Service service)
+        {
+            try
+            {
+                _dbContext.Services.Remove(service);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Lỗi", ex);
+            }
+        }
+
+        public async Task<Service> GetServicerById(int id)
         {
             return await _dbContext.Services.Where(p => p.ServiceId.Equals(id)).FirstOrDefaultAsync();
         }
@@ -75,17 +77,17 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return await _dbContext.Services.ToListAsync();
         }
 
-        public bool UpdateService(Service service)
+        public async Task<bool> UpdateService(Service service)
         {
             try
             {
                 _dbContext.Services.Update(service);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException(ex.ToString());
+                throw new InvalidOperationException("Lỗi", ex);
             }
         }
     }
