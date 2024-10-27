@@ -10,10 +10,10 @@ namespace KoiFishServiceCenter.Services.Interfaces
     public interface IReportService
     {
         Task<List<Report>> GetReportsAsync();
-        bool DelReport(int Id);
-        bool DelReport(Report report);
-        bool AddReport(Report report);
-        bool UpdateReport(Report report);
+        Task<bool> DelReport(int Id);
+        Task<bool> DelReport(Report report);
+        Task<bool> AddReport(Report report);
+        Task<bool> UpdateReport(Report report);
         Task<Report> GetReportById(int Id);
     }
 }
