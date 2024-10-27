@@ -16,19 +16,19 @@ namespace KoiFishServiceCenter.Services.Services
         {
             _repository = repository;
         }
-        public bool AddVetSchedule(VetSchedule vetSchedule)
+        public Task<bool> AddVetSchedule(VetSchedule vetSchedule)
         {
-            return _repository.AddVetSchedule(vetSchedule);
+            return  _repository.AddVetSchedule(vetSchedule);
         }
 
-        public bool DelVetSchedule(int Id)
+        public  Task<bool> DelVetSchedule(int Id)
         {
-            return _repository.DelVetSchedule(Id);
+            return  _repository.DelVetSchedule(Id);
         }
 
-        public bool DelVetSchedule(VetSchedule vetSchedule)
+        public  Task<bool> DelVetSchedule(VetSchedule vetSchedule)
         {
-            return _repository.DelVetSchedule(vetSchedule);
+            return  _repository.DelVetSchedule(vetSchedule);
         }
 
         public Task<VetSchedule> GetVetScheduleById(int Id)
@@ -41,9 +41,9 @@ namespace KoiFishServiceCenter.Services.Services
             return _repository.GetVetSchedulesAsync();
         }
 
-        public bool UpdateVetSchedule(VetSchedule vetSchedule)
+        public  Task<bool> UpdateVetSchedule(VetSchedule vetSchedule)
         {
-           return _repository.UpdateVetSchedule(vetSchedule);
+           return  _repository.UpdateVetSchedule(vetSchedule);
         }
     }
 }

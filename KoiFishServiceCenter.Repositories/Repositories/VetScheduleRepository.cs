@@ -16,12 +16,12 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             _dbContext = dbContext;
         }
-        public bool AddVetSchedule(VetSchedule vetSchedule)
+        public async Task<bool> AddVetSchedule(VetSchedule vetSchedule)
         {
             try
             {
-                _dbContext.VetSchedules.AddAsync(vetSchedule);
-                _dbContext.SaveChanges();
+                await _dbContext.VetSchedules.AddAsync(vetSchedule);
+                 _dbContext.SaveChanges();
                 return true;
              
             }
@@ -30,16 +30,18 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 throw new NotImplementedException(ex.ToString());
             }
         }
-        public bool DelVetSchedule(int Id)
+
+
+        public async Task<bool> DelVetSchedule(int Id)
         {
            
             try
             {
-                var objDel = _dbContext.VetSchedules.Where(p => p.ScheduleId.Equals(Id)).FirstOrDefault();
+                var objDel = await _dbContext.VetSchedules.Where(p => p.ScheduleId.Equals(Id)).FirstOrDefaultAsync();
                 if (objDel != null)
                 {
                     _dbContext.VetSchedules.Remove(objDel);
-                    _dbContext.SaveChanges();
+                    await _dbContext.SaveChangesAsync();
                     return true;
                 }
                 return false;
@@ -51,12 +53,12 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
         }
 
-        public bool DelVetSchedule(VetSchedule vetSchedule)
+        public async Task<bool> DelVetSchedule(VetSchedule vetSchedule)
         {
             try
             {
-                _dbContext.VetSchedules.Remove(vetSchedule);
-                _dbContext.SaveChanges();
+                 _dbContext.VetSchedules.Remove(vetSchedule);
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -67,7 +69,10 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 
         public async Task<VetSchedule> GetVetScheduleById(int Id)
         {
-            return await _dbContext.VetSchedules.Where(p => p.ScheduleId.Equals(Id)).FirstOrDefaultAsync();
+
+            var vetSchedule = await _dbContext.VetSchedules.Where(p => p.ScheduleId.Equals(Id)).FirstOrDefaultAsync();
+            return vetSchedule;
+            
         }
 
         public async Task<List<VetSchedule>> GetVetSchedulesAsync()
@@ -75,12 +80,12 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return await _dbContext.VetSchedules.ToListAsync();
         }
 
-        public bool UpdateVetSchedule(VetSchedule vetSchedule)
+        public async Task<bool> UpdateVetSchedule(VetSchedule vetSchedule)
         {
             try
             {
                 _dbContext.VetSchedules.Update(vetSchedule);
-                _dbContext.SaveChanges();   
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
             catch(Exception ex)

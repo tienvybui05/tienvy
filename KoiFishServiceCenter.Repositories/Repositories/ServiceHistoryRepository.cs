@@ -17,12 +17,12 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             _dbContext = dbContext;
         }
 
-        public bool AddServiceHistory(ServiceHistory serviceHistory)
+        public async Task<bool> AddServiceHistory(ServiceHistory serviceHistory)
         {
             try
             {
-                _dbContext.ServiceHistories.Add(serviceHistory);
-                _dbContext.SaveChanges();
+                 await _dbContext.ServiceHistories.AddAsync(serviceHistory);
+                await _dbContext.SaveChangesAsync();
                 return true;
 
             }
@@ -32,15 +32,15 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
         }
 
-        public bool DelServiceHistory(int Id)
+        public async Task<bool> DelServiceHistory(int Id)
         {
             try
             {
-                var objDel = _dbContext.ServiceHistories.Where(p => p.HistoryId.Equals(Id)).FirstOrDefault();
+                var objDel = await _dbContext.ServiceHistories.Where(p => p.HistoryId.Equals(Id)).FirstOrDefaultAsync();
                 if (objDel != null)
                 {
                     _dbContext.ServiceHistories.Remove(objDel);
-                    _dbContext.SaveChanges();
+                    await _dbContext.SaveChangesAsync();
                     return true;
                 }
                 return false;
@@ -52,12 +52,12 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
         }
 
-        public bool DelServiceHistory(ServiceHistory serviceHistory)
+        public async Task<bool> DelServiceHistory(ServiceHistory serviceHistory)
         {
             try
             {
                 _dbContext.ServiceHistories.Remove(serviceHistory);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -73,15 +73,16 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 
         public async Task<ServiceHistory> GetServiceHistoryById(int Id)
         {
-            return await _dbContext.ServiceHistories.Where(p => p.HistoryId.Equals(Id)).FirstOrDefaultAsync();
+            var serviceHistory = await _dbContext.ServiceHistories.Where(p => p.HistoryId.Equals(Id)).FirstOrDefaultAsync();
+            return serviceHistory;
         }
 
-        public bool UpdateServiceHistory(ServiceHistory serviceHistory)
+        public async Task<bool> UpdateServiceHistory(ServiceHistory serviceHistory)
         {
             try
             {
                 _dbContext.ServiceHistories.Update(serviceHistory);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
