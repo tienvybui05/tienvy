@@ -1,6 +1,7 @@
 ﻿using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
 using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,14 @@ namespace KoiFishServiceCenter.Services.Services
         public  Task<bool> UpdateVetSchedule(VetSchedule vetSchedule)
         {
            return  _repository.UpdateVetSchedule(vetSchedule);
+        }
+        public Task<List<VetSchedule>> SearchAsync(DateTime dateTime)
+        {
+            return _repository.SearchAsync(dateTime);
+        }
+        public SelectList GetVeterinarianSelect()
+        {
+            return _repository.GetVeterinarianSelect();
         }
     }
 }

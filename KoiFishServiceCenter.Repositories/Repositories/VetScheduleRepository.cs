@@ -1,5 +1,6 @@
 ﻿using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -70,9 +71,9 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         public async Task<VetSchedule> GetVetScheduleById(int Id)
         {
 
-            var vetSchedule = await _dbContext.VetSchedules.Where(p => p.ScheduleId.Equals(Id)).FirstOrDefaultAsync();
-            return vetSchedule;
-            
+            return await _dbContext.VetSchedules.FirstOrDefaultAsync(m => m.ScheduleId == Id);
+
+
         }
 
         public async Task<List<VetSchedule>> GetVetSchedulesAsync()
@@ -92,6 +93,19 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             {
                 throw new NotImplementedException(ex.ToString());
             }
+        }
+        public async Task<List<VetSchedule>> SearchAsync(DateTime dateTime)
+        {
+            return await _dbContext.VetSchedules.Where(a => (a.ScheduleDate.Day == dateTime.Day) &&
+                                                            (a.ScheduleDate.Month == dateTime.Month) &&
+                                                            (a.ScheduleDate.Year == dateTime.Year)).ToListAsync();
+        }
+        public SelectList GetVeterinarianSelect()
+        {
+            var veterinarians = _dbContext.UserAccounts
+               .Where(u => u.Role == "veterinarian")
+               .ToList();
+            return new SelectList(veterinarians, "UserId", "UserName");
         }
     }
 }
