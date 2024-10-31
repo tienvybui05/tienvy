@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using KoiFishServiceCenter.Repositories.Entities;
 
-namespace KoiFishServiceCenter.Services.Interfaces
+namespace KoiFishServiceCenter.Repositories.Interfaces
 {
-    public interface ICostService
+    public interface ICostRepository
     {
         Task<List<Cost>> GetAllCostAsync();
         Task<Cost> GetCostByIdAsync(int costId);

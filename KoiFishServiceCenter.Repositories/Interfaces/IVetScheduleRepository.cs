@@ -1,4 +1,5 @@
 ﻿using KoiFishServiceCenter.Repositories.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,13 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
     public interface IVetScheduleRepository
     {
         Task<List<VetSchedule>> GetVetSchedulesAsync();
-        bool DelVetSchedule(int Id);
-        bool DelVetSchedule(VetSchedule vetSchedule);
-        bool AddVetSchedule(VetSchedule vetSchedule);
-        bool UpdateVetSchedule(VetSchedule vetSchedule);
+        Task<Boolean> DelVetSchedule(int Id);
+        Task<Boolean> DelVetSchedule(VetSchedule vetSchedule);
+        Task<Boolean> AddVetSchedule(VetSchedule vetSchedule);
+        Task<Boolean> UpdateVetSchedule(VetSchedule vetSchedule);
         Task<VetSchedule> GetVetScheduleById(int Id);
+        Task<List<VetSchedule>> SearchAsync(DateTime dateTime);
+        SelectList GetVeterinarianSelect();
+
     }
 }

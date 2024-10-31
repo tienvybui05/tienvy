@@ -16,17 +16,17 @@ namespace KoiFishServiceCenter.Services.Services
         {
             _repository = repository;
         }
-        public bool AddServiceHistory(ServiceHistory serviceHistory)
+        public Task<bool> AddServiceHistory(ServiceHistory serviceHistory)
         {
            return _repository.AddServiceHistory(serviceHistory);
         }
 
-        public bool DelServiceHistory(int Id)
+        public Task<bool> DelServiceHistory(int Id)
         {
             return _repository.DelServiceHistory(Id);
         }
 
-        public bool DelServiceHistory(ServiceHistory serviceHistory)
+        public Task<bool>  DelServiceHistory(ServiceHistory serviceHistory)
         {
             return _repository.DelServiceHistory(serviceHistory);
         }
@@ -41,7 +41,7 @@ namespace KoiFishServiceCenter.Services.Services
             return _repository.GetServiceHistoryById(Id);
         }
 
-        public bool UpdateServiceHistory(ServiceHistory serviceHistory)
+        public Task<bool> UpdateServiceHistory(ServiceHistory serviceHistory)
         {
             return _repository.UpdateServiceHistory(serviceHistory);
         }

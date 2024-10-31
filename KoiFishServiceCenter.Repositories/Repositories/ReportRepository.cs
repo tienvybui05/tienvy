@@ -16,12 +16,13 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             _dbContext = dbContext;
         }
-        public bool AddReport(Report report)
+
+        public async Task<bool> AddReportAsync(Report report)
         {
             try
             {
-                _dbContext.Reports.AddAsync(report);
-                _dbContext.SaveChanges();
+                await _dbContext.Reports.AddAsync(report);
+                await _dbContext.SaveChangesAsync();
                 return true;
 
             }
@@ -31,7 +32,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
         }
 
-        public bool DelReport(int Id)
+        public async Task<bool> DelReportAsync(int Id)
         {
             try
             {
@@ -39,7 +40,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 if (objDel != null)
                 {
                     _dbContext.Reports.Remove(objDel);
-                    _dbContext.SaveChanges();
+                    await _dbContext.SaveChangesAsync();
                     return true;
                 }
                 return false;
@@ -51,12 +52,12 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
         }
 
-        public bool DelReport(Report report)
+        public async Task<bool> DelReportAsync(Report report)
         {
             try
             {
                 _dbContext.Reports.Remove(report);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -65,7 +66,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
         }
 
-        public async Task<Report> GetReportById(int Id)
+        public async Task<Report> GetReportByIdAsync(int Id)
         {
             return await _dbContext.Reports.Where(p => p.ReportId.Equals(Id)).FirstOrDefaultAsync();
         }
@@ -75,12 +76,12 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return await _dbContext.Reports.ToListAsync();
         }
 
-        public bool UpdateReport(Report report)
+        public async Task<bool> UpdateReportAsync(Report report)
         {
             try
             {
                 _dbContext.Reports.Update(report);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
