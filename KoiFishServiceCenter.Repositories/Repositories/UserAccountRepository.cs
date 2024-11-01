@@ -103,5 +103,15 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 throw new InvalidOperationException("Lỗi khi cập nhật tài khoản người dùng", ex);
             }
         }
+        public async Task<bool> CheckAccount(string username, string password)
+        {
+            var x = await _dbContext.UserAccounts.FirstOrDefaultAsync(p => p.UserName == username && p.Password == password);
+
+            if (x == null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

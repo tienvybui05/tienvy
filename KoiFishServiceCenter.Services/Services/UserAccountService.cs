@@ -78,5 +78,9 @@ namespace KoiFishServiceCenter.Services
 
             return await _userAccountRepository.UpdateUserAccountAsync(userAccount);
         }
+        public Task<bool> CheckAccount(string username, string password)
+        {
+            return _userAccountRepository.CheckAccount(username, password);
+        }
     }
 }
