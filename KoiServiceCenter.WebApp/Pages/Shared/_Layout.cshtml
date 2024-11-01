@@ -81,9 +81,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="/" class="nav-item nav-link active">Home</a>
                     <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="services.html" class="nav-item nav-link">Services</a>
+                    <a href="/Services" class="nav-item nav-link ">Services</a>
                     <a href="packages.html" class="nav-item nav-link">Packages</a>
                     <a href="blog.html" class="nav-item nav-link">Blog</a>
                     <div class="nav-item dropdown">
@@ -104,7 +104,26 @@
             </div>
         </nav>
 
+        <script>
+            // Lấy tất cả các liên kết trong navbar
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+            // Lấy URL hiện tại
+            const currentURL = window.location.pathname;
+
+            // Lặp qua các liên kết và thêm class "active" vào link trùng URL hiện tại
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentURL) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        </script>
+
+
         <!-- Carousel Start -->
+
   @*       <div class="carousel-header">
             <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
