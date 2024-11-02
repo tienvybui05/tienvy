@@ -78,14 +78,14 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         public async Task<VetSchedule> GetVetScheduleById(int Id)
         {
 
-            return await _dbContext.VetSchedules.FirstOrDefaultAsync(m => m.ScheduleId == Id);
+            return await _dbContext.VetSchedules.Include(v => v.Veterinarian).FirstOrDefaultAsync(m => m.ScheduleId == Id);
 
 
         }
 
         public async Task<List<VetSchedule>> GetVetSchedulesAsync()
         {
-            return await _dbContext.VetSchedules.ToListAsync();
+            return await _dbContext.VetSchedules.Include(v => v.Veterinarian).ToListAsync();
         }
 
         public async Task<bool> UpdateVetSchedule(VetSchedule vetSchedule)
