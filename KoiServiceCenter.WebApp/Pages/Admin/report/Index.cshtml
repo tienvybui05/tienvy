@@ -1,0 +1,54 @@
+﻿@page
+@model KoiServiceCenter.WebApp.Pages.Admin.report.IndexModel
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Report[0].ReportDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Report[0].TotalCustomers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Report[0].TotalServices)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Report[0].AverageRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Report[0].Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Report) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalCustomers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalServices)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AverageRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ReportId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ReportId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ReportId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
