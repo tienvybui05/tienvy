@@ -1,0 +1,50 @@
+﻿@page
+@model KoiServiceCenter.WebApp.Pages.Admin.vetschedule.IndexModel
+@{
+    ViewData["Title"] = "Các lịch làm việc";
+}
+<h1>Danh sách lịch làm của bác sĩ</h1>
+<form method="get" asp-page="./Index">
+    <label>Tìm kiếm:</label>
+    <input type="date" name="dateTime" />
+    <button type="submit">Tìm</button>
+</form>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VetSchedule[0].ScheduleDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VetSchedule[0].TimeSlot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VetSchedule[0].Veterinarian)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.VetSchedule) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeSlot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Veterinarian.Email)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ScheduleId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ScheduleId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ScheduleId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

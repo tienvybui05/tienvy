@@ -21,10 +21,17 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             try
             {
+                var valuee = await _dbContext.VetSchedules
+                            .Where(p => p.ScheduleId == vetSchedule.ScheduleId )
+                            .FirstOrDefaultAsync();
+                if (valuee != null)
+                {
+                    throw new InvalidOperationException("ID đã tồn tại");
+                }
                 await _dbContext.VetSchedules.AddAsync(vetSchedule);
-                 _dbContext.SaveChanges();
+                _dbContext.SaveChanges();
                 return true;
-             
+
             }
             catch (Exception ex) 
             {

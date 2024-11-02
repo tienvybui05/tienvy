@@ -24,11 +24,13 @@ namespace KoiServiceCenter.WebApp
             builder.Services.AddScoped<IReportRepository, ReportRepository >();
             builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
             builder.Services.AddScoped<IUserAccountRepository, UserAccountRepository>();
+            builder.Services.AddScoped<IVetScheduleRepository, VetScheduleRepository>();
 
             //DI Services
             builder.Services.AddScoped<IReportService, ReportService>();
             builder.Services.AddScoped<IUserAccountService, UserAccountService>();
             builder.Services.AddScoped<IServiceService, ServiceService>();
+            builder.Services.AddScoped<IVetScheduleService, VetScheduleService>();
 
 
             // Add services to the container.
