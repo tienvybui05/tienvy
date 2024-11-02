@@ -1,0 +1,59 @@
+﻿@page
+@model KoiServiceCenter.WebApp.Pages.Admin.servicehistory.IndexModel
+<h1>Danh sách dùng dịch vụ</h1>
+<form method="get" asp-page="./Index">
+    <label>Tìm kiếm</label>
+    <input name="SearchString" value="" />
+    <button type="submit">Tìm</button>
+</form>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceHistory[0].ServiceDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceHistory[0].Result)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceHistory[0].Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceHistory[0].Service)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceHistory[0].Veterinarian)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ServiceHistory) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Veterinarian.Email)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.HistoryId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.HistoryId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.HistoryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
