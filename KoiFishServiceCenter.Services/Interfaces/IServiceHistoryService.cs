@@ -1,4 +1,5 @@
 ﻿using KoiFishServiceCenter.Repositories.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace KoiFishServiceCenter.Services.Interfaces
         Task<bool> AddServiceHistory(ServiceHistory serviceHistory);
         Task<bool> UpdateServiceHistory(ServiceHistory serviceHistory);
         Task<ServiceHistory> GetServiceHistoryById(int Id);
+        SelectList GetServiceHistorySelect(string viewData);
+        Task<List<ServiceHistory>> SearcheAsync(string searchString);
     }
 }

@@ -1,0 +1,50 @@
+﻿@page
+@model KoiServiceCenter.WebApp.Pages.Admin.servicehistory.CreateModel
+
+<h4>ServiceHistory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ServiceHistory.HistoryId" class="control-label"></label>
+                <input asp-for="ServiceHistory.HistoryId" class="form-control" />
+                <span asp-validation-for="ServiceHistory.HistoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceHistory.CustomerId" class="control-label"></label>
+                <select asp-for="ServiceHistory.CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceHistory.ServiceId" class="control-label"></label>
+                <select asp-for="ServiceHistory.ServiceId" class ="form-control" asp-items="ViewBag.ServiceId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceHistory.VeterinarianId" class="control-label"></label>
+                <select asp-for="ServiceHistory.VeterinarianId" class ="form-control" asp-items="ViewBag.VeterinarianId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceHistory.ServiceDate" class="control-label"></label>
+                <input asp-for="ServiceHistory.ServiceDate" class="form-control" />
+                <span asp-validation-for="ServiceHistory.ServiceDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceHistory.Result" class="control-label"></label>
+                <input asp-for="ServiceHistory.Result" class="form-control" />
+                <span asp-validation-for="ServiceHistory.Result" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

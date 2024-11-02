@@ -1,5 +1,6 @@
 ﻿using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -68,13 +69,16 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 
         public async Task<List<ServiceHistory>> GetServiceHistories()
         {
-            return await _dbContext.ServiceHistories.ToListAsync();
+            return await _dbContext.ServiceHistories.Include(s => s.Customer)
+                .Include(s => s.Service)
+                .Include(s => s.Veterinarian).ToListAsync();
         }
 
         public async Task<ServiceHistory> GetServiceHistoryById(int Id)
         {
-            var serviceHistory = await _dbContext.ServiceHistories.Where(p => p.HistoryId.Equals(Id)).FirstOrDefaultAsync();
-            return serviceHistory;
+            return await _dbContext.ServiceHistories.Include(s => s.Customer)
+               .Include(s => s.Service)
+               .Include(s => s.Veterinarian).FirstOrDefaultAsync(m => m.HistoryId == Id);
         }
 
         public async Task<bool> UpdateServiceHistory(ServiceHistory serviceHistory)
@@ -89,6 +93,31 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             {
                 throw new NotImplementedException(ex.ToString());
             }
+        }
+        public async Task<List<ServiceHistory>> SearcheAsync(string searchString)
+        {
+            return await _dbContext.ServiceHistories.Where(a => a.Customer.FullName.Contains(searchString)).Include(s => s.Customer)
+                .Include(s => s.Service)
+                .Include(s => s.Veterinarian).ToListAsync();
+
+        }
+        public SelectList GetServiceHistorySelect(string viewData)
+        {
+            if (viewData == "CustomerId")
+            {
+                return new SelectList(_dbContext.Customers, "CustomerId", "FullName");
+            }
+            else if (viewData == "ServiceId")
+            {
+                return new SelectList(_dbContext.Services, "ServiceId", "Description");
+            }
+            else
+            {
+                return new SelectList(_dbContext.UserAccounts, "UserId", "Email");
+            }
+
+
+
         }
     }
 }
