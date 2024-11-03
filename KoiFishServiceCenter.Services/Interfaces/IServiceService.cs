@@ -15,5 +15,6 @@ namespace KoiFishServiceCenter.Services.Interfaces
         Task<bool> DelService(Service service);
         Task<bool> AddService(Service service);
         Task<bool> UpdateService(Service service);
+        Task<int> CountService();
     }
 }

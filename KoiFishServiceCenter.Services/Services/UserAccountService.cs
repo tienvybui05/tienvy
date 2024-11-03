@@ -82,5 +82,10 @@ namespace KoiFishServiceCenter.Services
         {
             return _userAccountRepository.CheckAccount(username, password);
         }
+
+        public async Task<int> CountUserAccount()
+        {
+            return await _userAccountRepository.CountUserAccount();
+        }
     }
 }

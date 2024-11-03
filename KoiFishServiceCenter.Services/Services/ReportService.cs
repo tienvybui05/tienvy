@@ -124,5 +124,10 @@ namespace KoiFishServiceCenter.Services.Services
 
             return await _repository.UpdateReportAsync(report);
         }
+
+        public async Task<int> CountReport()
+        {
+            return await _repository.CountReport();
+        }
     }
 }

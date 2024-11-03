@@ -15,5 +15,6 @@ namespace KoiFishServiceCenter.Services.Interfaces
         Task<bool> AddReportAsync(Report report);
         Task<bool> UpdateReportAsync(Report report);
         Task<Report> GetReportByIdAsync(int Id);
+        Task<int> CountReport();
     }
 }

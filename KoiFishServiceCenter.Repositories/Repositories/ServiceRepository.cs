@@ -90,5 +90,16 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 throw new InvalidOperationException("Lỗi", ex);
             }
         }
+
+        public async Task<int> CountService()
+        {
+            int count = 0;
+            var ojb = await _dbContext.Services.Include(v => v.ServiceId).ToListAsync();
+            foreach (var i in ojb)
+            {
+                count++;
+            }
+            return count;
+        }
     }
 }

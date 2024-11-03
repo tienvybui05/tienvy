@@ -16,5 +16,6 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
         Task<bool> DeleteUserAccountAsync(int userId);  
         Task<int> UpdateUserAccountAsync(UserAccount userAccount);
         Task<bool> CheckAccount(string username, string password);
+        Task<int> CountUserAccount();
     }
 }

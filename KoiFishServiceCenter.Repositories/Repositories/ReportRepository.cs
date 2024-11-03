@@ -89,5 +89,16 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 throw new NotImplementedException(ex.ToString());
             }
         }
+
+        public async Task<int> CountReport()
+        {
+            int count = 0;
+            var ojb = await _dbContext.Reports.Include(v => v.ReportId).ToListAsync();
+            foreach (var i in ojb)
+            {
+                count++;
+            }
+            return count;
+        }
     }
 }
