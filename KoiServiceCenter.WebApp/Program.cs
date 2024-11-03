@@ -21,7 +21,7 @@ namespace KoiServiceCenter.WebApp
             });
 
             //DI Repositories
-            builder.Services.AddScoped<IReportRepository, ReportRepository >();
+            builder.Services.AddScoped<IReportRepository, ReportRepository>();
             builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
             builder.Services.AddScoped<IUserAccountRepository, UserAccountRepository>();
             builder.Services.AddScoped<IVetScheduleRepository, VetScheduleRepository>();
