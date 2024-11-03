@@ -54,5 +54,9 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return _repository.SearcheAsync(searchString);
         }
+        public Task<int> CountServiceHistory()
+        {
+            return _repository.CountServiceHistory();
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿@page
+﻿@* @page
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -8,3 +8,96 @@
     <h1 class="display-4">Welcome to Ca Koi</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+ *@
+
+ @page
+@model Index
+@{
+    ViewData["Title"] = "Admin Dashboard - Ca Koi";
+}
+
+<!-- Main Container -->
+<div class="container mt-5">
+    <!-- Cards  -->
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <img src="~/Admin/vendors/images/banner-img.png" alt="">
+        </div>
+        <div class="col-md-8">
+            <h4 class="font-20 weight-500 mb-10 text-capitalize">
+                Welcome back <div class="weight-600 font-30 text-blue">Admin</div>
+            </h4>
+            <p class="font-18 max-width-600">Trang quản lý dịch vụ vip nhất hệ mặt trời lan ra cả vũ trụ, ở đâu cũng có thể đặt được vương tầm quốc tế vương tầm vũ trụ</p>
+        </div>
+    </div>
+    <h1></h1>
+    <h2></h2>
+    <!-- Cards Section -->
+    <div class="row">
+        <!-- Card 1: User account -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Tài khoảng người dùng</h5>
+                    <p class="card-text">Quản lý, chỉnh sửa, phân quyền cho các tài khoảng</p>
+                    <a href="/Admin/useraccount" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: VetSchedule -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Lịch làm việc bác sĩ</h5>
+                    <p class="text-primary" style="font-size: 2rem;">@Model.SoLichLam</p>
+                    <p class="card-text">Edit website content, update information, and organize posts.</p>
+                    <a href="/Admin/vetschedule" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Service -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Số dịch vụ đã đặt</h5>
+                    <p class="text-primary" style="font-size: 2rem;">@Model.SoDichVuDat</p>
+                    <p class="card-text">View and analyze website traffic and user interactions.</p>
+                    <a href="/Admin/servicehistory" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Help & Resources Section -->
+    <div class="text-center mt-5">
+        <p>Learn more about <a href="https://learn.microsoft.com/aspnet/core" target="_blank">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        color: #007bff;
+    }
+
+    .card-text {
+        color: #6c757d;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+</style>

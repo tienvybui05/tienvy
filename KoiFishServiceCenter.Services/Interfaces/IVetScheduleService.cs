@@ -18,6 +18,7 @@ namespace KoiFishServiceCenter.Services.Interfaces
         Task<VetSchedule> GetVetScheduleById(int Id);
         Task<List<VetSchedule>> SearchAsync(DateTime dateTime);
         SelectList GetVeterinarianSelect();
+        Task<int> CountSchedule();
 
     }
 }

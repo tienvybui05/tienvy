@@ -54,5 +54,9 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return _repository.GetVeterinarianSelect();
         }
+        public async Task<int> CountSchedule()
+        {
+            return await _repository.CountVetSchedule();
+        }
     }
 }

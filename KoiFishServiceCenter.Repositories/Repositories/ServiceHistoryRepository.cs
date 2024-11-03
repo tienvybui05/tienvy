@@ -115,8 +115,18 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             {
                 return new SelectList(_dbContext.UserAccounts, "UserId", "Email");
             }
-
-
+        }
+        public async Task<int> CountServiceHistory()
+        {
+            int count = 0;
+            var ojb = await _dbContext.ServiceHistories.Include(s => s.Customer)
+                .Include(s => s.Service)
+                .Include(s => s.Veterinarian).ToListAsync();
+            foreach (var i in ojb)
+            {
+                count++;
+            }
+            return count;
 
         }
     }

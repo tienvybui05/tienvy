@@ -114,5 +114,16 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                .ToList();
             return new SelectList(veterinarians, "UserId", "UserName");
         }
+        public async Task<int> CountVetSchedule()
+        {
+            int count = 0;
+            var ojb = await _dbContext.VetSchedules.Include(v => v.Veterinarian).ToListAsync();
+            foreach (var i in ojb)
+            {
+                count++;
+            }
+            return count;
+
+        }
     }
 }
