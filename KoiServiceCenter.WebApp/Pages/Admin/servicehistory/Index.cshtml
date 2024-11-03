@@ -1,4 +1,4 @@
-﻿@page
+﻿@* @page
 @model KoiServiceCenter.WebApp.Pages.Admin.servicehistory.IndexModel
 <h1>Danh sách dùng dịch vụ</h1>
 <form method="get" asp-page="./Index">
@@ -57,3 +57,85 @@
 }
     </tbody>
 </table>
+ *@
+ @page
+@model KoiServiceCenter.WebApp.Pages.Admin.servicehistory.IndexModel
+@{
+    ViewData["Title"] = "Danh sách dùng dịch vụ";
+    int i = 1;
+}
+<h1 class="my-4">Danh sách dùng dịch vụ</h1>
+
+<div class="d-flex mb-4 align-items-center">
+    <form method="get" asp-page="./Index" class="d-flex align-items-center me-3">
+        <label class="me-2 font-weight-bold">Tìm kiếm:</label>
+        <input name="SearchString" class="form-control me-2" id="string" style="width: auto;" />
+        <button type="submit" class="btn btn-primary">Tìm</button>
+    </form>
+    <a asp-page="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Thêm lịch đơn dịch vụ
+    </a>
+</div>
+
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>STT</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ServiceHistory[0].ServiceDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ServiceHistory[0].Result)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ServiceHistory[0].Customer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ServiceHistory[0].Service)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ServiceHistory[0].Veterinarian)
+                </th>
+                <th style="width: 300px;">Actions></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ServiceHistory)
+            {
+                <tr>
+                    <td>@(i++)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ServiceDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Result)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Service.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Veterinarian.Email)
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <a asp-page="./Edit" asp-route-id="@item.HistoryId" class="btn btn-sm btn-warning mx-1">
+                                <i class="bi bi-pencil-square"></i>Sửa
+                            </a> |
+                            <a asp-page="./Details" asp-route-id="@item.HistoryId" class="btn btn-sm btn-info mx-1">
+                                <i class="bi bi-info-circle"></i>Chi tiết
+                            </a> |
+                            <a asp-page="./Delete" asp-route-id="@item.HistoryId" class="btn btn-sm btn-danger mx-1">
+                                <i class="bi bi-trash"></i>Xóa
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
