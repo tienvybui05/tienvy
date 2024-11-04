@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace KoiFishServiceCenter.Repositories.Repositories
@@ -16,76 +17,89 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             _dbContext = dbContext;
         }
-        public bool AddCustomer(Customer customer)
+        public async Task<bool> AddCustomer(Customer customer)
         {
             try
             {
-                _dbContext.Customers.AddAsync(customer);
-                _dbContext.SaveChanges();
+                await _dbContext.Customers.AddAsync(customer);
+                await _dbContext.SaveChangesAsync();
                 return true;
-
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException(ex.ToString());
+                throw new Exception(ex.ToString());
             }
         }
 
-        public bool DelCusomer(int Id)
+        public async Task<int> CountCustomersAsync()
+        {
+            return await _dbContext.Customers.CountAsync();
+        }
+
+        public async Task<bool> DelCustomer(int Id)
         {
             try
             {
-                var objDel = _dbContext.Customers.Where(p => p.CustomerId.Equals(Id)).FirstOrDefault();
-                if (objDel != null)
+                var customer = await _dbContext.Customers.FindAsync(Id);
+                if (customer != null)
                 {
-                    _dbContext.Customers.Remove(objDel);
-                    _dbContext.SaveChanges();
+                    _dbContext.Customers.Remove(customer);
+                    await _dbContext.SaveChangesAsync();
                     return true;
                 }
                 return false;
-
             }
             catch (Exception ex)
             {
-                throw new NotFiniteNumberException(ex.ToString());
+                throw new Exception(ex.ToString());
             }
         }
 
-        public bool DelCustomer(Customer customer)
+        public async Task<bool> DelCustomer(Customer customer)
         {
             try
             {
                 _dbContext.Customers.Remove(customer);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException(ex.ToString());
+                throw new Exception(ex.ToString());
             }
         }
 
-        public async Task<Customer> GetCustomer(int Id)
-        {
-            return await _dbContext.Customers.Where(p => p.CustomerId.Equals(Id)).FirstOrDefaultAsync();
-        }
-
-        public async Task<List<Customer>> GetCustomerAsync()
+        public async Task<List<Customer>> GetAllCustomersAsync()
         {
             return await _dbContext.Customers.ToListAsync();
         }
 
-        public bool UpdateCustomer(Customer customer)
+        public async Task<List<Customer>> GetCustomerAsync()
+        {
+            return await _dbContext.Customers.Include(c => c.User).ToListAsync();
+        }
+
+        public async Task<Customer> GetCustomerById(int Id)
+        {
+            if (Id <= 0)
+            {
+                throw new ArgumentException("Id không hợp lệ. Id phải lớn hơn 0.");
+            }
+            else
+                return await _dbContext.Customers.FirstOrDefaultAsync(c => c.CustomerId == Id);
+        }
+
+        public async Task<bool> UpdateCustomer(Customer customer)
         {
             try
             {
                 _dbContext.Customers.Update(customer);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException(ex.ToString());
+                throw new Exception(ex.ToString());
             }
         }
     }

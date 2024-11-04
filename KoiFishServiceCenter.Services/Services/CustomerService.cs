@@ -6,7 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
+using KoiFishServiceCenter.Repositories.Repositories;
 using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+
 namespace KoiFishServiceCenter.Services.Services
 {
     public class CustomerService : ICustomerService
@@ -17,32 +21,43 @@ namespace KoiFishServiceCenter.Services.Services
             _repsitory = repsitory;
         }
 
-        public bool AddCustomer(Customer customer)
+        public async Task<bool> AddCustomerAsync(Customer customer)
         {
-           return _repsitory.AddCustomer(customer);
+            return await _repsitory.AddCustomer(customer);
         }
 
-        public bool DelCusomer(int Id)
+        public async Task<int> CountCustomersAsync()
         {
-            return _repsitory.DelCusomer(Id);
+            return await _repsitory.CountCustomersAsync();
         }
 
-        public bool DelCustomer(Customer customer)
+        public async Task<bool> DeleteCustomerAsync(int id)
         {
-            return _repsitory.DelCustomer(customer);
+            return await _repsitory.DelCustomer(id);
         }
 
-        public Task<Customer> GetCustomer(int Id)
+        public async Task<bool> DeleteCustomerAsync(Customer customer)
         {
-            return _repsitory.GetCustomer(Id);
+            return await _repsitory.DelCustomer(customer);
         }
 
-        public Task<List<Customer>> GetCustomerAsync()
+        public async Task<SelectList> GetAllCustomersAsync()
         {
-            return _repsitory.GetCustomerAsync();
+            var customers = await _repsitory.GetAllCustomersAsync(); 
+            return new SelectList(customers, "CustomerId", "FullName");
         }
 
-        public bool UpdateCustomer(Customer customer)
+        public async Task<Customer> GetCustomerByIdAsync(int id)
+        {
+            return await _repsitory.GetCustomerById(id);
+        }
+
+        public async Task<List<Customer>> GetCustomersAsync()
+        {
+            return await _repsitory.GetCustomerAsync();
+        }
+
+        public Task<bool> UpdateCustomerAsync(Customer customer)
         {
             return _repsitory.UpdateCustomer(customer);
         }
