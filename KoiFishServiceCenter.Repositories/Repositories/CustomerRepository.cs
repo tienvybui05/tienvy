@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using KoiFishServiceCenter.Repositories.Entities;
@@ -81,12 +82,30 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 
         public async Task<Customer> GetCustomerById(int Id)
         {
+            //if (Id <= 0)
+            //{
+            //    throw new ArgumentException("Id không hợp lệ. Id phải lớn hơn 0.");
+            //}
+            //else
+            //    return await _dbContext.Customers.FirstOrDefaultAsync(c => c.CustomerId == Id);
             if (Id <= 0)
             {
                 throw new ArgumentException("Id không hợp lệ. Id phải lớn hơn 0.");
             }
             else
-                return await _dbContext.Customers.FirstOrDefaultAsync(c => c.CustomerId == Id);
+            {
+                return await _dbContext.Customers.Include(c => c.User).FirstOrDefaultAsync(m => m.CustomerId == Id);
+            }
+        }
+
+        public SelectList GetCustomerSelect()
+        {
+            return new SelectList(_dbContext.UserAccounts, "UserId", "Email");
+        }
+
+        public async Task<List<Customer>> SearcheAsync(string searchString)
+        {
+            return await _dbContext.Customers.Where(a => a.FullName.Contains(searchString)).Include(c => c.User).ToListAsync();
         }
 
         public async Task<bool> UpdateCustomer(Customer customer)

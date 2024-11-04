@@ -21,9 +21,16 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.customer
 
         public IList<Customer> Customer { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string searchString)
         {
-            Customer = await _service.GetCustomersAsync();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                Customer = await _service.SearcheAsync(searchString);
+            }
+            else
+            {
+                Customer = await _service.GetCustomersAsync();
+            }
         }
     }
 }

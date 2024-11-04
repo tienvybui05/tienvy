@@ -57,6 +57,16 @@ namespace KoiFishServiceCenter.Services.Services
             return await _repsitory.GetCustomerAsync();
         }
 
+        public SelectList GetCustomerSelect()
+        {
+            return _repsitory.GetCustomerSelect();
+        }
+
+        public async Task<List<Customer>> SearcheAsync(string searchString)
+        {
+            return await _repsitory.SearcheAsync(searchString);
+        }
+
         public Task<bool> UpdateCustomerAsync(Customer customer)
         {
             return _repsitory.UpdateCustomer(customer);

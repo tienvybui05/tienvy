@@ -17,6 +17,8 @@ namespace KoiFishServiceCenter.Services.Interfaces
         Task<bool> UpdateCustomerAsync(Customer customer);
         Task<Customer> GetCustomerByIdAsync(int id);
         Task<int> CountCustomersAsync();
+        Task<List<Customer>> SearcheAsync(string searchString);
         Task<SelectList> GetAllCustomersAsync();
+        SelectList GetCustomerSelect();
     }
 }

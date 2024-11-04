@@ -54,7 +54,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.customer
             //    _context.Customers.Remove(Customer);
             //    await _context.SaveChangesAsync();
             //}
-
+            await _service.DeleteCustomerAsync(Customer);
             return RedirectToPage("./Index");
         }
     }

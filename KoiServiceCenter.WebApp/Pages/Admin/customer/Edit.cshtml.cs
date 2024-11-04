@@ -37,7 +37,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.customer
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = await _service.GetAllCustomersAsync();
+            ViewData["UserId"] = _service.GetCustomerSelect();
             return Page();
         }
 
