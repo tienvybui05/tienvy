@@ -1,4 +1,5 @@
 ﻿using KoiFishServiceCenter.Repositories.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,7 @@ namespace KoiFishServiceCenter.Services.Interfaces
         Task<bool> UpdateFeedback(Feedback feedback);
         Task<Feedback> GetFeedbackById(int Id);
         Task<int> CountFeedback();
+        Task<List<Feedback>> SearchAsync(string searchString);
+        SelectList GetFeedbackSelect(string viewData);
     }
 }

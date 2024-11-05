@@ -1,6 +1,7 @@
 ﻿using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
 using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,16 @@ namespace KoiFishServiceCenter.Services.Services
         public async Task<int> CountFeedback()
         {
             return await _repository.CountFeedback();
+        }
+
+        public Task<List<Feedback>> SearchAsync(string searchString)
+        {
+            return _repository.SearchAsync(searchString);
+        }
+
+        public SelectList GetFeedbackSelect(string viewData)
+        {
+            return _repository.GetFeedbackSelect(viewData);
         }
     }
 }

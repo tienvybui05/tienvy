@@ -1,5 +1,6 @@
 ﻿using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,11 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         }
         public async Task<bool> AddFeedback(Feedback feedback)
         {
+            if (feedback.Rating < 1 || feedback.Rating > 5)
+            {
+                throw new ArgumentOutOfRangeException(nameof(feedback.Rating), "Đánh giá phải từ 1 đến 5 sao.");
+            }
+
             try
             {
                 await _dbContext.Feedbacks.AddAsync(feedback);
@@ -26,8 +32,18 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException("Lỗi khi thêm đánh giá từ người dùng", ex);
+                throw new NotImplementedException("Lỗi", ex);
             }
+            //try
+            //{
+            //    await _dbContext.Feedbacks.AddAsync(feedback);
+            //    await _dbContext.SaveChangesAsync();
+            //    return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new NotImplementedException("Lỗi khi thêm đánh giá từ người dùng", ex);
+            //}
         }
 
         public async Task<bool> DelFeedback(int Id)
@@ -80,12 +96,13 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 
         public async Task<Feedback> GetFeedbackById(int Id)
         {
-            return await _dbContext.Feedbacks.Where(p => p.FeedbackId.Equals(Id)).FirstOrDefaultAsync();
+            return await _dbContext.Feedbacks.Include(s => s.Customer).Include(s => s.Service).FirstOrDefaultAsync(f => f.FeedbackId == Id);
+            //return await _dbContext.Feedbacks.Where(p => p.FeedbackId.Equals(Id)).FirstOrDefaultAsync();
         }
 
         public async Task<List<Feedback>> GetFeedbacksAsync()
         {
-            return await _dbContext.Feedbacks.ToListAsync();
+            return await _dbContext.Feedbacks.Include(s => s.Customer).Include(s => s.Service).ToListAsync();
         }
         public async Task<int> CountFeedback()
         {
@@ -96,6 +113,32 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 count++;
             }
             return count;
+        }
+
+        public async Task<List<Feedback>> SearchAsync(string searchString)
+        {
+            return await _dbContext.Feedbacks
+                .Where(f => f.Customer.FullName.Contains(searchString))
+                .Include(f => f.Customer) 
+                .Include(f => f.Service)
+/*                .Where(f => f.Customer.FullName.Contains(searchString))*/ // Tìm kiếm theo tên khách hàng
+                .ToListAsync();
+        }
+
+        public SelectList GetFeedbackSelect(string viewData)
+        {
+            if (viewData == "CustomerId")
+            {
+                return new SelectList(_dbContext.Customers, "CustomerId", "FullName");
+            }
+            else if (viewData == "ServiceId")
+            {
+                return new SelectList(_dbContext.Services, "ServiceId", "Description");
+            }
+            else
+            {
+                return new SelectList(_dbContext.UserAccounts, "UserId", "Email");
+            }
         }
     }
 }
