@@ -87,5 +87,9 @@ namespace KoiFishServiceCenter.Services
         {
             return await _userAccountRepository.CountUserAccount();
         }
+        public Task<List<UserAccount>> SearcheAsync(string searchString)
+        {
+            return _userAccountRepository.SearcheAsync(searchString);
+        }
     }
 }

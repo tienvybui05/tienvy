@@ -14,14 +14,16 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.servicehistory
     public class EditModel : PageModel
     {
         private readonly IServiceHistoryService _service;
-
-        public EditModel(IServiceHistoryService service)
+        private readonly IVetScheduleService _vetScheduleService;
+        public EditModel(IServiceHistoryService service, IVetScheduleService vetScheduleService)
         {
             _service = service;
+            _vetScheduleService = vetScheduleService;
         }
 
         [BindProperty]
         public ServiceHistory ServiceHistory { get; set; }
+        public VetSchedule VetSchedule { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -53,7 +55,24 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.servicehistory
                 return Page();
             }
 
-            await _service.UpdateServiceHistory(ServiceHistory);
+            var checkDateTime = await _service.BundByDate(ServiceHistory);
+            if (checkDateTime == false)
+            {
+                ModelState.AddModelError("ServiceHistory.ServiceDate", "Bác sĩ đã có lịch. Vui lòng chọn ngày khác.");
+                ViewData["CustomerId"] = _service.GetServiceHistorySelect("CustomerId");
+                ViewData["ServiceId"] = _service.GetServiceHistorySelect("ServiceId");
+                ViewData["VeterinarianId"] = _service.GetServiceHistorySelect("VeterinarianId");
+                return Page();
+            }
+            else
+            {
+                await _service.UpdateServiceHistory(ServiceHistory);
+                VetSchedule = new VetSchedule();
+                VetSchedule.VeterinarianId = ServiceHistory.VeterinarianId;
+                VetSchedule.ScheduleDate = ServiceHistory.ServiceDate;
+                ViewData["VeterinarianId"] = _vetScheduleService.GetVeterinarianSelect();
+                await _vetScheduleService.UpdateVetSchedule(VetSchedule);
+            }
 
             try
             {

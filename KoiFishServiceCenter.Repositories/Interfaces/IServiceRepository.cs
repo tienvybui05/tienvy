@@ -16,5 +16,6 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
         Task<bool> AddService(Service service);
         Task<bool> UpdateService(Service service);
         Task<int> CountService();
+        Task<List<Service>> SearcheAsync(string searchString);
     }
 }

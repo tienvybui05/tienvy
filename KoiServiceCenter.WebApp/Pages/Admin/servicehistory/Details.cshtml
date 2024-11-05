@@ -12,12 +12,6 @@
             @Html.DisplayFor(model => model.ServiceHistory.ServiceDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ServiceHistory.Result)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ServiceHistory.Result)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ServiceHistory.Customer)
         </dt>
         <dd class="col-sm-10">
@@ -30,10 +24,22 @@
             @Html.DisplayFor(model => model.ServiceHistory.Service.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ServiceHistory.Veterinarian)
+            @Html.DisplayNameFor(model => model.ServiceHistory.Veterinarian.UserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ServiceHistory.Veterinarian.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ServiceHistory.Veterinarian.Email)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ServiceHistory.Veterinarian.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ServiceHistory.Result)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ServiceHistory.Result)
         </dd>
     </dl>
 </div>

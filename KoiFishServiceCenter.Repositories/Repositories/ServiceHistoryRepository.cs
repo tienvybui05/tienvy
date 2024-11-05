@@ -113,7 +113,10 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             else
             {
-                return new SelectList(_dbContext.UserAccounts, "UserId", "Email");
+                var veterinarians = _dbContext.UserAccounts
+              .Where(u => u.Role == "veterinarian")
+              .ToList();
+                return new SelectList(veterinarians, "UserId", "UserName");
             }
         }
         public async Task<int> CountServiceHistory()
@@ -128,6 +131,17 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             return count;
 
+        }
+        public async Task<bool> BundByDate(ServiceHistory serviceHistory)
+        {
+            var check = await _dbContext.VetSchedules.Include(v => v.Veterinarian).FirstOrDefaultAsync(m =>
+            m.VeterinarianId == serviceHistory.VeterinarianId &&
+           (m.ScheduleDate.Day == serviceHistory.ServiceDate.Day &&
+            m.ScheduleDate.Month == serviceHistory.ServiceDate.Month &&
+            m.ScheduleDate.Year == serviceHistory.ServiceDate.Year)
+           );
+            if (check != null) { return false; }
+            return true;
         }
     }
 }
