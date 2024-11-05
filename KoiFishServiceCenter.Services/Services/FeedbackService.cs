@@ -21,22 +21,22 @@ namespace KoiFishServiceCenter.Services.Services
             return _repository.GetFeedbacksAsync();
         }
 
-        public bool DelFeedback(int Id)
+        public Task<bool> DelFeedback(int Id)
         {
            return _repository.DelFeedback(Id);
         }
 
-        public bool DelFeedback(Feedback feedback)
+        public Task<bool> DelFeedback(Feedback feedback)
         {
             return _repository.DelFeedback(feedback);
         }
 
-        public bool AddFeedback(Feedback feedback)
+        public Task<bool> AddFeedback(Feedback feedback)
         {
             return _repository.AddFeedback(feedback);
         }
 
-        public bool UpdateFeedback(Feedback feedback)
+        public Task< bool> UpdateFeedback(Feedback feedback)
         {
             return _repository.UpdateFeedback(feedback);
         }
@@ -44,6 +44,10 @@ namespace KoiFishServiceCenter.Services.Services
         public Task<Feedback> GetFeedbackById(int Id)
         {
             return _repository.GetFeedbackById(Id);
+        }
+        public async Task<int> CountFeedback()
+        {
+            return await _repository.CountFeedback();
         }
     }
 }

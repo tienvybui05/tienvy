@@ -16,22 +16,21 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             _dbContext = dbContext;
         }
-
-        public bool AddFeedback(Feedback feedback)
+        public async Task<bool> AddFeedback(Feedback feedback)
         {
             try
             {
-                _dbContext.Feedbacks.AddAsync(feedback);
-                _dbContext.SaveChanges();
+                await _dbContext.Feedbacks.AddAsync(feedback);
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                throw new NotImplementedException(ex.ToString());
+                throw new NotImplementedException("Lỗi khi thêm đánh giá từ người dùng", ex);
             }
         }
 
-        public bool DelFeedback(int Id)
+        public async Task<bool> DelFeedback(int Id)
         {
             try
             {
@@ -39,31 +38,45 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 if (objDel != null)
                 {
                     _dbContext.Feedbacks.Remove(objDel);
-                    _dbContext.SaveChanges();
+                    await _dbContext.SaveChangesAsync();
                     return true;
                 }
                 return false;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                throw new NotImplementedException(ex.ToString());
+                throw new NotImplementedException("Lỗi", ex);
             }
         }
 
-        public bool DelFeedback(Feedback feedback)
+        public async Task<bool> DelFeedback(Feedback feedback)
         {
             try
             {
                 _dbContext.Feedbacks.Remove(feedback);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return true;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                throw new NotImplementedException(ex.ToString());
-                return false;
+                throw new InvalidOperationException("Lỗi", ex);
             }
         }
+
+        public async Task<bool> UpdateFeedback(Feedback feedback)
+        {
+            try
+            {
+                _dbContext.Feedbacks.Update(feedback);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException("Lỗi", ex);
+            }
+        }
+
 
         public async Task<Feedback> GetFeedbackById(int Id)
         {
@@ -74,19 +87,15 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             return await _dbContext.Feedbacks.ToListAsync();
         }
-
-        public bool UpdateFeedback(Feedback feedback)
+        public async Task<int> CountFeedback()
         {
-           try
-           {
-                _dbContext.Feedbacks.Update(feedback);
-                _dbContext.SaveChanges();
-                return true;
-           }
-           catch (Exception ex) 
-           { 
-                throw new NotImplementedException(ex.ToString());
-           }
+            int count = 0;
+            var ojb = await _dbContext.Feedbacks.Include(v => v.FeedbackId).ToListAsync();
+            foreach (var i in ojb)
+            {
+                count++;
+            }
+            return count;
         }
     }
 }
