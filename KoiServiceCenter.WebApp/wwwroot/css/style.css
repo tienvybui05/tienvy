@@ -28,6 +28,11 @@
     z-index: 99;
 }
 
+* {
+    font-family: 'Roboto', sans-serif ;
+}
+
+
 /*** Button Start ***/
 .btn {
     font-weight: 600;
