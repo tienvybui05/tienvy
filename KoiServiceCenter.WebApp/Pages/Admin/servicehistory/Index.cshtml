@@ -84,12 +84,6 @@
             <tr>
                 <th>STT</th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ServiceHistory[0].ServiceDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ServiceHistory[0].Result)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.ServiceHistory[0].Customer)
                 </th>
                 <th>
@@ -98,7 +92,13 @@
                 <th>
                     @Html.DisplayNameFor(model => model.ServiceHistory[0].Veterinarian)
                 </th>
-                <th style="width: 300px;">Actions></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ServiceHistory[0].ServiceDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ServiceHistory[0].Result)
+                </th>
+                <th style="width: 300px;">Hành động></th>
             </tr>
         </thead>
         <tbody>
@@ -107,19 +107,19 @@
                 <tr>
                     <td>@(i++)</td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ServiceDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Result)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Customer.FullName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Service.Description)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Veterinarian.Email)
+                        @Html.DisplayFor(modelItem => item.Veterinarian.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ServiceDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Result)
                     </td>
                     <td>
                         <div class="d-flex justify-content-center">
