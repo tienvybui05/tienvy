@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using KoiFishServiceCenter.Repositories.Interfaces;
 using KoiFishServiceCenter.Repositories.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace KoiFishServiceCenter.Repositories.Repositories
 {
@@ -15,19 +16,6 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         public CostRepository(KoiVetServicesDbContext dbContext)
         {
             _dbContext = dbContext;
-        }
-        public async Task <List<Cost>> GetAllCostAsync()
-        {
-            List<Cost> costs = null;
-            try
-            {
-                costs = await _dbContext.Costs.ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                costs?.Add(new Cost());
-            }
-            return costs;
         }
         public async Task<bool> AddCostAsync(Cost cost)
         {
@@ -77,7 +65,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         }
         public async Task<Cost> GetCostByIdAsync(int costId)
         {
-            return await _dbContext.Costs.Where(p => p.CostId.Equals(costId)).FirstOrDefaultAsync();
+            return await _dbContext.Costs.Include(s=>s.Service).FirstOrDefaultAsync(m => m.CostId == costId);
         }
 
         public async Task<bool> UpdateCostAsync(Cost cost)
@@ -92,6 +80,41 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             {
                 throw new NotImplementedException(ex.ToString());
             }
+        }
+
+        public async Task<int> CountCostAsync()
+        {
+            int count = 0;
+            var ojb = await _dbContext.ServiceHistories.Include(s => s.Customer)
+                .Include(s => s.Service)
+                .Include(s => s.Veterinarian).ToListAsync();
+            foreach (var i in ojb)
+            {
+                count++;
+            }
+            return count;
+        }
+
+        public async Task<List<Cost>> SearchAsync(int search)
+        {
+            return await _dbContext.Costs.Where(a => a.CostId == search).Include(s => s.Service).ToListAsync();   
+        }
+
+        public SelectList GetCostSelect(string viewData)
+        {
+            if (viewData == "CustomerId")
+            {
+                return new SelectList(_dbContext.Customers, "CustomerId", "FullName");
+            }
+            else
+            {
+                return new SelectList(_dbContext.UserAccounts, "UserId", "Email");
+            }
+        }
+
+        public async Task<List<Cost>> GetCostsAsync()
+        {
+            return await _dbContext.Costs.Include(s => s.Service).ToListAsync();
         }
     }
 }

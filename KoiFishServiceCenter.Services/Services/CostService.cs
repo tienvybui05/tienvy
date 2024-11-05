@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using KoiFishServiceCenter.Services.Interfaces;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace KoiFishServiceCenter.Services.Services
 {
@@ -25,10 +26,6 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return _costRepository.DeleteCostAsync(cost);
         }
-        public async Task<List<Cost>> GetAllCostAsync()
-        {
-            return await _costRepository.GetAllCostAsync();
-        }
         public Task<Cost> GetCostByIdAsync(int costId)
         {
             return _costRepository.GetCostByIdAsync(costId);
@@ -40,6 +37,26 @@ namespace KoiFishServiceCenter.Services.Services
         public Task<bool> UpdateCostAsync(Cost cost)
         {
             return _costRepository.UpdateCostAsync(cost);
+        }
+
+        public Task<int> CountCostAsync()
+        {
+            return _costRepository.CountCostAsync();
+        }
+
+        public Task<List<Cost>> SearchAsync(int search)
+        {
+            return _costRepository.SearchAsync(search);
+        }
+
+        public SelectList GetCostSelect(string viewData)
+        {
+            return _costRepository.GetCostSelect(viewData);
+        }
+
+        public Task<List<Cost>> GetCostsAsync()
+        {
+            return _costRepository.GetCostsAsync();
         }
     }
 }
