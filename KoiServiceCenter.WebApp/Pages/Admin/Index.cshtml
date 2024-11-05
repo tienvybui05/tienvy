@@ -30,7 +30,7 @@
                         <font style="vertical-align: inherit;">
                             Trang quản lý dịch vụ cá Koi
                         </font>
-                    </font><div class="weight-600 font-30 text-blue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Admin</font></font></div>
+                    </font> <div class="weight-600 font-30 text-blue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Admin</font></font></div>
                 </h4>
                 <p class="font-18 max-width-600"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Thống kê sô lượng khách hàng, các đơn dịch vụ được đặt, số lượng nhân viên</font></font></p>
             </div>
@@ -43,8 +43,9 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Tài khoảng người dùng</h5>
-                    <p class="card-text">Quản lý, chỉnh sửa, phân quyền cho các tài khoảng</p>
+                    <h5 class="card-title">Dịch vụ</h5>
+                    <p class="text-primary" style="font-size: 2rem;">@Model.SoLichLam</p>
+                    <p class="card-text">thông tin các dịch vụ</p>
                     <a href="/Admin/useraccount" class="btn btn-primary btn-sm">Xem chi tiết</a>
                 </div>
             </div>
@@ -56,7 +57,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title">Lịch làm việc bác sĩ</h5>
                     <p class="text-primary" style="font-size: 2rem;">@Model.SoLichLam</p>
-                    <p class="card-text">Edit website content, update information, and organize posts.</p>
+                    <p class="card-text">Quản lý lịch làm bác sĩ, chỉ định bác sĩ</p>
                     <a href="/Admin/vetschedule" class="btn btn-primary btn-sm">Xem chi tiết</a>
                 </div>
             </div>
@@ -68,12 +69,74 @@
                 <div class="card-body text-center">
                     <h5 class="card-title">Số dịch vụ đã đặt</h5>
                     <p class="text-primary" style="font-size: 2rem;">@Model.SoDichVuDat</p>
-                    <p class="card-text">View and analyze website traffic and user interactions.</p>
+                    <p class="card-text">Quản lý đơn dịch vụ do người dùng đặt</p>
                     <a href="/Admin/servicehistory" class="btn btn-primary btn-sm">Xem chi tiết</a>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Card 1: quan lí -->
+    <div class="row">
+        <!-- Card 1: khách hàng -->
+        <div class="col-md-2 mb-2">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Tài khoản</h5>
+                    <p class="text-primary" style="font-size: 2rem;">10</p>
+                    <p class="card-text">Thông tin tài khoảng</p>
+                    <a href="/Admin/useraccount" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Nhân viên -->
+        <div class="col-md-2 mb-2">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Nhân viên</h5>
+                    <p class="text-primary" style="font-size: 2rem;">10</p>
+                    <p class="card-text">Thông tin nhân viên</p>
+                    <a href="/Admin/vetschedule" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Dịch vụ -->
+        <div class="col-md-2 mb-2">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Khách hàng</h5>
+                    <p class="text-primary" style="font-size: 2rem;">10</p>
+                    <p class="card-text">Thông tin khách hàng</p>
+                    <a href="/Analytics" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card 3: Dịch vụ -->
+        <div class="col-sm-12 col-md-6 mb-60">
+            <div class="card card-box text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/Admin/report">Báo cáo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Admin/report">Nhận xét</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="/Admin/service">Chưa thêm</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">Thông tin về trả về sau khi đặt dịch vụ</p>
+                    <a href="/Admin/vetschedule" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Help & Resources Section -->
     <div class="text-center mt-5">
         <p>Learn more about <a href="https://learn.microsoft.com/aspnet/core" target="_blank">building Web apps with ASP.NET Core</a>.</p>

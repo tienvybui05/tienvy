@@ -13,13 +13,18 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.servicehistory
     public class CreateModel : PageModel
     {
         private readonly IServiceHistoryService _service;
+		private readonly IVetScheduleService _vetScheduleService;
+		public CreateModel(IServiceHistoryService service, IVetScheduleService vetScheduleService)
+		{
+			_service = service;
+			_vetScheduleService = vetScheduleService;
+		}
+		//public CreateModel(IServiceHistoryService service)
+		//{
+		//    _service = service;
+		//}
 
-        public CreateModel(IServiceHistoryService service)
-        {
-            _service = service;
-        }
-
-        public IActionResult OnGet()
+		public IActionResult OnGet()
         {
             ViewData["CustomerId"] = _service.GetServiceHistorySelect("CustomerId");
             ViewData["ServiceId"] = _service.GetServiceHistorySelect("ServiceId");
@@ -29,18 +34,43 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.servicehistory
 
         [BindProperty]
         public ServiceHistory ServiceHistory { get; set; }
+		public VetSchedule VetSchedule { get; set; }
 
-        // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+
+		// For more information, see https://aka.ms/RazorPagesCRUD.
+		public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            await _service.AddServiceHistory(ServiceHistory);
+			//await _service.AddServiceHistory(ServiceHistory);
 
-            return RedirectToPage("./Index");
+			await _service.AddServiceHistory(ServiceHistory);
+			bool check = false;
+			Random random = new Random();
+			int ranDumID;
+			do
+			{
+				ranDumID = random.Next(1, 1001);
+				var x = await _service.GetServiceHistoryById(ranDumID);
+				if (x == null)
+				{
+					check = true;
+				}
+
+			} while (check != true);
+
+			VetSchedule = new VetSchedule();
+			VetSchedule.ScheduleId = ranDumID;
+			VetSchedule.VeterinarianId = ServiceHistory.VeterinarianId;
+			VetSchedule.ScheduleDate = ServiceHistory.ServiceDate;
+			ViewData["VeterinarianId"] = _vetScheduleService.GetVeterinarianSelect();
+			await _vetScheduleService.AddVetSchedule(VetSchedule);// Thêm vào lịch làm việc của bác sĩ
+
+
+			return RedirectToPage("./Index");
         }
     }
 }
