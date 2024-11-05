@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoiServiceCenter.WebApp", "KoiServiceCenter.WebApp\KoiServiceCenter.WebApp.csproj", "{DAEFDB26-0160-465E-A3F9-9C5EB24D7D76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KoiServiceCenter.WebApp", "KoiServiceCenter.WebApp\KoiServiceCenter.WebApp.csproj", "{DAEFDB26-0160-465E-A3F9-9C5EB24D7D76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoiFishServiceCenter.Repositories", "KoiFishServiceCenter.Repositories\KoiFishServiceCenter.Repositories.csproj", "{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KoiFishServiceCenter.Repositories", "KoiFishServiceCenter.Repositories\KoiFishServiceCenter.Repositories.csproj", "{D5DD848A-D66A-4BC4-AD6D-9008CE484B8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoiFishServiceCenter.Services", "KoiFishServiceCenter.Services\KoiFishServiceCenter.Services.csproj", "{CC05AF18-4403-4FCB-9237-EFDC2548E5BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KoiFishServiceCenter.Services", "KoiFishServiceCenter.Services\KoiFishServiceCenter.Services.csproj", "{CC05AF18-4403-4FCB-9237-EFDC2548E5BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
