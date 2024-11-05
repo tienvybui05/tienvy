@@ -38,8 +38,28 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.vetschedule
 
             //_context.VetSchedules.Add(VetSchedule);
             //await _context.SaveChangesAsync();
-            await _service.AddVetSchedule(VetSchedule);
-            return RedirectToPage("./Index");
+            //await _service.AddVetSchedule(VetSchedule);
+            //return RedirectToPage("./Index");
+            var check = await _service.GetVetScheduleById(VetSchedule.ScheduleId);
+            var checkDateTime = await _service.BundByDate(VetSchedule);
+            if (check != null)
+            {
+                ModelState.AddModelError("VetSchedule.ScheduleId", "Mã lịch làm việc đã tồn tại. Vui lòng nhập mã khác.");
+                ViewData["VeterinarianId"] = _service.GetVeterinarianSelect();
+                return Page();
+
+            }
+            if (checkDateTime == false)
+            {
+                ModelState.AddModelError("VetSchedule.ScheduleDate", "Bác sĩ đã có lịch. Vui lòng chọn ngày khác.");
+                ViewData["VeterinarianId"] = _service.GetVeterinarianSelect();
+                return Page();
+            }
+            else
+            {
+                await _service.AddVetSchedule(VetSchedule);
+                return RedirectToPage("./Index");
+            }
         }
     }
 }

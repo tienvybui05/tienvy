@@ -58,5 +58,9 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return await _repository.CountVetSchedule();
         }
+        public Task<bool> BundByDate(VetSchedule vetSchedule)
+        {
+            return _repository.BundByDate(vetSchedule);
+        }
     }
 }

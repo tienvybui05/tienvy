@@ -125,5 +125,16 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return count;
 
         }
+        public async Task<bool> BundByDate(VetSchedule vetSchedule)
+        {
+            var check = await _dbContext.VetSchedules.Include(v => v.Veterinarian).FirstOrDefaultAsync(m =>
+            m.VeterinarianId == vetSchedule.VeterinarianId &&
+           (m.ScheduleDate.Day == vetSchedule.ScheduleDate.Day &&
+            m.ScheduleDate.Month == vetSchedule.ScheduleDate.Month &&
+            m.ScheduleDate.Year == vetSchedule.ScheduleDate.Year)
+           );
+            if (check != null) { return false; }
+            return true;
+        }
     }
 }
