@@ -52,5 +52,9 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return await _repository.CountService();
         }
+        public Task<List<Service>> SearcheAsync(string searchString)
+        {
+            return _repository.SearcheAsync(searchString);
+        }
     }
 }

@@ -124,5 +124,16 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             return count;
         }
+        public async Task<List<UserAccount>> SearcheAsync(string searchString)
+        {
+            return await _dbContext.UserAccounts
+               .Where(u => u.UserName.Contains(searchString)
+                    || u.Email.Contains(searchString)
+                    || u.Role.Contains(searchString))
+               .Include(u => u.Customers)
+               .Include(u => u.ServiceHistories)
+               .Include(u => u.VetSchedules)
+               .ToListAsync();
+        }
     }
 }

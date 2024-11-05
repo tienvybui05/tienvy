@@ -100,5 +100,11 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             return count;
         }
+        public async Task<List<Report>> SearchAsync(DateTime dateTime)
+        {
+            return await _dbContext.Reports.Where(a => (a.ReportDate.Day == dateTime.Day) &&
+                                                            (a.ReportDate.Month == dateTime.Month) &&
+                                                            (a.ReportDate.Year == dateTime.Year)).ToListAsync();
+        }
     }
 }

@@ -101,5 +101,33 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             return count;
         }
+        public async Task<List<Service>> SearcheAsync(string searchString)
+        {
+            // Kiểm tra nếu searchString có thể là decimal khong
+            if (decimal.TryParse(searchString, out decimal searchPrice))
+            {
+                // Tìm kiếm theo ServiceName, Description, Price
+                return await _dbContext.Services
+                    .Where(a => a.ServiceName.Contains(searchString)
+                                || a.Description.Contains(searchString)
+                                || a.Price == searchPrice)
+                    .Include(s => s.Costs)
+                    .Include(s => s.Feedbacks)
+                    .Include(s => s.ServiceHistories)
+                    .ToListAsync();
+            }
+            else
+            {
+                // Tìm kiếm chỉ theo các thuộc tính dạng chuỗi: ServiceName, Description
+                return await _dbContext.Services
+                    .Where(a => a.ServiceName.Contains(searchString)
+                                || a.Description.Contains(searchString))
+                    .Include(s => s.Costs)
+                    .Include(s => s.Feedbacks)
+                    .Include(s => s.ServiceHistories)
+                    .ToListAsync();
+            }
+
+        }
     }
 }

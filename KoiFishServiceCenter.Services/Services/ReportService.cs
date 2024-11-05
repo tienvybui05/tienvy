@@ -129,5 +129,9 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return await _repository.CountReport();
         }
+        public Task<List<Report>> SearchAsync(DateTime dateTime)
+        {
+            return _repository.SearchAsync(dateTime);
+        }
     }
 }

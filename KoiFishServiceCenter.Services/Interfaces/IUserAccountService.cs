@@ -17,5 +17,7 @@ namespace KoiFishServiceCenter.Services.Interfaces
         Task<int> UpdateUserAccountAsync(UserAccount userAccount);
         Task<bool> CheckAccount(string username, string password);
         Task<int> CountUserAccount();
+        Task<List<UserAccount>> SearcheAsync(string searchString);
+
     }
 }
