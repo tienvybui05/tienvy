@@ -4,178 +4,261 @@
     ViewData["Title"] = "Home page";
 }
 
-<!DOCTYPE html>
-<html lang="vi">
-
-<head>
-    <meta charset="utf-8">
-    <title>Trung tâm dịch vụ cá Koi</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="~/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="~/css/style.css" rel="stylesheet">
-</head>
-
-<body>
-    <!-- carousel start -->
-    <div class="carousel-header">
-        <div id="carouselid" class="carousel slide" data-bs-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-bs-target="#carouselid" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#carouselid" data-bs-slide-to="1"></li>
-                <li data-bs-target="#carouselid" data-bs-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <img src="img/carousel-2.jpg" class="img-fluid" alt="image">
-                    <div class="carousel-caption">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">
-                                Trung Tâm Dịch
-                                Vụ Cá Koi
-                            </h4>
-                            <h1 class="display-2 text-capitalize text-white mb-4"> Đồng Hành Cùng Niềm Đam Mê!</h1>
-                            <p class="mb-5 fs-5">
-                                "Mang lại sự chăm sóc tốt nhất cho những chú cá Koi yêu quý của bạn với các dịch vụ đẳng
-                                cấp."
-                            </p>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">
-                                    Tìm hiểu
-                                    thêm
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="img/carousel-1.jpg" class="img-fluid" alt="image">
-                    <div class="carousel-caption">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">
-                                Trung Tâm Dịch
-                                Vụ Cá Koi
-                            </h4>
-                            <h1 class="display-2 text-capitalize text-white mb-4">Đối Tác Tin Cậy Cho Đam Mê Của Bạn"</h1>
-                            <p class="mb-5 fs-5">
-                                "Chúng tôi cam kết mang đến sự chăm sóc toàn diện và đẳng cấp cho từng chú cá Koi yêu quý
-                                của bạn."
-                            </p>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">
-                                    Tìm hiểu
-                                    thêm
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="img/carousel-3.jpg" class="img-fluid" alt="image">
-                    <div class="carousel-caption">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">
-                                Trung Tâm Dịch
-                                Vụ Cá Koi
-                            </h4>
-                            <h1 class="display-2 text-capitalize text-white mb-4">Chăm Sóc Toàn Diện Cho Cá Koi Của Bạn</h1>
-                            <p class="mb-5 fs-5">
-                                "Chúng tôi giúp bạn nuôi dưỡng đam mê và chăm sóc cá Koi bằng những dịch vụ đẳng cấp hàng
-                                đầu."
-                            </p>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">
-                                    Tìm hiểu
-                                    thêm
-                                </a>
-                            </div>
+<!-- carousel start -->
+<div class="carousel-header">
+    <div id="carouselid" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselid" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselid" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselid" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img src="img/carousel-2.jpg" class="img-fluid" alt="image">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">
+                            Trung Tâm Dịch
+                            Vụ Cá Koi
+                        </h4>
+                        <h1 class="display-2 text-capitalize text-white mb-4"> Đồng Hành Cùng Niềm Đam Mê!</h1>
+                        <p class="mb-5 fs-5">
+                            "Mang lại sự chăm sóc tốt nhất cho những chú cá Koi yêu quý của bạn với các dịch vụ đẳng
+                            cấp."
+                        </p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">
+                                Tìm hiểu
+                                thêm
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselid" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon btn bg-primary" aria-hidden="false"></span>
-                <span class="visually-hidden">previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselid" data-bs-slide="next">
-                <span class="carousel-control-next-icon btn bg-primary" aria-hidden="false"></span>
-                <span class="visually-hidden">next</span>
+            <div class="carousel-item">
+                <img src="img/carousel-1.jpg" class="img-fluid" alt="image">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">
+                            Trung Tâm Dịch
+                            Vụ Cá Koi
+                        </h4>
+                        <h1 class="display-2 text-capitalize text-white mb-4">Đối Tác Tin Cậy Cho Đam Mê Của Bạn"
+                        </h1>
+                        <p class="mb-5 fs-5">
+                            "Chúng tôi cam kết mang đến sự chăm sóc toàn diện và đẳng cấp cho từng chú cá Koi yêu
+                            quý
+                            của bạn."
+                        </p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">
+                                Tìm hiểu
+                                thêm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="img/carousel-3.jpg" class="img-fluid" alt="image">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">
+                            Trung Tâm Dịch
+                            Vụ Cá Koi
+                        </h4>
+                        <h1 class="display-2 text-capitalize text-white mb-4">Chăm Sóc Toàn Diện Cho Cá Koi Của Bạn
+                        </h1>
+                        <p class="mb-5 fs-5">
+                            "Chúng tôi giúp bạn nuôi dưỡng đam mê và chăm sóc cá Koi bằng những dịch vụ đẳng cấp
+                            hàng
+                            đầu."
+                        </p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">
+                                Tìm hiểu
+                                thêm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselid" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon btn bg-primary" aria-hidden="false"></span>
+            <span class="visually-hidden">previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselid" data-bs-slide="next">
+            <span class="carousel-control-next-icon btn bg-primary" aria-hidden="false"></span>
+            <span class="visually-hidden">next</span>
+        </button>
+    </div>
+</div>
+<!-- carousel end -->
+</div>
+<div class="container-fluid search-bar position-relative" style="top: -50%; transform: translatey(-50%);">
+    <div class="container">
+        <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
+            <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Tìm kiếm">
+            <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2"
+                style="top: 50%; right: 46px; transform: translatey(-50%);">
+                search
             </button>
         </div>
     </div>
-    <!-- carousel end -->
-    </div>
-    <div class="container-fluid search-bar position-relative" style="top: -50%; transform: translatey(-50%);">
-        <div class="container">
-            <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
-                <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Tìm kiếm">
-                <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2"
-                        style="top: 50%; right: 46px; transform: translatey(-50%);">
-                    search
-                </button>
+</div>
+<!-- navbar & hero end -->
+<!-- About Start -->
+<div class="container-fluid about py-3">
+    <div class="container py-3">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5">
+                <div class="h-100" style="border: 50px solid; border-color: transparent #13357B transparent #13357B;">
+                    <img src="img/about-koi.jpg" class="img-fluid w-100 h-100" alt="">
+                </div>
+            </div>
+            <div class="col-lg-7"
+                style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
+                <h5 class="section-about-title pe-3"><b>Về chúng tôi</b></h5>
+                <h1 <span class="text-primary"><strong>Trung tâm dịch vụ cá Koi</strong></span></h1>
+                <h2 class="elementor-heading-title elementor-size-default" style="font-weight: bold; color: #13357B;">
+                    Chăm sóc Cá Koi từ sự tâm huyết!</h2>
+                <p class="mb-4" style="color: black;">Trung tâm dịch vụ Cá Koi của chúng tôi là điểm đến tin cậy dành
+                    cho những ai đam mê
+                    và yêu thích loài cá cảnh đặc biệt này. Với đội ngũ chuyên gia dày dạn kinh nghiệm và kiến thức
+                    sâu sắc, chúng tôi mang đến giải pháp chăm sóc toàn diện, từ tư vấn thiết kế hồ cá, bảo trì môi
+                    trường nước đến điều trị các bệnh lý thường gặp ở cá Koi.</p>
+                <p class="mb-4" style="color: black;">Chúng tôi cam kết mang đến sự chăm sóc tận tâm và chuyên nghiệp,
+                    giúp cá Koi của bạn
+                    luôn khỏe mạnh, sống động và duy trì vẻ đẹp tinh tế. Tại đây, bạn sẽ tìm thấy tất cả những gì
+                    cần thiết để nuôi dưỡng và bảo vệ "người bạn nhỏ" của mình, từ dịch vụ phòng chống và điều trị
+                    bệnh đến cung cấp thiết bị chăm sóc cao cấp.</p>
+                <p class="mb-4" style="color: black;">Chúng tôi cam kết mang đến sự chăm sóc tận tâm và chuyên nghiệp,
+                    giúp cá Koi của bạn
+                    luôn khỏe mạnh, sống động và duy trì vẻ đẹp tinh tế. Tại đây, bạn sẽ tìm thấy tất cả những gì
+                    cần thiết để nuôi dưỡng và bảo vệ "người bạn nhỏ" của mình, từ dịch vụ phòng chống và điều trị
+                    bệnh đến cung cấp thiết bị chăm sóc cao cấp.</p>
+                <div class="row gy-2 gx-4 mb-4">
+                    <div class="col-sm-6">
+                        <p class="mb-0" style="color: black;"><i class="fa fa-arrow-right text-primary me-2"></i>Chuyên
+                            Gia Cá Koi Hàng
+                            Đầu</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0" style="color:black"><i class="fa fa-arrow-right text-primary me-2"></i>Kiểm Tra
+                            Chất Lượng Nước
+                            Định Kỳ</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0" style="color: black;"><i class="fa fa-arrow-right text-primary me-2"></i>Phòng
+                            Chống và Điều Trị
+                            Bệnh Cao Cấp</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0" style="color: black;"><i class="fa fa-arrow-right text-primary me-2"></i>Cung
+                            Cấp Thiết Bị Cao Cấp
+                            Cho Hồ Cá</p>
+                    </div>
+
+                </div>
+                <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="/about">Read More</a>
             </div>
         </div>
     </div>
-    <!-- navbar & hero end -->
-    <!-- About Start -->
-    <div class="container-fluid about py-5">
+</div>
+<!-- About End -->
+<!-- Services Start -->
+<div class="ccontainer-fluid bg-light service py-3">
+    <div class="container-fluid packages py-3">
         <div class="container py-5">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-5">
-                    <div class="h-100" style="border: 50px solid; border-color: transparent #13357B transparent #13357B;">
-                        <img src="img/about-img.jpg" class="img-fluid w-100 h-100" alt="">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h5 class="section-title px-3"><strong>Dịch vụ</strong></h5>
+                <h1 class="mb-0"><strong>Dịch vụ chăm sóc khách hàng</strong></h1>
+            </div>
+            <div class="packages-carousel owl-carousel">
+                <div class="packages-item">
+                    <div class="packages-img">
+                        <img src="img/packages-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                        <div class="packages-price py-2 px-4">0đ</div>
+                    </div>
+                    <div class="packages-content bg-light">
+                        <div class="p-4 pb-0">
+                            <h5 class="mb-0">Đặt lịch tư vấn</h5>
+                            <div class="mb-3">
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                            </div>
+                            <p class="mb-4">Nhận tư vấn miễn phí từ chuyên gia hàng đầu. Chúng tôi sẽ giúp bạn tìm ra
+                                giải pháp tối ưu cho mọi vấn đề.</p>
+                        </div>
+                        <div class="row bg-primary rounded-bottom mx-0">
+                            <div class="row bg-primary rounded-bottom mx-0">
+                                <div class="text-center px-0">
+                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
-                    <h5 class="section-about-title pe-3">Về chúng tôi</h5>
-                    <h1 class="mb-4">Chào mừng đến với <span class="text-primary">Trung tâm dịch vụ cá Koi</span></h1>
-                    <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, dolorum, doloribus sunt dicta, officia voluptatibus libero necessitatibus natus impedit quam ullam assumenda? Id atque iste consectetur. Commodi odit ab saepe!</p>
-                    <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quos voluptatem suscipit neque enim, doloribus ipsum rem eos distinctio, dignissimos nisi saepe nulla? Libero numquam perferendis provident placeat molestiae quia?</p>
-                    <div class="row gy-2 gx-4 mb-4">
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>First Class Flights</p>
+                <div class="packages-item">
+                    <div class="packages-img">
+                        <img src="img/packages-2.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                        <div class="packages-price py-2 px-4">499.000đ</div>
+                    </div>
+                    <div class="packages-content bg-light">
+                        <div class="p-4 pb-0">
+                            <h5 class="mb-0">Đặt lịch chăm sóc hồ Cá</h5>
+                            <div class="mb-3">
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                            </div>
+                            <p class="mb-4">Hồ cá của bạn sẽ trở nên trong vắt và sinh động hơn bao giờ hết với dịch vụ
+                                chăm sóc chuyên nghiệp của chúng tôi.</p>
                         </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Handpicked Hotels</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>5 Star Accommodations</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Latest Model Vehicles</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>150 Premium City Tours</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>24/7 Service</p>
+                        <div class="row bg-primary rounded-bottom mx-0">
+                            <div class="text-center px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
+                            </div>
                         </div>
                     </div>
-                    <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Read More</a>
+                </div>
+                <div class="packages-item">
+                    <div class="packages-img">
+                        <img src="img/packages-3.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+
+                        <div class="packages-price py-2 px-4">549.000đ</div>
+                    </div>
+                    <div class="packages-content bg-light">
+                        <div class="p-4 pb-0">
+                            <h5 class="mb-0">Đặt lịch điều trị</h5>
+                            <div class="mb-3">
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                            </div>
+                            <p class="mb-4">Nhận tư vấn miễn phí từ chuyên gia hàng đầu. Chúng tôi sẽ giúp bạn tìm ra
+                                giải pháp tối ưu cho mọi vấn đề</p>
+                        </div>
+                        <div class="row bg-primary rounded-bottom mx-0">
+                            <div class="text-center px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4">Read More</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- About End -->
-</body>
-</html>
+</div>
+
+</div>
+</div>
+<!-- Services End -->
