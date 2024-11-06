@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 {
     public class EditModel : PageModel
     {
-        private readonly KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext _context;
+        private readonly IUserAccountService _service;
 
-        public EditModel(KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext context)
+        public EditModel(IUserAccountService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [BindProperty]
@@ -24,17 +25,19 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            int Id;
             if (id == null)
             {
+                Id = 0;
                 return NotFound();
             }
-
-            UserAccount = await _context.UserAccounts.FirstOrDefaultAsync(m => m.UserId == id);
-
+            Id = (int)id;
+            UserAccount = await _service.GetUserByIdAsync(Id);
             if (UserAccount == null)
             {
                 return NotFound();
             }
+            ViewData["Role"] = _service.GetRoleSelect();
             return Page();
         }
 
@@ -47,11 +50,11 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
                 return Page();
             }
 
-            _context.Attach(UserAccount).State = EntityState.Modified;
-
+            ViewData["Role"] = _service.GetRoleSelect();
+            await _service.UpdateUserAccountAsync(UserAccount);
             try
             {
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -70,7 +73,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 
         private bool UserAccountExists(int id)
         {
-            return _context.UserAccounts.Any(e => e.UserId == id);
+            return _service.GetUserByIdAsync(id) != null;
         }
     }
 }

@@ -6,23 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 {
     public class IndexModel : PageModel
     {
-        private readonly KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext _context;
+        private readonly IUserAccountService _service;
 
-        public IndexModel(KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext context)
+        public IndexModel(IUserAccountService service)
         {
-            _context = context;
+            _service = service;
         }
 
-        public IList<UserAccount> UserAccount { get;set; }
+        public IList<UserAccount> UserAccount { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string searchString)
         {
-            UserAccount = await _context.UserAccounts.ToListAsync();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                UserAccount = await _service.SearcheAsync(searchString);
+            }
+            else
+            {
+                UserAccount = await _service.GetUserAccountsAsync();
+            }
         }
     }
 }
