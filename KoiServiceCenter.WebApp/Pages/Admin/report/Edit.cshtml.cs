@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.report
 {
     public class EditModel : PageModel
     {
-        private readonly KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext _context;
+        private readonly IReportService _service;
 
-        public EditModel(KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext context)
+        public EditModel(IReportService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [BindProperty]
@@ -24,12 +25,15 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.report
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            int Id;
             if (id == null)
             {
+                Id = 0;
                 return NotFound();
             }
+            Id = (int)id;
 
-            Report = await _context.Reports.FirstOrDefaultAsync(m => m.ReportId == id);
+            Report = await _service.GetReportByIdAsync(Id);
 
             if (Report == null)
             {
@@ -46,12 +50,11 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.report
             {
                 return Page();
             }
-
-            _context.Attach(Report).State = EntityState.Modified;
+            await _service.UpdateReportAsync(Report);
 
             try
             {
-                await _context.SaveChangesAsync();
+                //await _service.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -70,7 +73,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.report
 
         private bool ReportExists(int id)
         {
-            return _context.Reports.Any(e => e.ReportId == id);
+            return _service.GetReportByIdAsync(id) != null;
         }
     }
 }

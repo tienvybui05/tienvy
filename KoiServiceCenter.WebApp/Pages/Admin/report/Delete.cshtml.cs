@@ -6,16 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.report
 {
     public class DeleteModel : PageModel
     {
-        private readonly KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext _context;
+        private readonly IReportService _service;
 
-        public DeleteModel(KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext context)
+        public DeleteModel(IReportService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [BindProperty]
@@ -23,12 +24,14 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.report
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            int ID;
             if (id == null)
             {
+                ID = 0;
                 return NotFound();
             }
-
-            Report = await _context.Reports.FirstOrDefaultAsync(m => m.ReportId == id);
+            ID = (int)id;
+            Report = await _service.GetReportByIdAsync(ID);
 
             if (Report == null)
             {
@@ -43,15 +46,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.report
             {
                 return NotFound();
             }
-
-            Report = await _context.Reports.FindAsync(id);
-
-            if (Report != null)
-            {
-                _context.Reports.Remove(Report);
-                await _context.SaveChangesAsync();
-            }
-
+            await _service.DelReportAsync(Report);
             return RedirectToPage("./Index");
         }
     }

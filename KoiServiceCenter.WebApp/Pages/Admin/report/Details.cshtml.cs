@@ -6,28 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.report
 {
     public class DetailsModel : PageModel
     {
-        private readonly KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext _context;
+        private readonly IReportService _service;
 
-        public DetailsModel(KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext context)
+        public DetailsModel(IReportService service)
         {
-            _context = context;
+            _service = service;
         }
 
         public Report Report { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            int ID;
             if (id == null)
             {
+                ID = 0;
                 return NotFound();
             }
-
-            Report = await _context.Reports.FirstOrDefaultAsync(m => m.ReportId == id);
+            ID = (int)id;
+            Report = await _service.GetReportByIdAsync(ID);
 
             if (Report == null)
             {

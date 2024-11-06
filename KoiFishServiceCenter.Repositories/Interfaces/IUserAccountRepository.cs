@@ -1,4 +1,5 @@
 ﻿using KoiFishServiceCenter.Repositories.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,6 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
         Task<bool> CheckAccount(string username, string password);
         Task<int> CountUserAccount();
         Task<List<UserAccount>> SearcheAsync(string searchString);
-
+        SelectList GetRoleSelect();
     }
 }

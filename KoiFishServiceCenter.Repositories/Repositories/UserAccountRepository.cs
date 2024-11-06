@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace KoiFishServiceCenter.Repositories.Repositories
@@ -134,6 +135,11 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                .Include(u => u.ServiceHistories)
                .Include(u => u.VetSchedules)
                .ToListAsync();
+        }
+        public SelectList GetRoleSelect()
+        {
+            var roles = new List<string> { "Guest", "Customer", "Veterinarian", "Staff", "Manager" };
+            return new SelectList(roles);
         }
     }
 }

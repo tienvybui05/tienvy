@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
 using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace KoiFishServiceCenter.Services
 {
@@ -90,6 +91,10 @@ namespace KoiFishServiceCenter.Services
         public Task<List<UserAccount>> SearcheAsync(string searchString)
         {
             return _userAccountRepository.SearcheAsync(searchString);
+        }
+        public SelectList GetRoleSelect()
+        {
+            return _userAccountRepository.GetRoleSelect();
         }
     }
 }
