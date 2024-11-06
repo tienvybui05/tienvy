@@ -6,23 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.services
 {
     public class IndexModel : PageModel
     {
-        private readonly KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext _context;
+        private readonly IServiceService _service;
 
-        public IndexModel(KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext context)
+        public IndexModel(IServiceService service)
         {
-            _context = context;
+            _service = service;
         }
 
-        public IList<Service> Service { get;set; }
+        public IList<Service> Service { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string searchString)
         {
-            Service = await _context.Services.ToListAsync();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                Service = await _service.SearcheAsync(searchString);
+            }
+            else
+            {
+                Service = await _service.GetServicesAsync();
+            }
         }
     }
 }
