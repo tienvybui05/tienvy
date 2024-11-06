@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="UserAccount.Role" class="control-label"></label>
-                <input asp-for="UserAccount.Role" class="form-control" />
+                <select asp-for="UserAccount.Role" class="form-control" asp-items="@(ViewData["Role"] as SelectList)"></select>
                 <span asp-validation-for="UserAccount.Role" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -44,5 +44,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
