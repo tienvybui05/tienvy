@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.services
 {
     public class EditModel : PageModel
     {
-        private readonly KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext _context;
+        private readonly IServiceService _service;
 
-        public EditModel(KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext context)
+        public EditModel(IServiceService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [BindProperty]
@@ -24,12 +25,14 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.services
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            int ID;
             if (id == null)
             {
+                ID = 0;
                 return NotFound();
             }
-
-            Service = await _context.Services.FirstOrDefaultAsync(m => m.ServiceId == id);
+            ID = (int)id;
+            Service = await _service.GetServicerById(ID);
 
             if (Service == null)
             {
@@ -46,12 +49,12 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.services
             {
                 return Page();
             }
-
-            _context.Attach(Service).State = EntityState.Modified;
+            await _service.UpdateService(Service);
+            //_context.Attach(Service).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -70,7 +73,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.services
 
         private bool ServiceExists(int id)
         {
-            return _context.Services.Any(e => e.ServiceId == id);
+            return _service.GetServicerById(id) != null;
         }
     }
 }

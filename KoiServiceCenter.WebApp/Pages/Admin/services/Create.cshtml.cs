@@ -6,16 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.services
 {
     public class CreateModel : PageModel
     {
-        private readonly KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext _context;
+        private readonly IServiceService _service;
 
-        public CreateModel(KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext context)
+        public CreateModel(IServiceService service)
         {
-            _context = context;
+            _service = service;
         }
 
         public IActionResult OnGet()
@@ -34,8 +35,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.services
                 return Page();
             }
 
-            _context.Services.Add(Service);
-            await _context.SaveChangesAsync();
+            await _service.AddService(Service);
 
             return RedirectToPage("./Index");
         }
