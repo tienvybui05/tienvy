@@ -6,28 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 {
     public class DetailsModel : PageModel
     {
-        private readonly KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext _context;
+        private readonly IUserAccountService _service;
 
-        public DetailsModel(KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext context)
+        public DetailsModel(IUserAccountService service)
         {
-            _context = context;
+            _service = service;
         }
 
         public UserAccount UserAccount { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            int ID;
             if (id == null)
             {
+                ID = 0;
                 return NotFound();
             }
-
-            UserAccount = await _context.UserAccounts.FirstOrDefaultAsync(m => m.UserId == id);
+            ID = (int)id;
+            UserAccount = await _service.GetUserByIdAsync(ID);
 
             if (UserAccount == null)
             {

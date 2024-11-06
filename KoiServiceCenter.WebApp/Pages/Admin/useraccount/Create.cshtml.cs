@@ -6,20 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 {
     public class CreateModel : PageModel
     {
-        private readonly KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext _context;
+        private readonly IUserAccountService _service;
 
-        public CreateModel(KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext context)
+        public CreateModel(IUserAccountService service)
         {
-            _context = context;
+            _service = service;
         }
+
 
         public IActionResult OnGet()
         {
+            ViewData["Role"] = _service.GetRoleSelect();
             return Page();
         }
 
@@ -33,9 +36,8 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
             {
                 return Page();
             }
-
-            _context.UserAccounts.Add(UserAccount);
-            await _context.SaveChangesAsync();
+            ViewData["Role"] = _service.GetRoleSelect();
+            await _service.AddUserAccountAsync(UserAccount);
 
             return RedirectToPage("./Index");
         }

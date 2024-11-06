@@ -6,16 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 {
     public class DeleteModel : PageModel
     {
-        private readonly KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext _context;
+        private readonly IUserAccountService _service;
 
-        public DeleteModel(KoiFishServiceCenter.Repositories.Entities.KoiVetServicesDbContext context)
+        public DeleteModel(IUserAccountService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [BindProperty]
@@ -23,12 +24,14 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            int ID;
             if (id == null)
             {
+                ID = 0;
                 return NotFound();
             }
-
-            UserAccount = await _context.UserAccounts.FirstOrDefaultAsync(m => m.UserId == id);
+            ID = (int)id;
+            UserAccount = await _service.GetUserByIdAsync(ID);
 
             if (UserAccount == null)
             {
@@ -39,17 +42,18 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            int ID;
             if (id == null)
             {
+                ID = 0;
                 return NotFound();
             }
-
-            UserAccount = await _context.UserAccounts.FindAsync(id);
+            ID = (int)id;
+            UserAccount = await _service.GetUserByIdAsync(ID);
 
             if (UserAccount != null)
             {
-                _context.UserAccounts.Remove(UserAccount);
-                await _context.SaveChangesAsync();
+                await _service.DeleteUserAccountAsync(ID);
             }
 
             return RedirectToPage("./Index");
