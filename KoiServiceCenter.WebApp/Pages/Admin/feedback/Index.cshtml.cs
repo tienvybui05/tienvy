@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Services.Interfaces;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.feedback
 {
-    public class IndexModel : PageModel
+	[Authorize(Policy = "ManagerOrStaffOnly")]
+	public class IndexModel : PageModel
     {
         private readonly IFeedbackService _service;
 

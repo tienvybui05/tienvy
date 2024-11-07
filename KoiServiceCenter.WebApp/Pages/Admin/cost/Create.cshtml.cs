@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.cost
 {
-    public class CreateModel : PageModel
+	[Authorize(Policy = "ManagerOrStaffOnly")]
+	public class CreateModel : PageModel
     {
         private readonly ICostService _service;
 

@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 {
-    public class EditModel : PageModel
+	[Authorize(Policy = "ManagerOnly")]
+	public class EditModel : PageModel
     {
         private readonly IUserAccountService _service;
 

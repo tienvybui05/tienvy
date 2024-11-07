@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.vetschedule
 {
-    public class EditModel : PageModel
+	[Authorize(Policy = "ManagerOrStaffOnly")]
+	public class EditModel : PageModel
     {
         private readonly IVetScheduleService _service;
 

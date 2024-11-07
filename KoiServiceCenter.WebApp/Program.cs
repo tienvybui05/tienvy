@@ -1,4 +1,4 @@
-using KoiFishServiceCenter.Repositories.Entities;
+﻿using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Repositories.Interfaces;
 using KoiFishServiceCenter.Repositories.Repositories;
 using KoiFishServiceCenter.Services;
@@ -38,9 +38,32 @@ namespace KoiServiceCenter.WebApp
             builder.Services.AddScoped<IServiceService, ServiceService>();
             builder.Services.AddScoped<IVetScheduleService, VetScheduleService>();
             builder.Services.AddScoped<IServiceHistoryService, ServiceHistoryService>();
+			//
+			builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+			{
+				options.Cookie.Name = "MyCookieAuth";
+				options.LoginPath = "/Admin/Account/Login";// đương dẫn đăng nhập
+				options.AccessDeniedPath = "/Admin/Account/AccessDenied";// dẫn tới trang thông báo từ chối truy cập
+			});
 
-            // Add services to the container.
-            builder.Services.AddRazorPages();
+
+			//
+			// phân quyền
+			builder.Services.AddAuthorization(options =>
+			{
+				options.AddPolicy("ManagerOnly",
+					policy => policy.RequireClaim("Manager"));
+				options.AddPolicy("StaffOnly",
+					policy => policy.RequireClaim("Staff"));
+				options.AddPolicy("VeterianOnly",
+					policy => policy.RequireClaim("Veterian"));
+				options.AddPolicy("ManagerOrStaffOnly", policy =>
+					policy.RequireAssertion(context =>
+						context.User.HasClaim("Manager", "true") ||
+						context.User.HasClaim("Staff", "true")));
+			});
+			// Add services to the container.
+			builder.Services.AddRazorPages();
 
             var app = builder.Build();
 

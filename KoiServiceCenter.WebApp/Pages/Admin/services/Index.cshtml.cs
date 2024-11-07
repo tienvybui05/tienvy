@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.services
 {
-    public class IndexModel : PageModel
+	[Authorize(Policy = "ManagerOrStaffOnly")]
+	public class IndexModel : PageModel
     {
         private readonly IServiceService _service;
 

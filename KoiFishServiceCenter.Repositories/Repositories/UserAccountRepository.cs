@@ -104,15 +104,15 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 throw new InvalidOperationException("Lỗi khi cập nhật tài khoản người dùng", ex);
             }
         }
-        public async Task<bool> CheckAccount(string username, string password)
+        public async Task<string> CheckAccount(string username, string password)
         {
-            var x = await _dbContext.UserAccounts.FirstOrDefaultAsync(p => p.UserName == username && p.Password == password);
-
+            var x = await _dbContext.UserAccounts.FirstOrDefaultAsync(p => p.UserName == username && p.Password == password&&(p.Role == "Manager"|| p.Role == "Staff"));
+            
             if (x == null)
-            {
-                return false;
+            { 
+                return "Customer";
             }
-            return true;
+            return x.Role;
         }
 
         public async Task<int> CountUserAccount()
@@ -141,5 +141,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             var roles = new List<string> { "Guest", "Customer", "Veterinarian", "Staff", "Manager" };
             return new SelectList(roles);
         }
-    }
+
+		
+	}
 }

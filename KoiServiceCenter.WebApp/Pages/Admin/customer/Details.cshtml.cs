@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.customer
 {
-    public class DetailsModel : PageModel
+	[Authorize(Policy = "ManagerOrStaffOnly")]
+	public class DetailsModel : PageModel
     {
         private readonly ICustomerService _service;
 

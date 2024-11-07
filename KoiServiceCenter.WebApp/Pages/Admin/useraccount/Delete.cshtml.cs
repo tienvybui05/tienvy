@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 {
-    public class DeleteModel : PageModel
+	[Authorize(Policy = "ManagerOnly")]
+	public class DeleteModel : PageModel
     {
         private readonly IUserAccountService _service;
 

@@ -1,9 +1,12 @@
 ﻿using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin
 {
-    public class Index : PageModel
+	[Authorize]// Ủy quyền
+			   // từ chối danh tính ẩn danh
+	public class Index : PageModel
     {
         private readonly IVetScheduleService _service;
         private readonly IServiceHistoryService _serviceServiceHistory;
