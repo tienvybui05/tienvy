@@ -1,4 +1,5 @@
-﻿using KoiFishServiceCenter.Services.Interfaces;
+﻿using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,7 +14,8 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.Account
         [BindProperty]
         public Credential credential { get; set; }
         private readonly IUserAccountService _service;
-        public string chucNang;
+        public UserAccount userAccount;
+        //public string chucNang;
         //Veterinarian,Manager
         public LoginModel(IUserAccountService service)
         {
@@ -28,26 +30,25 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.Account
             {
                 return Page();
             }
-            chucNang = await _service.CheckAccount(credential.UserName, credential.Password);
-
-			if (chucNang== "Manager"||chucNang == "Staff")
+            userAccount = await _service.Account(credential.UserName, credential.Password);
+			if (userAccount.Role == "Manager"|| userAccount.Role == "Staff")
             {
                 List<Claim> claims = new List<Claim>
                 {
-                new Claim(ClaimTypes.Name, "admin"),
-                new Claim(ClaimTypes.Email, "admin@mywebsite.com")
+                new Claim(ClaimTypes.Name, userAccount.UserName),
+                new Claim(ClaimTypes.Email, userAccount.Email)
                 };
 
                 // Thêm claims dựa vào loại người dùng
-                if (chucNang == "Manager")
+                if (userAccount.Role == "Manager")
                 {
                     claims.Add(new Claim("Manager", "true"));
                 }
-                else if (chucNang == "Staff")
+                else if (userAccount.Role == "Staff")
                 {
                     claims.Add(new Claim("Staff", "true"));
                 }
-                else if (chucNang =="Veterian")
+                else if (userAccount.Role =="Veterian")
                 {
                     claims.Add(new Claim("Veterian", "true"));
                 }

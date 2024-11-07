@@ -142,6 +142,15 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return new SelectList(roles);
         }
 
-		
+		public async Task<UserAccount> Account(string username, string password)
+		{
+			var ojb = await _dbContext.UserAccounts.FirstOrDefaultAsync(p => p.UserName == username && p.Password == password && (p.Role == "Manager" || p.Role == "Staff"));
+
+			if (ojb == null)
+			{
+				return null;
+			}
+			return ojb;
+		}
 	}
 }

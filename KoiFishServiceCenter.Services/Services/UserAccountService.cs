@@ -96,5 +96,10 @@ namespace KoiFishServiceCenter.Services
         {
             return _userAccountRepository.GetRoleSelect();
         }
-    }
+
+		public Task<UserAccount> Account(string username, string password)
+		{
+			return _userAccountRepository.Account(username, password);
+		}
+	}
 }
