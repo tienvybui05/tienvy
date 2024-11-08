@@ -2,3 +2,29 @@
 @model KoiServiceCenter.WebApp.Pages.Account.LoginModel
 @{
 }
+<div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="container border rounded shadow-sm p-4" style="max-width: 450px;">
+        <h3 class="text-center mb-4">Đăng Nhập</h3>
+        <form method="post">
+            <div class="text-danger text-center mb-3" asp-validation-summary="ModelOnly"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="credential.UserName" class="form-label fw-bold">Tài khoản</label>
+                <input type="text" asp-for="credential.UserName" class="form-control" />
+                <span class="text-danger" asp-validation-for="credential.UserName"></span>
+            </div>
+
+            <div class="form-group mb-4">
+                <label asp-for="credential.Password" class="form-label fw-bold">Mật khẩu</label>
+                <input type="password" asp-for="credential.Password" class="form-control" />
+                <span class="text-danger" asp-validation-for="credential.Password"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <input type="submit" class="btn btn-primary px-4" value="Login" />
+                <button type="button" class="btn btn-secondary px-4">Thoát</button>
+                <a href="/AccountCustomer/SignUp" class="btn btn-link">Đăng ký</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -14,9 +14,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.Account
         [BindProperty]
         public Credential credential { get; set; }
         private readonly IUserAccountService _service;
-        public UserAccount userAccount;
-        //public string chucNang;
-        //Veterinarian,Manager
+
         public LoginModel(IUserAccountService service)
         {
             _service = service;
@@ -30,7 +28,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.Account
             {
                 return Page();
             }
-            userAccount = await _service.Account(credential.UserName, credential.Password);
+             var userAccount = await _service.Account(credential.UserName, credential.Password);
 			if (userAccount.Role == "Manager"|| userAccount.Role == "Staff")
             {
                 List<Claim> claims = new List<Claim>

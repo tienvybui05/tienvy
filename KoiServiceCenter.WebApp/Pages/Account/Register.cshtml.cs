@@ -23,12 +23,16 @@ namespace KoiServiceCenter.WebApp.Pages.Account
 		// For more information, see https://aka.ms/RazorPagesCRUD.
 		public async Task<IActionResult> OnPostAsync()
 		{
-			
-			if (await _service.CreateAccount(Input.UserName,Input.Password,Input.Email)==false)
+			if(await _service.checkEmail(Input.Email) == false)
 			{
-				ModelState.AddModelError("Input.Email", "Email đã tồn tại. Vui lòng nhập Email khác.");
-				return Page();
-			}
+                ModelState.AddModelError("Input.Email", "Email đã tồn tại. Vui lòng nhập Email khác.");
+                if (await _service.CreateAccount(Input.UserName, Input.Password, Input.Email) == false)
+                {
+                    ModelState.AddModelError("Input.UserName", "Tên tài khoản đã tồn tại. Vui lòng nhập tên khác khác.");
+                }
+                return Page();
+            }
+	
 			return RedirectToPage("/Index");
 		}
 		public class InputModel

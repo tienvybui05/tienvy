@@ -144,7 +144,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 
 		public async Task<UserAccount> Account(string username, string password)
 		{
-			var ojb = await _dbContext.UserAccounts.FirstOrDefaultAsync(p => p.UserName == username && p.Password == password && (p.Role == "Manager" || p.Role == "Staff"));
+			var ojb = await _dbContext.UserAccounts.FirstOrDefaultAsync(p => p.UserName == username && p.Password == password);
 
 			if (ojb == null)
 			{
@@ -155,9 +155,9 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 
 		public async Task<bool> CreateAccount(string userName, string passWord, string email)
 		{
-			var emailExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m => m.Email == email);
+			
             var userNameExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m =>m.UserName == userName);
-            if (emailExists != null||userNameExists != null)
+            if (userNameExists != null)
             {
                 return false;
             }
@@ -182,5 +182,15 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             await AddUserAccountAsync(UserAccount);
             return true;
 		}
-	}
+
+        public async Task<bool> checkEmail(string email)
+        {
+            var emailExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m => m.Email == email);
+            if(emailExists != null)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
 }
