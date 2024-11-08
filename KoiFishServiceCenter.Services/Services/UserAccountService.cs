@@ -101,5 +101,10 @@ namespace KoiFishServiceCenter.Services
 		{
 			return _userAccountRepository.Account(username, password);
 		}
+
+		public Task<bool> CreateAccount(string userName, string passWord, string email)
+		{
+			return _userAccountRepository.CreateAccount(userName, passWord, email);
+		}
 	}
 }

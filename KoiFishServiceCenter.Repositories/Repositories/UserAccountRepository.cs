@@ -152,5 +152,35 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 			}
 			return ojb;
 		}
+
+		public async Task<bool> CreateAccount(string userName, string passWord, string email)
+		{
+			var emailExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m => m.Email == email);
+            var userNameExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m =>m.UserName == userName);
+            if (emailExists != null||userNameExists != null)
+            {
+                return false;
+            }
+			UserAccount UserAccount = new UserAccount();
+
+			Random random = new Random();
+			int ranDomID;
+			do
+			{
+				ranDomID = random.Next(1, 1001);
+				var x = await GetUserByIdAsync(ranDomID);
+				if (x == null)
+				{
+					break;
+				}
+			} while (true);
+			UserAccount.UserId = ranDomID;
+			UserAccount.Role = "Customer";
+			UserAccount.Email = email;
+            UserAccount.Password = passWord;
+            UserAccount.UserName = userName;
+            await AddUserAccountAsync(UserAccount);
+            return true;
+		}
 	}
 }

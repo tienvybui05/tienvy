@@ -21,5 +21,6 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
 		Task<int> CountUserAccount();
         Task<List<UserAccount>> SearcheAsync(string searchString);
         SelectList GetRoleSelect();
-    }
+		Task<bool> CreateAccount(string userName,string passWord,string email);
+	}
 }
