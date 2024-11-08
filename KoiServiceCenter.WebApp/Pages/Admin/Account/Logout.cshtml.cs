@@ -8,7 +8,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.Account
     {
 		public async Task<IActionResult> OnPostAsync()
 		{
-			await HttpContext.SignOutAsync("MyCookieAuth");
+			await HttpContext.SignOutAsync("AdminCookieAuth");
 			return RedirectToPage("/Index");
 
 		}

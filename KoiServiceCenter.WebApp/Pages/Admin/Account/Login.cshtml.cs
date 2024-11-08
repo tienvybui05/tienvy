@@ -29,35 +29,39 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.Account
                 return Page();
             }
              var userAccount = await _service.Account(credential.UserName, credential.Password);
-			if (userAccount.Role == "Manager"|| userAccount.Role == "Staff")
+            if(userAccount!=null)
             {
-                List<Claim> claims = new List<Claim>
+                if (userAccount.Role == "Manager" || userAccount.Role == "Staff")
+                {
+                    List<Claim> claims = new List<Claim>
                 {
                 new Claim(ClaimTypes.Name, userAccount.UserName),
                 new Claim(ClaimTypes.Email, userAccount.Email)
                 };
 
-                // Thêm claims dựa vào loại người dùng
-                if (userAccount.Role == "Manager")
-                {
-                    claims.Add(new Claim("Manager", "true"));
-                }
-                else if (userAccount.Role == "Staff")
-                {
-                    claims.Add(new Claim("Staff", "true"));
-                }
-                else if (userAccount.Role =="Veterian")
-                {
-                    claims.Add(new Claim("Veterian", "true"));
-                }
-                // Khởi tạo ClaimsIdentity và đăng nhập với cookie
-                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+                    // Thêm claims dựa vào loại người dùng
+                    if (userAccount.Role == "Manager")
+                    {
+                        claims.Add(new Claim("Manager", "true"));
+                    }
+                    else if (userAccount.Role == "Staff")
+                    {
+                        claims.Add(new Claim("Staff", "true"));
+                    }
+                    else if (userAccount.Role == "Veterian")
+                    {
+                        claims.Add(new Claim("Veterian", "true"));
+                    }
+                    // Khởi tạo ClaimsIdentity và đăng nhập với cookie
+                    var identity = new ClaimsIdentity(claims, "AdminCookieAuth");
+                    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+                    await HttpContext.SignInAsync("AdminCookieAuth", claimsPrincipal);
 
-                // Chuyển hướng đến trang Admin/Index sau khi đăng nhập
-                return RedirectToPage("/Admin/Index");
-            }
+                    // Chuyển hướng đến trang Admin/Index sau khi đăng nhập
+                    return RedirectToPage("/Admin/Index");
+                }
+            }    
+		
             return Page();
         }
         public class Credential

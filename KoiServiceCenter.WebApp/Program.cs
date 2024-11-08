@@ -38,18 +38,44 @@ namespace KoiServiceCenter.WebApp
             builder.Services.AddScoped<IServiceService, ServiceService>();
             builder.Services.AddScoped<IVetScheduleService, VetScheduleService>();
             builder.Services.AddScoped<IServiceHistoryService, ServiceHistoryService>();
-			//
-			builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
-			{
-				options.Cookie.Name = "MyCookieAuth";
-				options.LoginPath = "/Admin/Account/Login";// đương dẫn đăng nhập
-				options.AccessDeniedPath = "/Admin/Account/AccessDenied";// dẫn tới trang thông báo từ chối truy cập
-			});
+            //
+                 builder.Services.AddAuthentication(options =>
+                 {
+                // Sử dụng PolicyScheme làm scheme mặc định
+                options.DefaultScheme = "DynamicScheme";
+                options.DefaultChallengeScheme = "DynamicScheme";
+                })
+                // PolicyScheme để chọn scheme động dựa trên URL
+                .AddPolicyScheme("DynamicScheme", "Dynamic Authentication Scheme", options =>
+                {
+               options.ForwardDefaultSelector = context =>
+               {
+                   // Nếu đường dẫn bắt đầu bằng /Admin, sử dụng AdminCookieAuth
+                   if (context.Request.Path.StartsWithSegments("/Admin"))
+                   {
+                       return "AdminCookieAuth";
+                   }
+                   // Ngược lại, sử dụng CustomerCookieAuth cho các phần khác
+                   return "CustomerCookieAuth";
+               };
+               })
+              .AddCookie("CustomerCookieAuth", options =>
+             {
+                    options.Cookie.Name = "CustomerCookieAuth";
+                    options.LoginPath = "/Account/Login";
+                    //options.AccessDeniedPath = "/Account/AccessDenied";
+             })
+             .AddCookie("AdminCookieAuth", options =>
+            {
+            options.Cookie.Name = "AdminCookieAuth";
+            options.LoginPath = "/Admin/Account/Login";
+            options.AccessDeniedPath = "/Admin/Account/AccessDenied";
+            });
 
 
-			//
-			// phân quyền
-			builder.Services.AddAuthorization(options =>
+            //
+            // phân quyền
+            builder.Services.AddAuthorization(options =>
 			{
 				options.AddPolicy("ManagerOnly",
 					policy => policy.RequireClaim("Manager"));

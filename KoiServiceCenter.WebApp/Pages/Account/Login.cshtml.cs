@@ -37,9 +37,9 @@ namespace KoiServiceCenter.WebApp.Pages.Account
                 new Claim(ClaimTypes.Email, userAccount.Email),
                // new Claim(ClaimTypes.Sid, userAccount.UserId)
                 };
-                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                var identity = new ClaimsIdentity(claims, "CustomerCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+                await HttpContext.SignInAsync("CustomerCookieAuth", claimsPrincipal);
                 return RedirectToPage("/Index");
             }
             return Page();
