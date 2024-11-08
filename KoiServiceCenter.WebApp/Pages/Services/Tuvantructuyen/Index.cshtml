@@ -57,10 +57,6 @@
             <p style="font-size: 1.2em; line-height: 1.6em;">
                 Hãy kết nối ngay với KOI khi bạn cần sự hỗ trợ cho thú cưng của mình. Đội ngũ bác sĩ chuyên nghiệp của chúng tôi luôn sẵn sàng đồng hành cùng bạn, mang lại sự chăm sóc toàn diện nhất cho thú cưng của bạn.
             </p>
-
-            <p>
-                <a asp-page="Create" class="btn btn-primary rounded-pill py-2 px-4">Đặt lịch</a>
-            </p>
         </div>
     </div>
     <!-- services end -->
@@ -69,8 +65,8 @@
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
-                    <h5 class="section-booking-title pe-3">Booking</h5>
-                    <h1 class="text-white mb-4">Online Booking</h1>
+                    <h5 class="section-booking-title pe-3">Đặt lịch</h5>
+                    <h1 class="text-white mb-4">Đặt lịch trực tuyến</h1>
                     <p class="text-white mb-4">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur maxime ullam esse fuga blanditiis accusantium pariatur quis sapiente, veniam doloribus praesentium? Repudiandae iste voluptatem fugiat doloribus quasi quo iure officia.
                     </p>
@@ -80,46 +76,55 @@
                     <a href="#" class="btn btn-light text-primary rounded-pill py-3 px-5 mt-2">Read More</a>
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="text-white mb-3">Book A Tour Deals</h1>
+                    <h1 class="text-white mb-3">Đặt dịch vụ với nhiều ưu đãi lớn</h1>
                     <p class="text-white mb-4">Get <span class="text-warning">50% Off</span> On Your First Adventure Trip With Travela. Get More Deal Offers Here.</p>
-                    <form>
+                    <form method="post">
                         <div class="row g-3">
                             <div class="col-md-6">
+                                    
                                 <div class="form-floating">
-                                    <input type="text" class="form-control bg-white border-0" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
+
+                                    <select asp-for="ServiceHistory.CustomerId" class="form-control bg-white border-0" asp-items="ViewBag.CustomerId"></select>
+                                    <label asp-for="ServiceHistory.CustomerId" class="control-label">Customer</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">                               
+                                <div class="form-floating">
+                                    <input asp-for="ServiceHistory.HistoryId" class="form-control bg-white border-0" />
+                                    <label asp-for="ServiceHistory.HistoryId" class="control-label"></label>
+                                    <span asp-validation-for="ServiceHistory.HistoryId" class="text-danger"></span>
+                                </div>
+                            </div> 
+                            <div class="col-md-6">
+                                <div class="form-floating date" id="date3" data-target-input="nearest">                                   
+                                    <input asp-for="ServiceHistory.ServiceDate" type="date" class="form-control" />
+                                    <label asp-for="ServiceHistory.ServiceDate" class="control-label"></label>
+                                    <span asp-validation-for="ServiceHistory.ServiceDate" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control bg-white border-0" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating date" id="date3" data-target-input="nearest">
-                                    <input type="text" class="form-control bg-white border-0" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
-                                    <label for="datetime">Date & Time</label>
+                                    <select asp-for="ServiceHistory.ServiceId" class="form-control bg-white border-0" asp-items="ViewBag.ServiceId"></select>
+                                    <label asp-for="ServiceHistory.ServiceId" class="control-label"></label>
+                                    
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <select class="form-select bg-white border-0" id="select1">
-                                        <option value="1">Destination 1</option>
-                                        <option value="2">Destination 2</option>
-                                        <option value="3">Destination 3</option>
-                                    </select>
-                                    <label for="select1">Destination</label>
+                                    <select asp-for="ServiceHistory.VeterinarianId" class="form-control bg-white border-0" asp-items="ViewBag.VeterinarianId"></select>
+                                    <label asp-for="ServiceHistory.VeterinarianId" class="control-label"></label>                                    
+                                </div>
+                            </div>   
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="ServiceHistory.Result" class="form-control bg-white border-0" />
+                                    <label asp-for="ServiceHistory.Result" class="control-label"></label>
+                                    <span asp-validation-for="ServiceHistory.Result" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control bg-white border-0" placeholder="Special Request" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Special Request</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary text-white w-100 py-3" type="submit">Book Now</button>
+                                <input type="submit" value="Book Now" class="btn btn-primary text-white w-100 py-3" />
                             </div>
                         </div>
                     </form>
