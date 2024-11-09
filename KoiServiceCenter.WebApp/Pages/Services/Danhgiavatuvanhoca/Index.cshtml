@@ -62,10 +62,6 @@
             <p style="font-size: 1.2em; line-height: 1.6em;">
                 Hãy để chúng tôi giúp bạn tạo ra một hồ cá hoàn hảo cho không gian sống của mình. Đừng ngần ngại liên hệ với chúng tôi để được tư vấn miễn phí hoặc đặt lịch hẹn dịch vụ. Chúng tôi luôn sẵn sàng hỗ trợ bạn để mang đến những giải pháp tốt nhất cho hồ cá của bạn. Cảm ơn bạn đã tin tưởng và lựa chọn Koi Services!
             </p>
-
-            <p>
-                <a asp-page="Create" class="btn btn-primary rounded-pill py-2 px-4">Đặt lịch</a>
-            </p>
         </div>
     </div>
     <!-- services end -->
@@ -276,5 +272,10 @@
 </body>
 </html>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
 

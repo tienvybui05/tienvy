@@ -78,8 +78,10 @@
                 <div class="col-lg-6">
                     <h1 class="text-white mb-3">Đặt dịch vụ với nhiều ưu đãi lớn</h1>
                     <p class="text-white mb-4">Get <span class="text-warning">50% Off</span> On Your First Adventure Trip With Travela. Get More Deal Offers Here.</p>
+
                     <form method="post">
                         <div class="row g-3">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
                             <div class="col-md-6">
                                     
                                 <div class="form-floating">
@@ -268,5 +270,9 @@
 </body>
 </html>
 
-
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
