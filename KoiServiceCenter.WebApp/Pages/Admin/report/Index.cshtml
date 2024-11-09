@@ -1,4 +1,4 @@
-﻿@page
+﻿ @page
 @model KoiServiceCenter.WebApp.Pages.Admin.report.IndexModel
 @{
     ViewData["Title"] = "Các báo cáo";
@@ -40,7 +40,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Report[0].Notes)
                 </th>
-                <th style="width: 300px;">Hành động</th> <!-- Adjusted width for Actions column -->
+                <th style="width: 300px;">Hành động</th> 
             </tr>
         </thead>
         <tbody>
@@ -49,7 +49,9 @@
                 <tr>
                     <td>@(i++)</td>
                     <td>
-                        @* @Html.DisplayFor(modelItem => item.ScheduleDate) *@
+                        @Html.DisplayFor(modelItem => item.ReportId)
+                    </td>
+                    <td>
                         @item.ReportDate.ToString("dd/MM/yyyy")
                     </td>
                     <td>
