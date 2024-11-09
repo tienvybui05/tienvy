@@ -35,7 +35,8 @@ namespace KoiServiceCenter.WebApp.Pages.Account
                 {
                 new Claim(ClaimTypes.Name, userAccount.UserName),
                 new Claim(ClaimTypes.Email, userAccount.Email),
-               // new Claim(ClaimTypes.Sid, userAccount.UserId)
+                new Claim(ClaimTypes.NameIdentifier, userAccount.UserId.ToString()),
+                new Claim("Everyone", "true")
                 };
                 var identity = new ClaimsIdentity(claims, "CustomerCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);

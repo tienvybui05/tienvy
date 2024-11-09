@@ -62,5 +62,10 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return _repository.BundByDate(serviceHistory);
         }
+
+        public Task<List<ServiceHistory>> HistoryServices(int id)
+        {
+            return _repository.HistoryServices(id); 
+        }
     }
 }

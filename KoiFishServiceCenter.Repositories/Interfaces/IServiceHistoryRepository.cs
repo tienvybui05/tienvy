@@ -20,5 +20,6 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
         Task<List<ServiceHistory>> SearcheAsync(string searchString);
         Task<int> CountServiceHistory();
         Task<bool> BundByDate(ServiceHistory serviceHistory);
+        Task<List<ServiceHistory>> HistoryServices(int id);
     }
 }

@@ -155,9 +155,9 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 
 		public async Task<bool> CreateAccount(string userName, string passWord, string email)
 		{
-			
+            var emailExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m => m.Email == email);
             var userNameExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m =>m.UserName == userName);
-            if (userNameExists != null)
+            if (userNameExists != null||emailExists!=null)
             {
                 return false;
             }

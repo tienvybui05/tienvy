@@ -143,5 +143,20 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             if (check != null) { return false; }
             return true;
         }
+
+        public async Task<List<ServiceHistory>> HistoryServices(int id)
+        {
+            Customer accounts = await _dbContext.Customers.FirstOrDefaultAsync(p => p.UserId == id);
+            if (accounts != null)
+            {
+                int x = accounts.CustomerId;
+                return await _dbContext.ServiceHistories.Include(s => s.Customer)
+                                                .Include(s => s.Service)
+                                                .Include(s => s.Veterinarian)
+                                                .Where(m => m.CustomerId == x) 
+                                                .ToListAsync();
+            }
+            return null;
+        }
     }
 }
