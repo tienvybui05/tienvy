@@ -56,47 +56,41 @@
 		<div class="header-left">
 			<div class="menu-icon dw dw-menu"></div>
 			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
-			<div class="header-search">
-				<form>
-					<div class="form-group mb-0">
-						<i class="dw dw-search2 search-icon"></i>
-						<input type="text" class="form-control search-input" placeholder="Search Here">
-						<div class="dropdown">
-							<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
-								<i class="ion-arrow-down-c"></i>
-							</a>
-							<div class="dropdown-menu dropdown-menu-right">
-								<div class="form-group row">
-									<label class="col-sm-12 col-md-2 col-form-label">From</label>
-									<div class="col-sm-12 col-md-10">
-										<input class="form-control form-control-sm form-control-line" type="text">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-12 col-md-2 col-form-label">To</label>
-									<div class="col-sm-12 col-md-10">
-										<input class="form-control form-control-sm form-control-line" type="text">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-12 col-md-2 col-form-label">Subject</label>
-									<div class="col-sm-12 col-md-10">
-										<input class="form-control form-control-sm form-control-line" type="text">
-									</div>
-								</div>
-								<div class="text-right">
-									<button class="btn btn-primary">Search</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
+			<div class="app-tagline" style="color: #6C757D ; font-size:26px ;margin-right: 50px;">
+				<b>TRUNG TÂM DỊCH VỤ CÁ KOI</b>
 			</div>
+
+			<div class="date-time"
+				style="color: #6C757D; font-size: larger; display: flex; justify-content: center; align-items: center;">
+				<span id="current-time" style="
+        font-size: 1rem; /* Kích thước chữ lớn */
+        font-weight: bold; /* Chữ đậm */
+        color: #6C757D; /* Màu chữ nổi bật */
+        background-color: #f1f1f1; /* Nền sáng cho tương phản */
+        padding: 10px 20px; /* Khoảng cách cho chữ dễ đọc */
+        border-radius: 8px; /* Bo góc nhẹ */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Bóng đổ để nổi bật */
+	"></span>
+			</div>
+
+
+			<script>
+				function updateTime() {
+					const now = new Date();
+					const formattedTime = now.toLocaleTimeString() + " " + now.toLocaleDateString();
+					document.getElementById("current-time").textContent = formattedTime;
+				}
+
+				// Cập nhật thời gian mỗi giây
+				setInterval(updateTime, 1000);
+
+				// Gọi hàm ngay khi trang tải xong để không phải đợi 1 giây đầu tiên
+				updateTime();
+			</script>
+
+
 		</div>
 		<div class="header-right">
-			<div class="mr-2">
-				<partial name="_LoginStatusParial" />
-			</div>
 			<div class="dashboard-setting user-notification">
 				<div class="dropdown">
 					<a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
@@ -160,22 +154,40 @@
 					</div>
 				</div>
 			</div>
-			<div class="user-info-dropdown">
-				<div class="dropdown">
-					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon">
-							<img src="~/admin/vendors/images/photo1.jpg" alt="">
-						</span>
-						<span class="user-name">Ross C. Lopez</span>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+			<div class="center-container">
+				@if (User.Identity.IsAuthenticated)
+				{
+					<div class="user-info-dropdown">
+						<div class="dropdown">
+							<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+								<span class="user-icon">
+									<i class="fas fa-user-circle fa-2x"></i> <!-- Font Awesome user icon -->
+								</span>
+								<span class="user-name">@User.Identity.Name</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+								<form method="post" asp-page="/Admin/Account/Logout" style="display: inline;">
+									<button class="dropdown-item" type="submit"><i class="dw dw-logout"></i> Log
+										Out</button>
+								</form>
+							</div>
+						</div>
 					</div>
-				</div>
+				}
+				else
+				{
+					<div class="dashboard-setting user-notification">
+						<div class="dropdown">
+							<a class="dropdown-toggle no-arrow" href="/Admin/Account/Login" data-toggle="right-sidebar">
+								<i class="fas fa-sign-in-alt"></i>
+							</a>
+						</div>
+					</div>
+
+				}
 			</div>
+
+
 			<div class="github-link">
 				<a href="https://github.com/dropways/deskapp" target="_blank"><img src="vendors/images/github.svg"
 						alt=""></a>
@@ -198,7 +210,7 @@
 				<h4 class="weight-600 font-18 pb-10">Header Background</h4>
 				<div class="sidebar-btn-group pb-30 mb-10">
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
-					<a href="javascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
+					<a href="jav	ascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
 				</div>
 
 				<h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
@@ -271,6 +283,7 @@
 			</div>
 		</div>
 	</div>
+
 
 	<div class="left-side-bar">
 		<div class="brand-logo">
