@@ -30,6 +30,36 @@
 
     <!-- Template Stylesheet -->
     <link href="~/css/style.css" rel="stylesheet">
+    <style>
+        /* Thiết lập bố cục Flexbox cho trang */
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1;
+            /* Đẩy nội dung chính chiếm toàn bộ không gian còn lại */
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        a.text-white {
+            color: white;
+            text-decoration: none;
+        }
+
+        a.text-white:hover {
+            color: #ddd;
+        }
+    </style>
 </head>
 
 <body>
@@ -83,7 +113,7 @@
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-            <a href="/trang-chu" class="navbar-brand p-0">
+            <a href="/" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa-solid fa-fish"></i>KOI</h1>
                 <!-- <img src="img/logo.png" alt="Logo"> -->
             </a>
@@ -200,24 +230,25 @@
                                 Koi</a></a>
                     </div>
                 </div>
-                <!-- Copyright End -->
-                <!-- Back to Top -->
-                <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
-                        class="fa fa-arrow-up"></i></a>
+            </div>
+        </div>
+        <!-- Copyright End -->
+        <!-- Back to Top -->
 
 
-                <!-- JavaScript Libraries -->
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-                <script src="~/lib/easing/easing.min.js"></script>
-                <script src="~/lib/waypoints/waypoints.min.js"></script>
-                <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
-                <script src="~/lib/lightbox/js/lightbox.min.js"></script>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/easing/easing.min.js"></script>
+        <script src="~/lib/waypoints/waypoints.min.js"></script>
+        <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="~/lib/lightbox/js/lightbox.min.js"></script>
 
 
-                <!-- Template Javascript -->
-                <script src="~/js/main.js"></script>
-                @await RenderSectionAsync("Scripts", required: false)
+        <!-- Template Javascript -->
+        <script src="~/js/main.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
