@@ -19,11 +19,41 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Dieutribenhchoca
         //    _service = service;
         //}
 
-        public IActionResult OnGet()
+        //public IActionResult OnGet()
+        //{
+        //    ViewData["CustomerId"] = _service.GetServiceHistorySelect("CustomerId");
+        //    ViewData["ServiceId"] = _service.GetServiceHistorySelect("ServiceId");
+        //    ViewData["VeterinarianId"] = _service.GetServiceHistorySelect("VeterinarianId");
+        //    return Page();
+        //}
+
+        public async Task<IActionResult> OnGet()
         {
+            // Tạo mã tự động khi truy cập trang
+            Random random = new Random();
+            int ranDumID;
+            bool check = false;
+
+            do
+            {
+                ranDumID = random.Next(1, 1001);
+                var existingRecord = await _service.GetServiceHistoryById(ranDumID);
+                if (existingRecord == null)
+                {
+                    check = true;
+                }
+            } while (!check);
+
+            ServiceHistory = new ServiceHistory
+            {
+                HistoryId = ranDumID
+            };
+
+            // Load các ViewData khác nếu cần
             ViewData["CustomerId"] = _service.GetServiceHistorySelect("CustomerId");
             ViewData["ServiceId"] = _service.GetServiceHistorySelect("ServiceId");
             ViewData["VeterinarianId"] = _service.GetServiceHistorySelect("VeterinarianId");
+
             return Page();
         }
 

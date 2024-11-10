@@ -110,7 +110,6 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Tuvantructuyen
                     }
 
                 } while (check != true);
-
                 VetSchedule = new VetSchedule();
                 VetSchedule.ScheduleId = ranDumID;
                 VetSchedule.VeterinarianId = ServiceHistory.VeterinarianId;
@@ -122,7 +121,5 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Tuvantructuyen
                 return RedirectToPage("./Index");
             }
         }
-
-
     }
 }

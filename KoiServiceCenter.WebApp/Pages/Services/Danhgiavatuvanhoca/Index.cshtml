@@ -95,16 +95,17 @@
                                 </div>
 
                             </div>
-                            <div class="col-md-6">
+                           @*  <div class="col-md-6">
                                 <div class="form-floating">
                                     <input asp-for="ServiceHistory.HistoryId" class="form-control bg-white border-0" />
                                     <label asp-for="ServiceHistory.HistoryId" class="control-label"></label>
                                     <span asp-validation-for="ServiceHistory.HistoryId" class="text-danger"></span>
                                 </div>
-                            </div>  
+                            </div>   *@
+                            <input asp-for="ServiceHistory.HistoryId" type="hidden" />
                             <div class="col-md-6">
                                 <div class="form-floating date" id="date3" data-target-input="nearest">
-                                    <input asp-for="ServiceHistory.ServiceDate" type="date" class="form-control" />
+                                    <input asp-for="ServiceHistory.ServiceDate" type="date" class="form-control" value="" />
                                     <label asp-for="ServiceHistory.ServiceDate" class="control-label"></label>
                                     <span asp-validation-for="ServiceHistory.ServiceDate" class="text-danger"></span>
                                 </div>
