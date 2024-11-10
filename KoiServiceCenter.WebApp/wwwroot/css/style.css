@@ -399,12 +399,13 @@
 
 /*** Single Page Hero Header Start ***/
 .bg-breadcrumb {
-    background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url(../img/breadcrumb-bg.jpg);
+    background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url(../img/koi-fish-feng-shui.webp);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover;
+     background-size: cover;
     background-attachment: fixed;
     padding: 150px 0 50px 0;
+    image-rendering: crisp-edges;
 }
 
 .bg-breadcrumb .breadcrumb-item a {
