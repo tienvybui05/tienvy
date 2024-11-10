@@ -1,256 +1,224 @@
-﻿@page
+﻿@page "/dich-vu"
 @model KoiServiceCenter.WebApp.Pages.Services.IndexModel
 @{
 }
 
-<!doctype html>
-<html lang="en">
 
-
-<body>
-    <!-- header start -->
-    <div class="container-fluid bg-breadcrumb">
-        <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4">
-                Dịch vụ cá koi</h3>
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                    <li class="breadcrumb-item active text-white">Dịch vụ</li> 
-                </ol>
-        </div>
+<!-- header start -->
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4">
+            Dịch vụ cá koi</h3>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active text-white">Dịch vụ</li>
+        </ol>
     </div>
-    <!-- header end -->
+</div>
+<!-- header end -->
 
 
-    <!-- Services Start -->
-    <div class="container-fluid service py-3">
-        <div class="container-fluid packages py-3">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3"><strong>Dịch vụ</strong></h5>
-                    <h1 class="mb-0"><strong>Dịch vụ chăm sóc khách hàng</strong></h1>
-                </div>
-                <div class="packages-carousel owl-carousel">
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/dieutrica.webp" class="img-fluid w-100 rounded-top" alt="Image">
-                            <div class="packages-price py-2 px-4">0đ</div>
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Đặt lịch tư vấn</h5>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                                <p class="mb-4">
-                                    Nhận tư vấn miễn phí từ chuyên gia hàng đầu. Chúng tôi sẽ giúp bạn tìm ra
-                                    giải pháp tối ưu cho mọi vấn đề.
-                                </p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="row bg-primary rounded-bottom mx-0">
-                                    <div class="text-center px-0">
-                                        <a href="#" class="btn-hover btn text-white py-2 px-4">Xem thêm</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/hocakoi.webp" class="img-fluid w-100 rounded-top" alt="Image">
-                            <div class="packages-price py-2 px-4">499.000đ</div>
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Đặt lịch chăm sóc hồ Cá</h5>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                                <p class="mb-4">
-                                    Hồ cá của bạn sẽ trở nên trong vắt và sinh động hơn bao giờ hết với dịch vụ
-                                    chăm sóc chuyên nghiệp của chúng tôi.
-                                </p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="text-center px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Xem thêm</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/cakoi.webp" class="img-fluid w-100 rounded-top" alt="Image">
-
-                            <div class="packages-price py-2 px-4">549.000đ</div>
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Đặt lịch điều trị</h5>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                </div>
-                                <p class="mb-4">
-                                    Chúng tôi sẽ giúp
-                                    bạn tìm ra giải pháp điều trị bệnh tối ưu và hiệu quả với chi phí hợp lý cho mọi vấn đề
-                                    của cá Koi.
-                                </p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="text-center px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Xem thêm</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Services End -->
-    <!-- testimonial start -->
-    <div class="container-fluid bg-light testimonial py-5">
+<!-- Services Start -->
+<div class="container-fluid service py-3">
+    <div class="container-fluid packages py-3">
         <div class="container py-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                <h5 class="section-title px-3">Đánh giá</h5>
-                <h1 class="mb-0">Khách hàng đánh giá!!!</h1>
+                <h5 class="section-title px-3"><strong>Dịch vụ</strong></h5>
+                <h1 class="mb-0"><strong>Dịch vụ chăm sóc khách hàng</strong></h1>
             </div>
-            <div class="testimonial-carousel owl-carousel">
-                <div class="testimonial-item text-center rounded pb-4">
-                    <div class="testimonial-comment bg-light rounded p-4">
-                        <p class="text-center mb-5">
-                            lorem ipsum dolor, sit amet consectetur adipisicing elit. quis nostrum cupiditate, eligendi repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. vero reiciendis,
-                        </p>
+            <div class="packages-carousel owl-carousel">
+                <div class="packages-item">
+                    <div class="packages-img">
+                        <img src="img/dieutrica.webp" class="img-fluid w-100 rounded-top" alt="Image">
+                        <div class="packages-price py-2 px-4">0đ</div>
                     </div>
-                    <div class="testimonial-img p-1">
-                        <img src="~/img/testimonial-1.jpg" class="img-fluid rounded-circle" alt="image">
-                    </div>
-                    <div style="margin-top: -35px;">
-                        <h5 class="mb-0">john abraham</h5>
-                        <p class="mb-0">new york, usa</p>
-                        <div class="d-flex justify-content-center">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
+                    <div class="packages-content bg-light">
+                        <div class="p-4 pb-0">
+                            <h5 class="mb-0">Đặt lịch tư vấn</h5>
+                            <div class="mb-3">
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                            </div>
+                            <p class="mb-4">
+                                Nhận tư vấn miễn phí từ chuyên gia hàng đầu. Chúng tôi sẽ giúp bạn tìm ra
+                                giải pháp tối ưu cho mọi vấn đề.
+                            </p>
+                        </div>
+                        <div class="row bg-primary rounded-bottom mx-0">
+                            <div class="row bg-primary rounded-bottom mx-0">
+                                <div class="text-center px-0">
+                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Xem thêm</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-item text-center rounded pb-4">
-                    <div class="testimonial-comment bg-light rounded p-4">
-                        <p class="text-center mb-5">
-                            lorem ipsum dolor, sit amet consectetur adipisicing elit. quis nostrum cupiditate, eligendi repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. vero reiciendis,
-                        </p>
+                <div class="packages-item">
+                    <div class="packages-img">
+                        <img src="img/hocakoi.webp" class="img-fluid w-100 rounded-top" alt="Image">
+                        <div class="packages-price py-2 px-4">499.000đ</div>
                     </div>
-                    <div class="testimonial-img p-1">
-                        <img src="~/img/testimonial-2.jpg" class="img-fluid rounded-circle" alt="image">
-                    </div>
-                    <div style="margin-top: -35px;">
-                        <h5 class="mb-0">john abraham</h5>
-                        <p class="mb-0">new york, usa</p>
-                        <div class="d-flex justify-content-center">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
+                    <div class="packages-content bg-light">
+                        <div class="p-4 pb-0">
+                            <h5 class="mb-0">Đặt lịch chăm sóc hồ Cá</h5>
+                            <div class="mb-3">
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                            </div>
+                            <p class="mb-4">
+                                Hồ cá của bạn sẽ trở nên trong vắt và sinh động hơn bao giờ hết với dịch vụ
+                                chăm sóc chuyên nghiệp của chúng tôi.
+                            </p>
+                        </div>
+                        <div class="row bg-primary rounded-bottom mx-0">
+                            <div class="text-center px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4">Xem thêm</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-item text-center rounded pb-4">
-                    <div class="testimonial-comment bg-light rounded p-4">
-                        <p class="text-center mb-5">
-                            lorem ipsum dolor, sit amet consectetur adipisicing elit. quis nostrum cupiditate, eligendi repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. vero reiciendis,
-                        </p>
+                <div class="packages-item">
+                    <div class="packages-img">
+                        <img src="img/cakoi.webp" class="img-fluid w-100 rounded-top" alt="Image">
+
+                        <div class="packages-price py-2 px-4">549.000đ</div>
                     </div>
-                    <div class="testimonial-img p-1">
-                        <img src="~/img/testimonial-3.jpg" class="img-fluid rounded-circle" alt="image">
-                    </div>
-                    <div style="margin-top: -35px;">
-                        <h5 class="mb-0">john abraham</h5>
-                        <p class="mb-0">new york, usa</p>
-                        <div class="d-flex justify-content-center">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
+                    <div class="packages-content bg-light">
+                        <div class="p-4 pb-0">
+                            <h5 class="mb-0">Đặt lịch điều trị</h5>
+                            <div class="mb-3">
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                            </div>
+                            <p class="mb-4">
+                                Chúng tôi sẽ giúp
+                                bạn tìm ra giải pháp điều trị bệnh tối ưu và hiệu quả với chi phí hợp lý cho mọi vấn
+                                đề
+                                của cá Koi.
+                            </p>
+                        </div>
+                        <div class="row bg-primary rounded-bottom mx-0">
+                            <div class="text-center px-0">
+                                <a href="#" class="btn-hover btn text-white py-2 px-4">Xem thêm</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-item text-center rounded pb-4">
-                    <div class="testimonial-comment bg-light rounded p-4">
-                        <p class="text-center mb-5">
-                            lorem ipsum dolor, sit amet consectetur adipisicing elit. quis nostrum cupiditate, eligendi repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. vero reiciendis,
-                        </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Services End -->
+<!-- testimonial start -->
+<div class="container-fluid bg-light testimonial py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Đánh giá</h5>
+            <h1 class="mb-0">Khách hàng đánh giá!!!</h1>
+        </div>
+        <div class="testimonial-carousel owl-carousel">
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <p class="text-center mb-5">
+                        lorem ipsum dolor, sit amet consectetur adipisicing elit. quis nostrum cupiditate, eligendi
+                        repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. vero
+                        reiciendis,
+                    </p>
+                </div>
+                <div class="testimonial-img p-1">
+                    <img src="~/img/testimonial-1.jpg" class="img-fluid rounded-circle" alt="image">
+                </div>
+                <div style="margin-top: -35px;">
+                    <h5 class="mb-0">john abraham</h5>
+                    <p class="mb-0">new york, usa</p>
+                    <div class="d-flex justify-content-center">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
                     </div>
-                    <div class="testimonial-img p-1">
-                        <img src="~/img/testimonial-4.jpg" class="img-fluid rounded-circle" alt="image">
+                </div>
+            </div>
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <p class="text-center mb-5">
+                        lorem ipsum dolor, sit amet consectetur adipisicing elit. quis nostrum cupiditate, eligendi
+                        repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. vero
+                        reiciendis,
+                    </p>
+                </div>
+                <div class="testimonial-img p-1">
+                    <img src="~/img/testimonial-2.jpg" class="img-fluid rounded-circle" alt="image">
+                </div>
+                <div style="margin-top: -35px;">
+                    <h5 class="mb-0">john abraham</h5>
+                    <p class="mb-0">new york, usa</p>
+                    <div class="d-flex justify-content-center">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
                     </div>
-                    <div style="margin-top: -35px;">
-                        <h5 class="mb-0">john abraham</h5>
-                        <p class="mb-0">new york, usa</p>
-                        <div class="d-flex justify-content-center">
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                            <i class="fas fa-star text-primary"></i>
-                        </div>
+                </div>
+            </div>
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <p class="text-center mb-5">
+                        lorem ipsum dolor, sit amet consectetur adipisicing elit. quis nostrum cupiditate, eligendi
+                        repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. vero
+                        reiciendis,
+                    </p>
+                </div>
+                <div class="testimonial-img p-1">
+                    <img src="~/img/testimonial-3.jpg" class="img-fluid rounded-circle" alt="image">
+                </div>
+                <div style="margin-top: -35px;">
+                    <h5 class="mb-0">john abraham</h5>
+                    <p class="mb-0">new york, usa</p>
+                    <div class="d-flex justify-content-center">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item text-center rounded pb-4">
+                <div class="testimonial-comment bg-light rounded p-4">
+                    <p class="text-center mb-5">
+                        lorem ipsum dolor, sit amet consectetur adipisicing elit. quis nostrum cupiditate, eligendi
+                        repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. vero
+                        reiciendis,
+                    </p>
+                </div>
+                <div class="testimonial-img p-1">
+                    <img src="~/img/testimonial-4.jpg" class="img-fluid rounded-circle" alt="image">
+                </div>
+                <div style="margin-top: -35px;">
+                    <h5 class="mb-0">john abraham</h5>
+                    <p class="mb-0">new york, usa</p>
+                    <div class="d-flex justify-content-center">
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
+                        <i class="fas fa-star text-primary"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- testimonial end -->
-    <!-- subscribe start -->
-    <div class="container-fluid subscribe py-5">
-        <div class="container text-center py-5">
-            <div class="mx-auto text-center" style="max-width: 900px;">
-                <h5 class="subscribe-title px-3">subscribe</h5>
-                <h1 class="text-white mb-4">our newsletter</h1>
-                <p class="text-white mb-5">
-                    lorem ipsum dolor sit amet consectetur adipisicing elit. laborum tempore nam, architecto doloremque velit explicabo? voluptate sunt eveniet fuga eligendi! expedita laudantium fugiat corrupti eum cum repellat a laborum quasi.
-                </p>
-                <div class="position-relative mx-auto">
-                    <input class="form-control border-primary rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="your email">
-                    <button type="button" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 px-4 mt-2 me-2">subscribe</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- subscribe end -->
-
-
-    
-    <!-- javascript libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    @* <script src="~/lib/easing/easing.min.js"></script>
-    <script src="~/lib/waypoints/waypoints.min.js"></script> *@
-    @* <script src="~/lib/owlcarousel/owl.carousel.min.js"></script> *@
-    @* <script src="~/lib/lightbox/js/lightbox.min.js"></script> *@
-
-
-
-   
-
-    <!-- template javascript -->
-    <script src="~/js/main.js"></script>
-
-</body>
-</html>
+</div>
+<!-- testimonial end -->

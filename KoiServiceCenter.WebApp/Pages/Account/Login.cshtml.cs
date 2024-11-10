@@ -12,7 +12,7 @@ namespace KoiServiceCenter.WebApp.Pages.Account
     {
 
         private readonly IUserAccountService _service;
-       
+
         public LoginModel(IUserAccountService service)
         {
             _service = service;
