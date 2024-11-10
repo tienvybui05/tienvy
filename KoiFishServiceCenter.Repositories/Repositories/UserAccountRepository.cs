@@ -118,7 +118,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         public async Task<int> CountUserAccount()
         {
             int count = 0;
-            var ojb = await _dbContext.UserAccounts.Include(v => v.UserId).ToListAsync();
+            var ojb = await _dbContext.UserAccounts.ToListAsync();
             foreach (var i in ojb)
             {
                 count++;

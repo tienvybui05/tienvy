@@ -93,7 +93,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         public async Task<int> CountReport()
         {
             int count = 0;
-            var ojb = await _dbContext.Reports.Include(v => v.ReportId).ToListAsync();
+            var ojb = await _dbContext.Reports.ToListAsync();
             foreach (var i in ojb)
             {
                 count++;
