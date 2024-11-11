@@ -2,6 +2,40 @@
 @model KoiServiceCenter.WebApp.Pages.Admin.Account.LoginModel
 @{
 }
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container border shadow-lg p-4 mt-5 bg-white rounded" style="max-width: 420px;">
+        <div class="text-center mb-3">
+            <h3 class="text-primary fw-bold">Thông báo</h3>
+            <span class="text-muted" style="font-size: 1.5em;">🔔</span>
+        </div>
+
+        <div class="notification-content text-center mb-4" style="background-color: #f1f3f5; border-radius: 12px; padding: 20px;">
+            <p class="mb-2" style="font-size: 1.1em; color: #333;">
+                Bạn đã đăng nhập với <strong>@User.Identity.Name</strong>.
+            </p>
+            <p style="font-size: 1em; color: #666;">
+                Bạn cần phải đăng xuất trước khi đăng nhập với người dùng khác.
+            </p>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <form method="post" asp-page="/Admin/Account/Logout" style="display: inline;">
+                <button type="submit" class="btn btn-primary px-4 py-2 me-3" style="border-radius: 8px;">
+                    Đăng xuất
+                </button>
+            </form>
+
+            <a asp-page="/Admin/Index" class="btn btn-outline-secondary px-4 py-2" style="border-radius: 8px;">
+                Hủy
+            </a>
+        </div>
+    </div>
+
+
+}
+else
+{
 <div class="container border shadow-lg p-5 mt-5 bg-white rounded" style="max-width: 500px;">
     <h2 class="text-center mb-4">Login</h2>
     <form method="post">
@@ -24,4 +58,5 @@
         </div>
     </form>
 </div>
+}
 
