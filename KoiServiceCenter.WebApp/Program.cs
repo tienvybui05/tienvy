@@ -62,8 +62,8 @@ namespace KoiServiceCenter.WebApp
               .AddCookie("CustomerCookieAuth", options =>
              {
                     options.Cookie.Name = "CustomerCookieAuth";
-                    options.LoginPath = "/Account/Login";
-                    //options.AccessDeniedPath = "/Account/AccessDenied";
+                    options.LoginPath = "/dang-nhap";
+                    options.AccessDeniedPath = "/Account/AccessDenied";
              })
              .AddCookie("AdminCookieAuth", options =>
             {
