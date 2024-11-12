@@ -144,6 +144,20 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             return count;
         }
+        public async Task<int> CreateId()
+        {
+            Random random = new Random();
+            int id;
+            do
+            {
+                id = random.Next(1, 1001);
+                var ojb = await GetServicerById(id);
+                if (ojb == null)
+                {
+                    return id;
+                }
+            } while (true);
+        }
         public async Task<List<Service>> SearcheAsync(string searchString)
         {
             // Kiểm tra nếu searchString có thể là decimal khong
