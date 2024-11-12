@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiServiceCenter.WebApp.Pages.Admin.feedback.CreateModel
 
-<h4 class="mb-4 text-primary">Nhận xét</h4>
+<h4 class="mb-4 text-primary">Đánh giá</h4>
 <hr />
 <div class="container">
     <div class="row justify-content-center">
@@ -16,15 +16,15 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label asp-for="Feedback.CustomerId" class="control-label text-secondary"></label>
+                    <label asp-for="Feedback.Customer" class="control-label text-secondary"></label>
                     <select asp-for="Feedback.CustomerId" class="form-control bg-light" asp-items="ViewBag.CustomerId"></select>
-                    <span asp-validation-for="Feedback.CustomerId" class="text-danger"></span>
+                    <span asp-validation-for="Feedback.Customer" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label asp-for="Feedback.ServiceId" class="control-label text-secondary"></label>
+                    <label asp-for="Feedback.Service" class="control-label text-secondary"></label>
                     <select asp-for="Feedback.ServiceId" class="form-control bg-light" asp-items="ViewBag.ServiceId"></select>
-                    <span asp-validation-for="Feedback.ServiceId" class="text-danger"></span>
+                    <span asp-validation-for="Feedback.Service" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mb-3">

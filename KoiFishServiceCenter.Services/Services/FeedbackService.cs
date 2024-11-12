@@ -60,5 +60,10 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return _repository.GetFeedbackSelect(viewData);
         }
+
+        public Task<int> CreateId()
+        {
+            return _repository.CreateId();
+        }
     }
 }
