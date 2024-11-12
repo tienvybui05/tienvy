@@ -115,5 +115,10 @@ namespace KoiFishServiceCenter.Services
         {
             return _userAccountRepository.DeleteUserAccount(userAccount);
         }
+
+        public Task<bool> ChangePasswordAsync(string OldPassWord, string NewPassWord, int id)
+        {
+            return _userAccountRepository.ChangePasswordAsync(OldPassWord, NewPassWord, id);
+        }
     }
 }

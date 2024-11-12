@@ -271,5 +271,28 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 throw new Exception(ex.ToString());
             }
         }
+
+        public async Task<bool> ChangePasswordAsync(string OldPassWord, string NewPassWord, int id)
+        {
+            try
+            {
+               var ojb = await GetUserByIdAsync(id);    
+                if(ojb == null)
+                {
+                    return false;
+                }
+                if(ojb.Password != OldPassWord)
+                {
+                    return false;
+                }
+                ojb.Password = NewPassWord;
+               await UpdateUserAccountAsync(ojb);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
     }
 }
