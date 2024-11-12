@@ -2,6 +2,21 @@
 @model KoiServiceCenter.WebApp.Pages.Account.LoginModel
 @{
 }
+
+<!-- header start -->
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4">
+            Đăng nhập tài khoản
+        </h3>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active text-white">Đăng nhập</li>
+        </ol>
+    </div>
+</div>
+<!-- header end -->
+
 @if (User.Identity.IsAuthenticated)
 {
     <div class="container border shadow-lg p-4 mt-5 bg-white rounded" style="max-width: 420px;">
