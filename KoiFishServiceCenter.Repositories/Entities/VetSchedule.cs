@@ -14,7 +14,7 @@ public partial class VetSchedule
     public int? VeterinarianId { get; set; }
     [DisplayName("Ngày làm")]
     public DateTime ScheduleDate { get; set; }
-    [DisplayName("Ca làm")]
+    [DisplayName("Giờ làm")]
     public string? TimeSlot { get; set; }
     [DisplayName("Bác sĩ")]
     public virtual UserAccount? Veterinarian { get; set; }

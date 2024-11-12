@@ -1,53 +1,58 @@
 ﻿@page
 @model KoiServiceCenter.WebApp.Pages.Admin.report.CreateModel
 
-<h4>Report</h4>
+<h4 class="mb-4 text-primary">Báo cáo</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Report.ReportId" class="control-label"></label>
-                <input asp-for="Report.ReportId" class="form-control" />
-                <span asp-validation-for="Report.ReportId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Report.ReportDate" class="control-label"></label>
-                <input asp-for="Report.ReportDate" class="form-control" />
-                <span asp-validation-for="Report.ReportDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Report.TotalCustomers" class="control-label"></label>
-                <input asp-for="Report.TotalCustomers" class="form-control" />
-                <span asp-validation-for="Report.TotalCustomers" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Report.TotalServices" class="control-label"></label>
-                <input asp-for="Report.TotalServices" class="form-control" />
-                <span asp-validation-for="Report.TotalServices" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Report.AverageRating" class="control-label"></label>
-                <input asp-for="Report.AverageRating" class="form-control" />
-                <span asp-validation-for="Report.AverageRating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Report.Notes" class="control-label"></label>
-                <input asp-for="Report.Notes" class="form-control" />
-                <span asp-validation-for="Report.Notes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" class="shadow-lg p-4 rounded bg-white border">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Report.ReportId" class="control-label text-secondary"></label>
+                    <input asp-for="Report.ReportId" class="form-control bg-light" readonly />
+                    <span asp-validation-for="Report.ReportId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Report.ReportDate" class="control-label text-secondary"></label>
+                    <input asp-for="Report.ReportDate" type="date" class="form-control bg-light" />
+                    <span asp-validation-for="Report.ReportDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Report.TotalCustomers" class="control-label text-secondary"></label>
+                    <input asp-for="Report.TotalCustomers" type="number" class="form-control bg-light" />
+                    <span asp-validation-for="Report.TotalCustomers" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Report.TotalServices" class="control-label text-secondary"></label>
+                    <input asp-for="Report.TotalServices" type="number" class="form-control bg-light" />
+                    <span asp-validation-for="Report.TotalServices" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Report.AverageRating" class="control-label text-secondary"></label>
+                    <input asp-for="Report.AverageRating" type="number" step="0.1" class="form-control bg-light" />
+                    <span asp-validation-for="Report.AverageRating" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Report.Notes" class="control-label text-secondary"></label>
+                    <textarea asp-for="Report.Notes" class="form-control bg-light" rows="3"></textarea>
+                    <span asp-validation-for="Report.Notes" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <a asp-page="Index" class="btn btn-outline-secondary rounded-pill px-3 py-2 transition-link">Quay lại</a>
+                    <input type="submit" value="Create Report" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm transition-button" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
