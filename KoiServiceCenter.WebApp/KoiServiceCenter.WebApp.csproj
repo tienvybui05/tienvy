@@ -7,17 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Blog\NewFolder2\**" />
+    <Compile Remove="Pages\Blog\NewFolder3\**" />
+    <Compile Remove="Pages\Blog\NewFolder\**" />
     <Compile Remove="Pages\NewFolder1\**" />
-    <Compile Remove="Pages\NewFolder\**" />
     <Compile Remove="wwwroot\img\NewFolder\**" />
+    <Content Remove="Pages\Blog\NewFolder2\**" />
+    <Content Remove="Pages\Blog\NewFolder3\**" />
+    <Content Remove="Pages\Blog\NewFolder\**" />
     <Content Remove="Pages\NewFolder1\**" />
-    <Content Remove="Pages\NewFolder\**" />
     <Content Remove="wwwroot\img\NewFolder\**" />
+    <EmbeddedResource Remove="Pages\Blog\NewFolder2\**" />
+    <EmbeddedResource Remove="Pages\Blog\NewFolder3\**" />
+    <EmbeddedResource Remove="Pages\Blog\NewFolder\**" />
     <EmbeddedResource Remove="Pages\NewFolder1\**" />
-    <EmbeddedResource Remove="Pages\NewFolder\**" />
     <EmbeddedResource Remove="wwwroot\img\NewFolder\**" />
+    <None Remove="Pages\Blog\NewFolder2\**" />
+    <None Remove="Pages\Blog\NewFolder3\**" />
+    <None Remove="Pages\Blog\NewFolder\**" />
     <None Remove="Pages\NewFolder1\**" />
-    <None Remove="Pages\NewFolder\**" />
     <None Remove="wwwroot\img\NewFolder\**" />
   </ItemGroup>
 
