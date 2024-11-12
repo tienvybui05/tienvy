@@ -111,5 +111,9 @@ namespace KoiFishServiceCenter.Services
         {
             return _userAccountRepository.checkEmail(email);    
         }
+        public Task<bool> DeleteUserAccount(UserAccount userAccount)
+        {
+            return _userAccountRepository.DeleteUserAccount(userAccount);
+        }
     }
 }

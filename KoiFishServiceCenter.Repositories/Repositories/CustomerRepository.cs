@@ -54,12 +54,51 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             {
                 throw new Exception(ex.ToString());
             }
+            //try
+            //{
+            //    var serviceHistories = await _dbContext.ServiceHistories
+            //    .Where(s=>s.CustomerId==Id)
+            //    .ToListAsync();
+
+            //    _dbContext.ServiceHistories.RemoveRange(serviceHistories);
+            //    await _dbContext.SaveChangesAsync();
+            //    var customer = await _dbContext.Customers
+            //        .Include(c => c.ServiceHistories)
+            //        .Include(c => c.Feedbacks)
+            //        .FirstOrDefaultAsync(c => c.CustomerId == Id);
+
+            //    if (customer != null)
+            //    {
+
+            //        foreach (var feedback in customer.Feedbacks)
+            //        {
+            //            _dbContext.Feedbacks.Remove(feedback);
+            //        }
+
+            //        _dbContext.Customers.Remove(customer);
+
+            //        await _dbContext.SaveChangesAsync();
+            //        return true;
+            //    }
+            //    return false;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception(ex.ToString());
+            //}
         }
 
         public async Task<bool> DelCustomer(Customer customer)
         {
             try
             {
+                var serviceHistories = await _dbContext.ServiceHistories
+                .Where(s=>s.CustomerId==customer.CustomerId)
+                .ToListAsync();
+                _dbContext.ServiceHistories.RemoveRange(serviceHistories);
+                var feedback = await _dbContext.Feedbacks.Where(s => s.CustomerId == customer.CustomerId).ToListAsync();
+                _dbContext.Feedbacks.RemoveRange(feedback);
+
                 _dbContext.Customers.Remove(customer);
                 await _dbContext.SaveChangesAsync();
                 return true;

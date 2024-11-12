@@ -55,7 +55,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
 
             if (UserAccount != null)
             {
-                await _service.DeleteUserAccountAsync(ID);
+                await _service.DeleteUserAccount(UserAccount);
             }
 
             return RedirectToPage("./Index");

@@ -51,12 +51,55 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             {
                 throw new InvalidOperationException("Lỗi", ex);
             }
+            //try
+            //{
+            //    // Tìm dịch vụ và bao gồm các liên kết với ServiceHistory, Cost, và Feedback
+            //    var objDel = await _dbContext.Services
+            //        .Include(s => s.ServiceHistories)   // Bao gồm các liên kết ServiceHistories
+            //        .Include(s => s.Costs)              // Bao gồm các liên kết Cost
+            //        .Include(s => s.Feedbacks)          // Bao gồm các liên kết Feedback
+            //        .FirstOrDefaultAsync(s => s.ServiceId == id);
+
+            //    if (objDel != null)
+            //    {
+            //        foreach (var feedback in objDel.Feedbacks)
+            //        {
+            //            _dbContext.Feedbacks.Remove(feedback);
+            //        }
+
+            //        foreach (var serviceHistory in objDel.ServiceHistories)
+            //        {
+            //            _dbContext.ServiceHistories.Remove(serviceHistory);
+            //        }
+
+            //        foreach (var cost in objDel.Costs)
+            //        {
+            //            _dbContext.Costs.Remove(cost);
+            //        }
+
+            //        _dbContext.Services.Remove(objDel);
+
+            //        await _dbContext.SaveChangesAsync();
+            //        return true;
+            //    }
+            //    return false;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new InvalidOperationException(ex.ToString());
+            //}
         }
 
         public async Task<bool> DelService(Service service)
         {
             try
             {
+                var cost = await _dbContext.Costs.Where(s => s.ServiceId == service.ServiceId).ToListAsync();
+                _dbContext.Costs.RemoveRange(cost);
+                var feedback = await _dbContext.Feedbacks.Where(s => s.ServiceId == service.ServiceId).ToListAsync();
+                _dbContext.Feedbacks.RemoveRange(feedback);
+                var services = await _dbContext.ServiceHistories.Where(s => s.ServiceId == service.ServiceId).ToListAsync();
+                _dbContext.ServiceHistories.RemoveRange(services);
                 _dbContext.Services.Remove(service);
                 await _dbContext.SaveChangesAsync();
                 return true;

@@ -47,6 +47,48 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             {
                 throw new InvalidOperationException("Lỗi khi xóa tài khoản người dùng", ex);
             }
+            //try
+            //{
+            //    var serviceHistories = await _dbContext.ServiceHistories
+            //    .Where(s => s.CustomerId == userId)
+            //    .ToListAsync();
+
+            //    _dbContext.ServiceHistories.RemoveRange(serviceHistories);
+            //    await _dbContext.SaveChangesAsync();
+            //    var userAccount = await _dbContext.UserAccounts
+            //        .Include(u => u.Customers)  // Nếu có liên kết với Customer
+            //        .Include(u => u.VetSchedules)  // Nếu có liên kết với VetSchedule
+            //        .Include(u => u.ServiceHistories)  // Nếu có liên kết với ServiceHistory
+            //        .FirstOrDefaultAsync(u => u.UserId == userId);
+
+            //    if (userAccount != null)
+            //    {
+
+            //        if (userAccount.Customers != null)
+            //        {
+            //            foreach (var customer in userAccount.Customers)
+            //            {
+            //                _dbContext.Customers.Remove(customer);
+            //            }
+            //        }
+
+            //        foreach (var schedule in userAccount.VetSchedules)
+            //        {
+            //            _dbContext.VetSchedules.Remove(schedule);
+            //        }
+
+
+            //        _dbContext.UserAccounts.Remove(userAccount);
+
+            //        return await _dbContext.SaveChangesAsync() > 0;
+            //    }
+
+            //    return false;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new InvalidOperationException("Lỗi khi xóa tài khoản người dùng", ex);
+            //}
         }
 
         public async Task<List<UserAccount>> GetUserAccountsAsync()
@@ -191,6 +233,43 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 return false;
             }
             return true;
+        }
+
+        public async Task<bool> DeleteUserAccount(UserAccount userAccount)
+        {
+            try
+            {
+                var vichis = await _dbContext.ServiceHistories.Where(s => s.VeterinarianId == userAccount.UserId).ToListAsync();
+                _dbContext.ServiceHistories.RemoveRange(vichis);
+
+                var cus = await _dbContext.Customers.Where(s => s.UserId == userAccount.UserId)
+                .Include(s => s.ServiceHistories)
+                .ToListAsync();
+
+                foreach (var customer in cus)
+                {
+                    if (customer.ServiceHistories.Any())
+                    {
+                        _dbContext.ServiceHistories.RemoveRange(customer.ServiceHistories);
+                    }
+                }
+
+                await _dbContext.SaveChangesAsync();
+
+                _dbContext.Customers.RemoveRange(cus);
+
+                var vetchedule = await _dbContext.VetSchedules.Where(s => s.VeterinarianId == userAccount.UserId).ToListAsync();
+                _dbContext.VetSchedules.RemoveRange(vetchedule);
+
+                _dbContext.UserAccounts.Remove(userAccount);
+
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
     }
 }
