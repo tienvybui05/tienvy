@@ -1,7 +1,7 @@
 ﻿@page
 @model KoiServiceCenter.WebApp.Pages.Admin.customer.EditModel
 
-<h4>Customer</h4>
+<h4>Khách hàng</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -29,9 +29,9 @@
                 <span asp-validation-for="Customer.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Customer.UserId" class="control-label"></label>
+                <label asp-for="Customer.User" class="control-label"></label>
                 <select asp-for="Customer.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="Customer.UserId" class="text-danger"></span>
+                <span asp-validation-for="Customer.User" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

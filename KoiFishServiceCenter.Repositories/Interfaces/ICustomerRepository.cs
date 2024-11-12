@@ -20,6 +20,7 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
         Task<List<Customer>> GetAllCustomersAsync();
         Task<List<Customer>> SearcheAsync(string searchString);
         SelectList GetCustomerSelect();
+        Task<int> CreateId();
 
     }
 }

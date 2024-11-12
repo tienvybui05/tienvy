@@ -31,6 +31,11 @@ namespace KoiFishServiceCenter.Services.Services
             return await _repsitory.CountCustomersAsync();
         }
 
+        public async Task<int> CreateId()
+        {
+            return await _repsitory.CreateId();
+        }
+
         public async Task<bool> DeleteCustomerAsync(int id)
         {
             return await _repsitory.DelCustomer(id);

@@ -21,8 +21,12 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.customer
             _service=service;
         }
 
-        public  IActionResult OnGet()
+        public  async Task< IActionResult> OnGet()
         {
+            Customer = new Customer
+            {
+                CustomerId = await _service.CreateId()
+            };
             ViewData["UserId"] = _service.GetCustomerSelect();
 
             return Page();
