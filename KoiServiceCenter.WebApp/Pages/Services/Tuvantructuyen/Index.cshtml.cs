@@ -36,26 +36,13 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Tuvantructuyen
 
         public async Task<IActionResult> OnGet()
         {
-            // Tạo mã tự động khi truy cập trang
-            Random random = new Random();
             int ranDumID;
-            bool check = false;
-
-            do
-            {
-                ranDumID = random.Next(1, 1001);
-                var existingRecord = await _service.GetServiceHistoryById(ranDumID);
-                if (existingRecord == null)
-                {
-                    check = true;
-                }
-            } while (!check);
+            ranDumID = await _service.CreateId();
 
             ServiceHistory = new ServiceHistory
             {
                 HistoryId = ranDumID
             };
-
             // Load các ViewData khác nếu cần
             ViewData["CustomerId"] = _service.GetServiceHistorySelect("CustomerId");
             ViewData["ServiceId"] = _service.GetServiceHistorySelect("ServiceId");

@@ -67,5 +67,10 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return _repository.HistoryServices(id); 
         }
+
+        public Task<int> CreateId()
+        {
+            return _repository.CreateId();
+        }
     }
 }

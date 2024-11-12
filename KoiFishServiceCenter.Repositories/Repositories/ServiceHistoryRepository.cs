@@ -158,5 +158,24 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             return null;
         }
+
+        public async Task<int> CreateId()
+        {
+            // Tạo mã tự động khi truy cập trang
+            Random random = new Random();
+            int ranDumID;
+            bool check = false;
+
+            do
+            {
+                ranDumID = random.Next(1, 1001);
+                var existingRecord = await GetServiceHistoryById(ranDumID);
+                if (existingRecord == null)
+                {
+                    check = true;
+                }
+            } while (!check);
+            return ranDumID;
+        }
     }
 }

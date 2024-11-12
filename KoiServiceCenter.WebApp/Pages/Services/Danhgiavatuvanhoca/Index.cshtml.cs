@@ -14,27 +14,10 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Danhgiavatuvanhoca
             _service = service;
             _vetScheduleService = vetScheduleService;
         }
-        //public CreateModel(IServiceHistoryService service)
-        //{
-        //    _service = service;
-        //}
-
         public async Task<IActionResult> OnGet()
         {
-            // Tạo mã tự động khi truy cập trang
-            Random random = new Random();
             int ranDumID;
-            bool check = false;
-
-            do
-            {
-                ranDumID = random.Next(1, 1001);
-                var existingRecord = await _service.GetServiceHistoryById(ranDumID);
-                if (existingRecord == null)
-                {
-                    check = true;
-                }
-            } while (!check);
+            ranDumID = await _service.CreateId();
 
             ServiceHistory = new ServiceHistory
             {
