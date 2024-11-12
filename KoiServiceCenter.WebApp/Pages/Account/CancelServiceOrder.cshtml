@@ -1,0 +1,49 @@
+﻿@page
+@model KoiServiceCenter.WebApp.Pages.Account.CancelServiceOrderModel
+@{
+    ViewData["Title"] = "Xác nhận hủy dịch vụ";
+}
+
+<div class="container mt-4">
+    <h3 class="text-danger">Bạn chắc chắn muốn hủy đơn</h3>
+    <hr />
+
+    <div class="bg-light p-3 rounded shadow-sm">
+        <dl class="row">
+            <dt class="col-sm-3 font-weight-bold">Ngày hẹn:</dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ServiceHistory.ServiceDate)
+            </dd>
+
+            <dt class="col-sm-3 font-weight-bold">Dịch vụ:</dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ServiceHistory.Service.Description)
+            </dd>
+
+            <dt class="col-sm-3 font-weight-bold">Bác sĩ:</dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ServiceHistory.Veterinarian.UserName)
+            </dd>
+
+            <dt class="col-sm-3 font-weight-bold">Ghi chú:</dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ServiceHistory.Result)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="mt-4">
+        <form method="post">
+            <input type="hidden" asp-for="ServiceHistory.HistoryId" />
+            <button type="submit" class="btn btn-danger">
+                <i class="fas fa-trash-alt"></i> Hủy đơn
+            </button>
+            <a asp-page="/Account/ServiceBookingHistory" class="btn btn-secondary ml-2">
+                <i class="fas fa-arrow-left"></i> Quay lại
+            </a>
+        </form>
+    </div>
+</div>
+
+
+

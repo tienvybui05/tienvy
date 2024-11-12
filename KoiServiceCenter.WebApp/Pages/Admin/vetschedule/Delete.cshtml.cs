@@ -48,14 +48,6 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.vetschedule
             {
                 return NotFound();
             }
-
-            //VetSchedule = await _context.VetSchedules.FindAsync(id);
-
-            //if (VetSchedule != null)
-            //{
-            //    _context.VetSchedules.Remove(VetSchedule);
-            //    await _context.SaveChangesAsync();
-            //}
             await _service.DelVetSchedule(VetSchedule);
             return RedirectToPage("./Index");
         }

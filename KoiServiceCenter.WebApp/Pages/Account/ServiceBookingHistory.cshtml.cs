@@ -27,7 +27,7 @@ namespace KoiServiceCenter.WebApp.Pages.Account
 
 
             ServiceHistory = await _service.HistoryServices(userIdInt);
-            ViewData["ServiceHistoryList"] = ServiceHistory;
+            //ViewData["ServiceHistoryList"] = ServiceHistory;
 
 
 
