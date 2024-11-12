@@ -62,7 +62,12 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.vetschedule
             }
             else
             {
-                await _service.UpdateVetSchedule(VetSchedule);
+                if(await _service.UpdateVetSchedule(VetSchedule)==false)
+                {
+                    ModelState.AddModelError("VetSchedule.ScheduleDate", "Không hợp lệ.");
+                    ViewData["VeterinarianId"] = _service.GetVeterinarianSelect();
+                    return Page();
+                }    
             }
             try
             {

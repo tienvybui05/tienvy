@@ -24,6 +24,11 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 var valuee = await _dbContext.VetSchedules
                             .Where(p => p.ScheduleId == vetSchedule.ScheduleId )
                             .FirstOrDefaultAsync();
+                DateTime currentDate = DateTime.Today;
+                if(vetSchedule.ScheduleDate  <   currentDate )
+                {
+                    return false;
+                }   
                 if (valuee != null)
                 {
                     throw new InvalidOperationException("ID đã tồn tại");
@@ -92,6 +97,11 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             try
             {
+                DateTime currentDate = DateTime.Today;
+                if (vetSchedule.ScheduleDate < currentDate)
+                {
+                    return false;
+                }
                 _dbContext.VetSchedules.Update(vetSchedule);
                 await _dbContext.SaveChangesAsync();
                 return true;
