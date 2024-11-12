@@ -17,5 +17,6 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
         Task<Report> GetReportByIdAsync(int Id);
         Task<int> CountReport();
         Task<List<Report>> SearchAsync(DateTime dateTime);
+        Task<int> CreateId();
     }
 }

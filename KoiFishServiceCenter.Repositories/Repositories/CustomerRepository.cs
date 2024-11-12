@@ -37,6 +37,21 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return await _dbContext.Customers.CountAsync();
         }
 
+        public async Task<int> CreateId()
+        {
+            Random random = new Random();
+            int id;
+            do
+            {
+                id = random.Next(1, 1001);
+                var ojb = await GetCustomerById(id);
+                if (ojb == null)
+                {
+                    return id;
+                }
+            } while (true);
+        }
+
         public async Task<bool> DelCustomer(int Id)
         {
             try
@@ -54,38 +69,6 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             {
                 throw new Exception(ex.ToString());
             }
-            //try
-            //{
-            //    var serviceHistories = await _dbContext.ServiceHistories
-            //    .Where(s=>s.CustomerId==Id)
-            //    .ToListAsync();
-
-            //    _dbContext.ServiceHistories.RemoveRange(serviceHistories);
-            //    await _dbContext.SaveChangesAsync();
-            //    var customer = await _dbContext.Customers
-            //        .Include(c => c.ServiceHistories)
-            //        .Include(c => c.Feedbacks)
-            //        .FirstOrDefaultAsync(c => c.CustomerId == Id);
-
-            //    if (customer != null)
-            //    {
-
-            //        foreach (var feedback in customer.Feedbacks)
-            //        {
-            //            _dbContext.Feedbacks.Remove(feedback);
-            //        }
-
-            //        _dbContext.Customers.Remove(customer);
-
-            //        await _dbContext.SaveChangesAsync();
-            //        return true;
-            //    }
-            //    return false;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception(ex.ToString());
-            //}
         }
 
         public async Task<bool> DelCustomer(Customer customer)
@@ -121,12 +104,6 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 
         public async Task<Customer> GetCustomerById(int Id)
         {
-            //if (Id <= 0)
-            //{
-            //    throw new ArgumentException("Id không hợp lệ. Id phải lớn hơn 0.");
-            //}
-            //else
-            //    return await _dbContext.Customers.FirstOrDefaultAsync(c => c.CustomerId == Id);
             if (Id <= 0)
             {
                 throw new ArgumentException("Id không hợp lệ. Id phải lớn hơn 0.");
@@ -139,7 +116,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 
         public SelectList GetCustomerSelect()
         {
-            return new SelectList(_dbContext.UserAccounts, "UserId", "Email");
+            return new SelectList(_dbContext.UserAccounts, "UserId", "UserName");
         }
 
         public async Task<List<Customer>> SearcheAsync(string searchString)

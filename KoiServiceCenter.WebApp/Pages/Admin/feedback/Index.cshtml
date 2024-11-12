@@ -26,18 +26,18 @@
         <thead class ="table-dark">
         <tr>
                 <th>STT</th>
-            <th>
-                @Html.DisplayNameFor(model => model.Feedback[0].Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Feedback[0].Comments)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Feedback[0].Customer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Feedback[0].Service)
-            </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Feedback[0].Customer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Feedback[0].Service)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Feedback[0].Comments)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Feedback[0].Rating)
+                </th>
                 <th style="width: 300px;">Actions</th> <!-- Adjusted width for Actions column -->
         </tr>
     </thead>
@@ -45,18 +45,18 @@
 @foreach (var item in Model.Feedback) {
         <tr>
                     <td>@(i++)</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comments)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Service.Description)
-            </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Service.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comments)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
             <td>
                         <div class="d-flex justify-content-center">
                             <a asp-page="./Edit" asp-route-id="@item.FeedbackId" class="btn btn-sm btn-warning mx-1">

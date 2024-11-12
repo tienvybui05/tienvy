@@ -21,8 +21,12 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.feedback
             _service = service;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            Feedback = new Feedback
+            {
+                FeedbackId = await _service.CreateId()
+            };
             ViewData["CustomerId"] = _service.GetFeedbackSelect("CustomerId");
             ViewData["ServiceId"] = _service.GetFeedbackSelect("ServiceId");
             return Page();

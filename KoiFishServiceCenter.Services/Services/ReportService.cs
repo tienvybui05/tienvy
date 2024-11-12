@@ -133,5 +133,9 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return _repository.SearchAsync(dateTime);
         }
+        public Task<int> CreateId()
+        {
+            return _repository.CreateId();
+        }
     }
 }

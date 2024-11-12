@@ -106,5 +106,19 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                                                             (a.ReportDate.Month == dateTime.Month) &&
                                                             (a.ReportDate.Year == dateTime.Year)).ToListAsync();
         }
+        public async Task<int> CreateId()
+        {
+            Random random = new Random();
+            int id;
+            do
+            {
+                id = random.Next(1, 1001);
+                var ojb = await GetReportByIdAsync(id);
+                if (ojb == null)
+                {
+                    return id;
+                }
+            } while (true);
+        }
     }
 }

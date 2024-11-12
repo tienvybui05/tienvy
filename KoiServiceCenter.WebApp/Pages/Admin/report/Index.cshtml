@@ -23,9 +23,6 @@
             <tr>
                 <th>STT</th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Report[0].ReportId)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Report[0].ReportDate)
                 </th>
                 <th>
@@ -40,7 +37,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Report[0].Notes)
                 </th>
-                <th style="width: 300px;">Hành động</th> 
+                <th style="width: 300px;">Hành động</th>
             </tr>
         </thead>
         <tbody>
@@ -48,9 +45,6 @@
             {
                 <tr>
                     <td>@(i++)</td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ReportId)
-                    </td>
                     <td>
                         @item.ReportDate.ToString("dd/MM/yyyy")
                     </td>

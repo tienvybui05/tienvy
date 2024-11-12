@@ -19,5 +19,6 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
         Task<int> CountFeedback();
         Task<List<Feedback>> SearchAsync(string searchString);
         SelectList GetFeedbackSelect(string viewData);
+        Task<int> CreateId();
     }
 }

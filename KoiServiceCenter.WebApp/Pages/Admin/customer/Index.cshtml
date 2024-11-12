@@ -1,9 +1,6 @@
 ﻿@page
 @model KoiServiceCenter.WebApp.Pages.Admin.customer.IndexModel
 
-@*  <p>
- <a asp-page="Create">Create New</a> 
-</p> *@ 
 @{
     ViewData["Title"] = "Danh sách khách hàng";
     int i = 1;
@@ -38,7 +35,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Customer[0].User)
             </th>
-               <th style="width: 300px;">Actions></th>
+               <th style="width: 300px;">Hành động</th>
         </tr>
     </thead>
     <tbody>
@@ -58,7 +55,7 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
+                @Html.DisplayFor(modelItem => item.User.UserName)
             </td>
 
             <td>
