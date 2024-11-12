@@ -136,5 +136,20 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             if (check != null) { return false; }
             return true;
         }
+
+        public async Task<int> CreateId()
+        {
+            Random random = new Random();
+            int id;
+            do
+            {
+                id = random.Next(1,1001);
+                var ojb = await GetVetScheduleById(id);
+                if(ojb == null)
+                {
+                    return id;
+                }
+            } while (true);
+        }
     }
 }

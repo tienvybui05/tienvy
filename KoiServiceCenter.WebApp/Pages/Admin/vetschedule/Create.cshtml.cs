@@ -21,8 +21,13 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.vetschedule
             _service = service;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
+
+            VetSchedule = new VetSchedule
+            {
+                ScheduleId = await _service.CreateId()
+            };
             ViewData["VeterinarianId"] = _service.GetVeterinarianSelect();
             return Page();
         }
@@ -33,24 +38,8 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.vetschedule
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            //_context.VetSchedules.Add(VetSchedule);
-            //await _context.SaveChangesAsync();
-            //await _service.AddVetSchedule(VetSchedule);
-            //return RedirectToPage("./Index");
-            var check = await _service.GetVetScheduleById(VetSchedule.ScheduleId);
+            
             var checkDateTime = await _service.BundByDate(VetSchedule);
-            if (check != null)
-            {
-                ModelState.AddModelError("VetSchedule.ScheduleId", "Mã lịch làm việc đã tồn tại. Vui lòng nhập mã khác.");
-                ViewData["VeterinarianId"] = _service.GetVeterinarianSelect();
-                return Page();
-
-            }
             if (checkDateTime == false)
             {
                 ModelState.AddModelError("VetSchedule.ScheduleDate", "Bác sĩ đã có lịch. Vui lòng chọn ngày khác.");

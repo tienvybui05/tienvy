@@ -62,5 +62,10 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return _repository.BundByDate(vetSchedule);
         }
+
+        public Task<int> CreateId()
+        {
+            return _repository.CreateId();
+        }
     }
 }

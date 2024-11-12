@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model KoiServiceCenter.WebApp.Pages.Account.ServiceBookingHistoryModel
 
 @{
@@ -12,9 +12,8 @@
             <table class="table service-history-table">
                 <thead>
                     <tr>
-                        <th>Tên Khách Hàng</th>
-                        <th>Email</th>
                         <th>Bác Sĩ</th>
+                        <th>Email</th>
                         <th>Dịch Vụ</th>
                         <th>Ngày Hẹn</th>
                         <th>Ghi Chú</th>
@@ -24,9 +23,8 @@
                     @foreach (var history in Model.ServiceHistory)
                     {
                         <tr>
-                            <td>@history.Customer.FullName</td>
-                            <td>@history.Veterinarian.Email</td>
                             <td>@history.Veterinarian.UserName</td>
+                            <td>@history.Veterinarian.Email</td>
                             <td>@history.Service.Description</td>
                             <td>@history.ServiceDate.ToString("dd/MM/yyyy")</td>
                             <td>@history.Result</td>

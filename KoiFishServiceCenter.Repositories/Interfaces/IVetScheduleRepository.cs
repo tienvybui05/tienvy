@@ -20,6 +20,7 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
         SelectList GetVeterinarianSelect();
         Task<int> CountVetSchedule();
         Task<bool> BundByDate(VetSchedule vetSchedule);
+        Task<int> CreateId();
 
     }
 }
