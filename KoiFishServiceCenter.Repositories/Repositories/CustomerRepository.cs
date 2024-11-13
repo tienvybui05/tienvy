@@ -97,6 +97,11 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return await _dbContext.Customers.ToListAsync();
         }
 
+        public async Task<Customer> GetCustomer(int Id)
+        {
+            return await _dbContext.Customers.Include(c => c.User).FirstOrDefaultAsync(m => m.UserId == Id);
+        }
+
         public async Task<List<Customer>> GetCustomerAsync()
         {
             return await _dbContext.Customers.Include(c => c.User).ToListAsync();

@@ -222,6 +222,27 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             UserAccount.Password = passWord;
             UserAccount.UserName = userName;
             await AddUserAccountAsync(UserAccount);
+            // thêm vào customer
+            Customer customer = new Customer();
+            Random random1 = new Random();
+            int randomID1;
+            do
+            {
+                randomID1 = random1.Next(1, 1001);
+                var y = await _dbContext.Customers.Include(c => c.User).FirstOrDefaultAsync(m => m.CustomerId == randomID1);
+                if (y == null)
+                {
+                    break;
+                }    
+            } 
+            while (true);
+            customer.CustomerId = randomID1;
+            customer.FullName = "Họ và tên";
+            customer.Email = UserAccount.Email;
+            customer.UserId = UserAccount.UserId;
+            await _dbContext.Customers.AddAsync(customer);
+            await _dbContext.SaveChangesAsync();
+            
             return true;
 		}
 
