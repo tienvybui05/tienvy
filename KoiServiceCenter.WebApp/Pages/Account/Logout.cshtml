@@ -3,3 +3,44 @@
 @model KoiServiceCenter.WebApp.Pages.Account.LogoutModel
 @{
 }
+<!-- header start -->
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4">
+            Đăng xuất tài khoản
+        </h3>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active text-white">Đăng xuất</li>
+        </ol>
+    </div>
+</div>
+<!-- header end -->
+
+<div class="container border shadow-lg p-4 mt-5 bg-white rounded" style="max-width: 420px;">
+    <div class="text-center mb-3">
+        <h3 class="text-primary fw-bold">Thông báo</h3>
+        <span class="text-muted" style="font-size: 1.5em;">🔔</span>
+    </div>
+
+    <div class="notification-content text-center mb-4" style="background-color: #f1f3f5; border-radius: 12px; padding: 20px;">
+        <p class="mb-2" style="font-size: 1.1em; color: #333;">
+            Bạn đã đăng nhập với <strong>@User.Identity.Name</strong>.
+        </p>
+        <p style="font-size: 1em; color: #666;">
+        Bạn có chắc chắn đăng xuất?
+        </p>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <form method="post" asp-page="/Account/Logout" style="display: inline;">
+            <button type="submit" class="btn btn-primary px-4 py-2 me-3" style="border-radius: 8px;">
+                Đăng xuất
+            </button>
+        </form>
+
+        <a asp-page="/Index" class="btn btn-outline-secondary px-4 py-2" style="border-radius: 8px;">
+            Hủy
+        </a>
+    </div>
+</div>
