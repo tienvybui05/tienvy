@@ -102,19 +102,30 @@ namespace KoiFishServiceCenter.Repositories.Repositories
 
         public SelectList GetCostSelect(string viewData)
         {
-            if (viewData == "CustomerId")
-            {
-                return new SelectList(_dbContext.Customers, "CustomerId", "FullName");
-            }
-            else
-            {
-                return new SelectList(_dbContext.UserAccounts, "UserId", "Email");
-            }
+            var services = _dbContext.Services.ToList(); // Giả sử `Services` là bảng chứa thông tin dịch vụ
+
+            // Tạo một SelectList từ danh sách dịch vụ
+            return new SelectList(services, "ServiceId", "ServiceName");
         }
 
         public async Task<List<Cost>> GetCostsAsync()
         {
             return await _dbContext.Costs.Include(s => s.Service).ToListAsync();
+        }
+
+        public async Task<int> CreateId()
+        {
+            Random random = new Random();
+            int id;
+            do
+            {
+                id = random.Next(1, 1001);
+                var ojb = await GetCostByIdAsync(id);
+                if (ojb == null)
+                {
+                    return id;
+                }
+            } while (true);
         }
     }
 }

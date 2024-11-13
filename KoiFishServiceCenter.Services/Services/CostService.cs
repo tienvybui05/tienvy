@@ -58,5 +58,9 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return _costRepository.GetCostsAsync();
         }
+        public Task<int> CreateId()
+        {
+            return _costRepository.CreateId();
+        }
     }
 }

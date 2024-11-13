@@ -21,8 +21,12 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.cost
             _service = service;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            Cost = new Cost()
+            {
+                CostId = await _service.CreateId()
+            };
             ViewData["ServiceId"] = _service.GetCostSelect("ServiceId");
             return Page();
         }

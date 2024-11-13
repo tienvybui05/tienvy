@@ -19,5 +19,7 @@ namespace KoiFishServiceCenter.Services.Interfaces
         SelectList GetCostSelect(string viewData);
         Task<bool> UpdateCostAsync(Cost cost);
         Task<List<Cost>> GetCostsAsync();
+        Task<int> CreateId();
+
     }
 }
