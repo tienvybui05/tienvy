@@ -1,0 +1,45 @@
+﻿@page
+@model KoiServiceCenter.WebApp.Pages.Account.CustomerInformationModel
+@{
+}
+<div class="container bg-gradient-light p-5 rounded shadow-lg border border-1 border-secondary" style="max-width: 700px;">
+    <h4 class="text-primary mb-4 text-center font-weight-bold">Thông tin cá nhân</h4>
+    <hr class="border-primary mb-4 w-50 mx-auto" />
+
+    <dl class="row px-3">
+        <dt class="col-sm-3 text-dark font-weight-bold d-flex align-items-center">
+            <i class="bi bi-person-fill text-primary mr-2"></i> Họ và tên
+        </dt>
+        <dd class="col-sm-9 text-muted bg-light rounded p-3 shadow-sm">
+            @Html.DisplayFor(model => model.Customer.FullName)
+        </dd>
+
+        <dt class="col-sm-3 text-dark font-weight-bold d-flex align-items-center mt-4">
+            <i class="bi bi-telephone-fill text-primary mr-2"></i> Số điện thoại
+        </dt>
+        <dd class="col-sm-9 text-muted bg-light rounded p-3 shadow-sm mt-4">
+            @Html.DisplayFor(model => model.Customer.PhoneNumber)
+        </dd>
+
+        <dt class="col-sm-3 text-dark font-weight-bold d-flex align-items-center mt-4">
+            <i class="bi bi-house-door-fill text-primary mr-2"></i> Địa chỉ
+        </dt>
+        <dd class="col-sm-9 text-muted bg-light rounded p-3 shadow-sm mt-4">
+            @Html.DisplayFor(model => model.Customer.Address)
+        </dd>
+
+        <dt class="col-sm-3 text-dark font-weight-bold d-flex align-items-center mt-4">
+            <i class="bi bi-envelope-fill text-primary mr-2"></i> Email
+        </dt>
+        <dd class="col-sm-9 text-muted bg-light rounded p-3 shadow-sm mt-4">
+            @Html.DisplayFor(model => model.Customer.Email)
+        </dd>
+    </dl>
+
+    <div class="text-center mt-5">
+        <a asp-page="/Account/UpdateInformation" asp-route-id="@Model.Customer.CustomerId" class="btn btn-warning btn-lg px-5 py-2 shadow-lg rounded-pill">
+            <i class="bi bi-pencil-square mr-2"></i> Cập nhật thông tin
+        </a>
+    </div>
+</div>
+

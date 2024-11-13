@@ -52,6 +52,11 @@ namespace KoiFishServiceCenter.Services.Services
             return new SelectList(customers, "CustomerId", "FullName");
         }
 
+        public Task<Customer> GetCustomer(int Id)
+        {
+            return _repsitory.GetCustomer(Id);
+        }
+
         public async Task<Customer> GetCustomerByIdAsync(int id)
         {
             return await _repsitory.GetCustomerById(id);

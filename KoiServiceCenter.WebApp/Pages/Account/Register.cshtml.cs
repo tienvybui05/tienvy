@@ -33,6 +33,7 @@ namespace KoiServiceCenter.WebApp.Pages.Account
                 }
                 return Page();
             }
+
             return RedirectToPage("/Index");
 		}
 		public class InputModel

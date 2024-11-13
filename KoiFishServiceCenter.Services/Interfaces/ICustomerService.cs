@@ -21,5 +21,6 @@ namespace KoiFishServiceCenter.Services.Interfaces
         Task<SelectList> GetAllCustomersAsync();
         SelectList GetCustomerSelect();
         Task<int> CreateId();
+        Task<Customer> GetCustomer(int Id);
     }
 }
