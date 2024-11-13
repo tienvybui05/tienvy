@@ -260,27 +260,40 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             try
             {
-                var vichis = await _dbContext.ServiceHistories.Where(s => s.VeterinarianId == userAccount.UserId).ToListAsync();
-                _dbContext.ServiceHistories.RemoveRange(vichis);
+                // Xóa các Feedback liên quan tới các Customer thuộc về UserAccount này
+                var relatedCustomers = await _dbContext.Customers
+                    .Where(c => c.UserId == userAccount.UserId)
+                    .Include(c => c.Feedbacks)
+                    .Include(c => c.ServiceHistories)
+                    .ToListAsync();
 
-                var cus = await _dbContext.Customers.Where(s => s.UserId == userAccount.UserId)
-                .Include(s => s.ServiceHistories)
-                .ToListAsync();
-
-                foreach (var customer in cus)
+                foreach (var customer in relatedCustomers)
                 {
+                    // Xóa feedback của từng customer
+                    if (customer.Feedbacks.Any())
+                    {
+                        _dbContext.Feedbacks.RemoveRange(customer.Feedbacks);
+                    }
+                    // Xóa ServiceHistory của từng customer
                     if (customer.ServiceHistories.Any())
                     {
                         _dbContext.ServiceHistories.RemoveRange(customer.ServiceHistories);
                     }
                 }
 
-                await _dbContext.SaveChangesAsync();
+                // Xóa khách hàng thuộc UserAccount
+                _dbContext.Customers.RemoveRange(relatedCustomers);
 
-                _dbContext.Customers.RemoveRange(cus);
+                // Xóa ServiceHistories và VetSchedules liên quan đến UserAccount
+                var vetSchedules = await _dbContext.VetSchedules
+                    .Where(v => v.VeterinarianId == userAccount.UserId)
+                    .ToListAsync();
+                _dbContext.VetSchedules.RemoveRange(vetSchedules);
 
-                var vetchedule = await _dbContext.VetSchedules.Where(s => s.VeterinarianId == userAccount.UserId).ToListAsync();
-                _dbContext.VetSchedules.RemoveRange(vetchedule);
+                var userServiceHistories = await _dbContext.ServiceHistories
+                    .Where(s => s.VeterinarianId == userAccount.UserId)
+                    .ToListAsync();
+                _dbContext.ServiceHistories.RemoveRange(userServiceHistories);
 
                 _dbContext.UserAccounts.Remove(userAccount);
 
@@ -289,7 +302,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.ToString());
+                throw new InvalidOperationException("Lỗi khi xóa tài khoản người dùng và các bản ghi liên quan", ex);
             }
         }
 
@@ -314,6 +327,20 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             {
                 throw new Exception(ex.ToString());
             }
+        }
+        public async Task<int> CreateId()
+        {
+            Random random = new Random();
+            int id;
+            do
+            {
+                id = random.Next(1, 1001);
+                var ojb = await GetUserByIdAsync(id);
+                if (ojb == null)
+                {
+                    return id;
+                }
+            } while (true);
         }
     }
 }

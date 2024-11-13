@@ -22,8 +22,15 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
         }
 
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            int ranDumID;
+            ranDumID = await _service.CreateId();
+
+            UserAccount = new UserAccount
+            {
+                UserId = ranDumID
+            };
             ViewData["Role"] = _service.GetRoleSelect();
             return Page();
         }

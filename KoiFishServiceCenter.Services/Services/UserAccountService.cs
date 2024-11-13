@@ -120,5 +120,9 @@ namespace KoiFishServiceCenter.Services
         {
             return _userAccountRepository.ChangePasswordAsync(OldPassWord, NewPassWord, id);
         }
+        public Task<int> CreateId()
+        {
+            return _userAccountRepository.CreateId();
+        }
     }
 }

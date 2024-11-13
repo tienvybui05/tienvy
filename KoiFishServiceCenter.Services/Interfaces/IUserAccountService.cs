@@ -25,5 +25,6 @@ namespace KoiFishServiceCenter.Services.Interfaces
         Task<bool> checkEmail(string email);
         Task<bool> DeleteUserAccount(UserAccount userAccount);
         Task<bool> ChangePasswordAsync(string OldPassWord, string NewPassWord, int id);
+        Task<int> CreateId();
     }
 }

@@ -22,10 +22,7 @@
     <table class="table table-hover table-bordered text-center">
         <thead class="table-dark">
             <tr>
-                <th>STT</th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UserAccount[0].UserId)
-                </th>
+                <th>STT</th>               
                 <th>
                     @Html.DisplayNameFor(model => model.UserAccount[0].UserName)
                 </th>
@@ -45,10 +42,7 @@
             @foreach (var item in Model.UserAccount)
             {
                 <tr>
-                    <td>@(i++)</td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserId)
-                    </td>
+                    <td>@(i++)</td>                 
                     <td>
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>

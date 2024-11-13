@@ -75,20 +75,28 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             try
             {
-                var serviceHistories = await _dbContext.ServiceHistories
-                .Where(s=>s.CustomerId==customer.CustomerId)
-                .ToListAsync();
-                _dbContext.ServiceHistories.RemoveRange(serviceHistories);
-                var feedback = await _dbContext.Feedbacks.Where(s => s.CustomerId == customer.CustomerId).ToListAsync();
-                _dbContext.Feedbacks.RemoveRange(feedback);
+                // Xóa các feedback liên quan tới Customer này
+                var feedbacks = await _dbContext.Feedbacks
+                    .Where(f => f.CustomerId == customer.CustomerId)
+                    .ToListAsync();
+                _dbContext.Feedbacks.RemoveRange(feedbacks);
 
+                // Xóa các ServiceHistories liên quan tới Customer này
+                var serviceHistories = await _dbContext.ServiceHistories
+                    .Where(s => s.CustomerId == customer.CustomerId)
+                    .ToListAsync();
+                _dbContext.ServiceHistories.RemoveRange(serviceHistories);
+
+                // Xóa chính Customer
                 _dbContext.Customers.Remove(customer);
+
+                // Lưu các thay đổi
                 await _dbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.ToString());
+                throw new InvalidOperationException("Lỗi khi xóa khách hàng và các bản ghi liên quan", ex);
             }
         }
 
