@@ -21,18 +21,6 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Tuvantructuyen
             _service = service;
             _vetScheduleService = vetScheduleService;
         }
-        //public CreateModel(IServiceHistoryService service)
-        //{
-        //    _service = service;
-        //}
-
-        //public IActionResult OnGet()
-        //{
-        //    ViewData["CustomerId"] = _service.GetServiceHistorySelect("CustomerId");
-        //    ViewData["ServiceId"] = _service.GetServiceHistorySelect("ServiceId");
-        //    ViewData["VeterinarianId"] = _service.GetServiceHistorySelect("VeterinarianId");
-        //    return Page();
-        //}
 
         public async Task<IActionResult> OnGet()
         {
@@ -104,8 +92,7 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Tuvantructuyen
                 ViewData["VeterinarianId"] = _vetScheduleService.GetVeterinarianSelect();
                 await _vetScheduleService.AddVetSchedule(VetSchedule);// Thêm vào lịch làm việc của bác sĩ
 
-
-                return RedirectToPage("./Index");
+                return Redirect(Url.Page("/Services/Datlichthanhcong/Index"));
             }
         }
     }
