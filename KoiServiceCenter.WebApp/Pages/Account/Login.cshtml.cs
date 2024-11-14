@@ -29,6 +29,12 @@ namespace KoiServiceCenter.WebApp.Pages.Account
                 return Page();
             }
             var userAccount = await _service.Account(credential.UserName, credential.Password);
+            if(userAccount == null)
+            {
+                ModelState.AddModelError("credential.Password", "Tên người dùng hoặc mật khẩu không hợp lệ.");
+
+                return Page();
+            }
             if (userAccount != null)
             {
                 List<Claim> claims = new List<Claim>

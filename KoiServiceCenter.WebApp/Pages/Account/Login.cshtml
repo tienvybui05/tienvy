@@ -58,7 +58,7 @@ else
             <div class="text-danger text-center mb-3" asp-validation-summary="ModelOnly"></div>
 
             <div class="form-group mb-3">
-                <label asp-for="credential.UserName" class="form-label fw-bold">Tài khoản</label>
+                <label asp-for="credential.UserName" class="form-label fw-bold">Tên người dùng</label>
                 <input type="text" asp-for="credential.UserName" class="form-control" />
                 <span class="text-danger" asp-validation-for="credential.UserName"></span>
             </div>
@@ -70,7 +70,7 @@ else
             </div>
 
             <div class="d-flex justify-content-between align-items-center">
-                <input type="submit" class="btn btn-primary px-4" value="Login" />
+                <input type="submit" class="btn btn-primary px-4" value="Đăng nhập" />
                 <button type="button" class="btn btn-secondary px-4">Thoát</button>
                     <a href="/dang-ky" class="btn btn-link">Đăng ký</a>
             </div>

@@ -21,11 +21,6 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.servicehistory
 			_service = service;
 			_vetScheduleService = vetScheduleService;
 		}
-		//public CreateModel(IServiceHistoryService service)
-		//{
-		//    _service = service;
-		//}
-
 		public async Task<IActionResult> OnGet()
         {
             int ranDumID;

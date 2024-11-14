@@ -25,7 +25,7 @@ namespace KoiServiceCenter.WebApp.Pages.Account
 		{
             if (await _service.CreateAccount(Input.UserName, Input.Password, Input.Email) == false)
             {
-                ModelState.AddModelError("Input.UserName", "Tên tài khoản đã tồn tại. Vui lòng nhập tên khác khác.");
+                ModelState.AddModelError("Input.UserName", "Tên người dùng đã tồn tại. Vui lòng nhập tên khác khác.");
                 if (await _service.checkEmail(Input.Email) == false)
                 {
                     ModelState.AddModelError("Input.Email", "Email đã tồn tại. Vui lòng nhập Email khác.");
@@ -39,7 +39,7 @@ namespace KoiServiceCenter.WebApp.Pages.Account
 		public class InputModel
 		{
 			[Required]
-			[Display(Name = "Tên tài khoản")]
+			[Display(Name = "Tên người dùng")]
 			public string UserName { get; set; }
 
 			[Required]

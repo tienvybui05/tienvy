@@ -32,7 +32,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.Account
             if(userAccount == null)
             {
 				
-				ModelState.AddModelError("credential.Password", "Tài khoản hoặc mật khẩu không hợp lệ.");
+				ModelState.AddModelError("credential.Password", "Tên người dùng hoặc mật khẩu không hợp lệ.");
 
 				return Page();
 			}
@@ -43,7 +43,8 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.Account
                     List<Claim> claims = new List<Claim>
                 {
                 new Claim(ClaimTypes.Name, userAccount.UserName),
-                new Claim(ClaimTypes.Email, userAccount.Email)
+                new Claim(ClaimTypes.Email, userAccount.Email),
+                new Claim(ClaimTypes.NameIdentifier, userAccount.UserId.ToString())
                 };
 
                     // Thêm claims dựa vào loại người dùng

@@ -1,6 +1,8 @@
-﻿using KoiFishServiceCenter.Services.Interfaces;
+﻿using KoiFishServiceCenter.Repositories.Entities;
+using KoiFishServiceCenter.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace KoiServiceCenter.WebApp.Pages.Admin
 {
@@ -16,6 +18,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin
         private readonly ICostService _costService;
         private readonly ICustomerService _customerService;
         private readonly IFeedbackService _feedbackService;
+        
 
         public Index(IVetScheduleService service, IServiceHistoryService serviceServiceHistory, IUserAccountService userAccountService, IReportService reportService, IServiceService serviceService, ICostService costService, ICustomerService customerService, IFeedbackService feedbackService)
         {
@@ -35,9 +38,12 @@ namespace KoiServiceCenter.WebApp.Pages.Admin
         public int SoBaoCao { get; set; }
         public int SoDichVu { get; set; }
 
-
+        public UserAccount UserAccount { get; set; }    
         public async Task OnGetAsync()
         {
+            var customerId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            int userIdInt = int.Parse(customerId);
+            UserAccount = await _userAccountService.GetUserByIdAsync(userIdInt);
             SoLichLam = await _service.CountSchedule();
             SoDichVuDat = await _serviceServiceHistory.CountServiceHistory();
             SoTaiKhoan = await _userAccountService.CountUserAccount();
