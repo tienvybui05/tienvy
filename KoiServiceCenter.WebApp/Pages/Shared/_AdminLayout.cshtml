@@ -4,13 +4,14 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+	<title> Admin - TRUNG TÂM CÁ KOI</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
 
 	<!-- Mobile Specific Metas -->
@@ -41,7 +42,7 @@
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="~/admin/vendors/images/deskapp-logo.svg" alt=""></div>
+			<h1 class="m-0"><i class="fa-solid fa-fish"></i>KOI</h1>
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -98,62 +99,6 @@
 					</a>
 				</div>
 			</div>
-			<div class="user-notification">
-				<div class="dropdown">
-					<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
-						<i class="icon-copy dw dw-notification"></i>
-						<span class="badge notification-active"></span>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right">
-						<div class="notification-list mx-h-350 customscroll">
-							<ul>
-								<li>
-									<a href="#">
-										<img src="~/admin/vendors/images/img.jpg" alt="">
-										<h3>John Doe</h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="~/admin/vendors/images/photo1.jpg" alt="">
-										<h3>Lea R. Frith</h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="~/admin/vendors/images/photo2.jpg" alt="">
-										<h3>Erik L. Richards</h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="~/admin/vendors/images/photo3.jpg" alt="">
-										<h3>John Doe</h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="~/admin/vendors/images/photo4.jpg" alt="">
-										<h3>Renee I. Hansen</h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<img src="~/admin/vendors/images/img.jpg" alt="">
-										<h3>Vicki M. Coleman</h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
 			<div class="center-container">
 				@if (User.Identity.IsAuthenticated)
 				{
@@ -189,8 +134,8 @@
 
 
 			<div class="github-link">
-				<a href="https://github.com/dropways/deskapp" target="_blank"><img src="vendors/images/github.svg"
-						alt=""></a>
+				<a href="https://github.com/tienvybui05/uthsoftwareengineer" target="_blank"><img
+						src="vendors/images/github.svg" alt=""></a>
 			</div>
 		</div>
 	</div>
@@ -288,8 +233,8 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="/admin">
-				<img src="~/admin/vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="~/admin/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
+				<h1 class="m-0" style="color: #b1bbc3;"><i class="fa-solid fa-fish" style="color: #8e9295;"></i>KOI
+				</h1>
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -300,7 +245,7 @@
 				<ul id="accordion-menu">
 					<li class="dropdown">
 						<a href="/admin" class="dropdown-toggle">
-							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
+							<span class="micon dw dw-house-1"></span><span class="mtext">Trang chủ</span>
 						</a>
 						<ul class="submenu">
 							<li><a href="index.html">Dashboard style 1</a></li>
@@ -309,39 +254,44 @@
 					</li>
 					<li class="dropdown">
 						<a href="/admin/useraccount" class="dropdown-toggle no-arrow">
-							<span class="micon fa fa-address-book-o"></span><span class="mtext"> User Account</span>
+							<span class="micon fa fa-address-book-o"></span><span class="mtext">Tài khoản</span>
+						</a>
+					</li>
+					<li class="dropdown">
+						<a href="/admin/Customer" class="dropdown-toggle no-arrow">
+							<span class="micon fa fa-user"></span><span class="mtexdt"> Khách hàng</span>
 						</a>
 					</li>
 					<li class="dropdown">
 						<a href="/admin/services" class="dropdown-toggle no-arrow">
-							<span class="micon fa fa-ambulance"></span><span class="mtext"> Service</span>
+							<span class="micon fa fa-ambulance"></span><span class="mtext"> Dịch vụ</span>
 						</a>
 					</li>
 					<li class="dropdown">
-						<a href="/admin/services" class="dropdown-toggle no-arrow">
-							<span class="micon fa fa-calendar"></span><span class="mtext"> Vet Schedule</span>
+						<a href="/admin/vetschedule" class="dropdown-toggle no-arrow">
+							<span class="micon fa fa-calendar"></span><span class="mtext"> Lịch bác sĩ</span>
 						</a>
 					</li>
 
 					<li class="dropdown">
 						<a href="/admin/cost" class="dropdown-toggle no-arrow">
-							<span class="micon fas fa-dollar-sign"></span><span class="mtext"> Cost</span>
+							<span class="micon fas fa-dollar-sign"></span><span class="mtext"> Chi phí</span>
 						</a>
 					</li>
 					<li class="dropdown">
 						<a href="/admin/report" class="dropdown-toggle no-arrow">
-							<span class="micon fas fa-file-alt"></span><span class="mtext"> report</span>
+							<span class="micon fas fa-file-alt"></span><span class="mtext"> Báo cáo</span>
 						</a>
 					</li>
 					<li class="dropdown">
 						<a href="/admin/servicehistory" class="dropdown-toggle no-arrow">
-							<span class="micon fa fa-history"></span><span class="mtext"> History Service</span>
+							<span class="micon fa fa-history"></span><span class="mtext">Lịch sử</span>
 						</a>
 					</li>
 
 					<li class="dropdown">
 						<a href="/admin/feedback" class="dropdown-toggle no-arrow">
-							<span class="micon fa fa-comments"></span><span class="mtext"> Feedback</span>
+							<span class="micon fa fa-comments"></span><span class="mtext"> Đánh giá</span>
 						</a>
 					</li>
 

@@ -47,48 +47,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             {
                 throw new InvalidOperationException("Lỗi khi xóa tài khoản người dùng", ex);
             }
-            //try
-            //{
-            //    var serviceHistories = await _dbContext.ServiceHistories
-            //    .Where(s => s.CustomerId == userId)
-            //    .ToListAsync();
 
-            //    _dbContext.ServiceHistories.RemoveRange(serviceHistories);
-            //    await _dbContext.SaveChangesAsync();
-            //    var userAccount = await _dbContext.UserAccounts
-            //        .Include(u => u.Customers)  // Nếu có liên kết với Customer
-            //        .Include(u => u.VetSchedules)  // Nếu có liên kết với VetSchedule
-            //        .Include(u => u.ServiceHistories)  // Nếu có liên kết với ServiceHistory
-            //        .FirstOrDefaultAsync(u => u.UserId == userId);
-
-            //    if (userAccount != null)
-            //    {
-
-            //        if (userAccount.Customers != null)
-            //        {
-            //            foreach (var customer in userAccount.Customers)
-            //            {
-            //                _dbContext.Customers.Remove(customer);
-            //            }
-            //        }
-
-            //        foreach (var schedule in userAccount.VetSchedules)
-            //        {
-            //            _dbContext.VetSchedules.Remove(schedule);
-            //        }
-
-
-            //        _dbContext.UserAccounts.Remove(userAccount);
-
-            //        return await _dbContext.SaveChangesAsync() > 0;
-            //    }
-
-            //    return false;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new InvalidOperationException("Lỗi khi xóa tài khoản người dùng", ex);
-            //}
         }
 
         public async Task<List<UserAccount>> GetUserAccountsAsync()
@@ -148,10 +107,10 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         }
         public async Task<string> CheckAccount(string username, string password)
         {
-            var x = await _dbContext.UserAccounts.FirstOrDefaultAsync(p => p.UserName == username && p.Password == password&&(p.Role == "Manager"|| p.Role == "Staff"));
-            
+            var x = await _dbContext.UserAccounts.FirstOrDefaultAsync(p => p.UserName == username && p.Password == password && (p.Role == "Manager" || p.Role == "Staff"));
+
             if (x == null)
-            { 
+            {
                 return "Customer";
             }
             return x.Role;
@@ -184,41 +143,41 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return new SelectList(roles);
         }
 
-		public async Task<UserAccount> Account(string username, string password)
-		{
-			var ojb = await _dbContext.UserAccounts.FirstOrDefaultAsync(p => p.UserName == username && p.Password == password);
+        public async Task<UserAccount> Account(string username, string password)
+        {
+            var ojb = await _dbContext.UserAccounts.FirstOrDefaultAsync(p => p.UserName == username && p.Password == password);
 
-			if (ojb == null)
-			{
-				return null;
-			}
-			return ojb;
-		}
+            if (ojb == null)
+            {
+                return null;
+            }
+            return ojb;
+        }
 
-		public async Task<bool> CreateAccount(string userName, string passWord, string email)
-		{
+        public async Task<bool> CreateAccount(string userName, string passWord, string email)
+        {
             var emailExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m => m.Email == email);
-            var userNameExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m =>m.UserName == userName);
-            if (userNameExists != null||emailExists!=null)
+            var userNameExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m => m.UserName == userName);
+            if (userNameExists != null || emailExists != null)
             {
                 return false;
             }
-			UserAccount UserAccount = new UserAccount();
+            UserAccount UserAccount = new UserAccount();
 
-			Random random = new Random();
-			int ranDomID;
-			do
-			{
-				ranDomID = random.Next(1, 1001);
-				var x = await GetUserByIdAsync(ranDomID);
-				if (x == null)
-				{
-					break;
-				}
-			} while (true);
-			UserAccount.UserId = ranDomID;
-			UserAccount.Role = "Customer";
-			UserAccount.Email = email;
+            Random random = new Random();
+            int ranDomID;
+            do
+            {
+                ranDomID = random.Next(1, 1001);
+                var x = await GetUserByIdAsync(ranDomID);
+                if (x == null)
+                {
+                    break;
+                }
+            } while (true);
+            UserAccount.UserId = ranDomID;
+            UserAccount.Role = "Customer";
+            UserAccount.Email = email;
             UserAccount.Password = passWord;
             UserAccount.UserName = userName;
             await AddUserAccountAsync(UserAccount);
@@ -233,8 +192,8 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 if (y == null)
                 {
                     break;
-                }    
-            } 
+                }
+            }
             while (true);
             customer.CustomerId = randomID1;
             customer.FullName = "Họ và tên";
@@ -242,14 +201,14 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             customer.UserId = UserAccount.UserId;
             await _dbContext.Customers.AddAsync(customer);
             await _dbContext.SaveChangesAsync();
-            
+
             return true;
-		}
+        }
 
         public async Task<bool> checkEmail(string email)
         {
             var emailExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m => m.Email == email);
-            if(emailExists != null)
+            if (emailExists != null)
             {
                 return false;
             }
@@ -310,17 +269,17 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             try
             {
-               var ojb = await GetUserByIdAsync(id);    
-                if(ojb == null)
+                var ojb = await GetUserByIdAsync(id);
+                if (ojb == null)
                 {
                     return false;
                 }
-                if(ojb.Password != OldPassWord)
+                if (ojb.Password != OldPassWord)
                 {
                     return false;
                 }
                 ojb.Password = NewPassWord;
-               await UpdateUserAccountAsync(ojb);
+                await UpdateUserAccountAsync(ojb);
                 return true;
             }
             catch (Exception ex)
