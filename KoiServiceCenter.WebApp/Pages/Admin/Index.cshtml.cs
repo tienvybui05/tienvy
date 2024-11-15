@@ -37,6 +37,8 @@ namespace KoiServiceCenter.WebApp.Pages.Admin
         public int SoTaiKhoan { get; set; }
         public int SoBaoCao { get; set; }
         public int SoDichVu { get; set; }
+        public int SoKhachHang { get; set; }
+        public int SoBangGia { get; set; }
 
         public UserAccount UserAccount { get; set; }    
         public async Task OnGetAsync()
@@ -49,7 +51,8 @@ namespace KoiServiceCenter.WebApp.Pages.Admin
             SoTaiKhoan = await _userAccountService.CountUserAccount();
             SoBaoCao = await _reportService.CountReport();
             SoDichVu = await _serviceService.CountService();
-
+            SoKhachHang = await _customerService.CountCustomersAsync();
+            SoBangGia = await _costService.CountCostAsync();
         }
     }
 }

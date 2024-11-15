@@ -165,14 +165,14 @@
             </div>
         </div>
 
-        <!-- Card 2: Nhân viên -->
+        <!-- Card 2: Nhân viên chuyển sang Bảng giá nha-->
         <div class="col-md-2 mb-2">
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Nhân viên</h5>
-                    <p class="text-primary" style="font-size: 2rem;">10</p>
-                    <p class="card-text">Thông tin nhân viên</p>
-                    <a href="/Admin/vetschedule" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                    <h5 class="card-title">Bảng giá</h5>
+                    <p class="text-primary" style="font-size: 2rem;">@Model.SoBangGia</p>
+                    <p class="card-text">Thông tin bảng giá</p>
+                    <a href="/Admin/cost" class="btn btn-primary btn-sm">Xem chi tiết</a>
                 </div>
             </div>
         </div>
@@ -182,9 +182,9 @@
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-body text-center">
                     <h5 class="card-title">Khách hàng</h5>
-                    <p class="text-primary" style="font-size: 2rem;">10</p>
+                    <p class="text-primary" style="font-size: 2rem;">@Model.SoKhachHang</p>
                     <p class="card-text">Thông tin khách hàng</p>
-                    <a href="/Admin/Customer" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                    <a href="/Admin/customer" class="btn btn-primary btn-sm">Xem chi tiết</a>
                 </div>
             </div>
         </div>
@@ -215,7 +215,6 @@
 
     <!-- Help & Resources Section -->
     <div class="text-center mt-5">
-        <p>Learn more about <a href="https://learn.microsoft.com/aspnet/core" target="_blank">building Web apps with ASP.NET Core</a>.</p>
     </div>
 </div>
 
