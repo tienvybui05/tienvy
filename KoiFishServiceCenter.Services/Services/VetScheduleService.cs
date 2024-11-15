@@ -67,5 +67,10 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return _repository.CreateId();
         }
+        public Task<List<VetSchedule>> GetWordSchedule(int id, DateTime dateTime)
+        {
+
+            return _repository.GetWordSchedule(id, dateTime);
+        }
     }
 }

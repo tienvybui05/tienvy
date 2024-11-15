@@ -42,8 +42,16 @@ namespace KoiServiceCenter.WebApp.Pages.Account
                 new Claim(ClaimTypes.Name, userAccount.UserName),
                 new Claim(ClaimTypes.Email, userAccount.Email),
                 new Claim(ClaimTypes.NameIdentifier, userAccount.UserId.ToString()),
-                new Claim("Everyone", "true")
+                
                 };
+                if(userAccount.Role == "Veterinarian")
+                {
+                    claims.Add(new Claim("Veterinarian", "true"));
+                }
+                else
+                {
+                    claims.Add(new Claim("Everyone", "true"));
+                }
                 var identity = new ClaimsIdentity(claims, "CustomerCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync("CustomerCookieAuth", claimsPrincipal);

@@ -96,9 +96,13 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         }
         public async Task<List<ServiceHistory>> SearcheAsync(string searchString)
         {
-            return await _dbContext.ServiceHistories.Where(a => a.Customer.FullName.Contains(searchString)).Include(s => s.Customer)
-                .Include(s => s.Service)
-                .Include(s => s.Veterinarian).ToListAsync();
+            return await _dbContext.ServiceHistories.Where(a => a.Customer.FullName.Contains(searchString) ||
+                                                                 a.Veterinarian.UserName.Contains(searchString) ||
+                                                                 a.Service.Description.Contains(searchString) ||
+                                                                 a.Result.Contains(searchString))
+                 .Include(s => s.Customer)
+                 .Include(s => s.Service)
+                 .Include(s => s.Veterinarian).ToListAsync();
 
         }
         public SelectList GetServiceHistorySelect(string viewData)

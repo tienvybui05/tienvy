@@ -161,5 +161,30 @@ namespace KoiFishServiceCenter.Repositories.Repositories
                 }
             } while (true);
         }
+        public async Task<List<VetSchedule>> GetWordSchedule(int id, DateTime dateTime)
+        {
+            var x = await _dbContext.UserAccounts.FindAsync(id);
+            if (x == null)
+            {
+                return new List<VetSchedule>(); // Nếu không tìm thấy User, trả về danh sách rỗng
+            }
+
+            var query = _dbContext.VetSchedules.AsQueryable();
+
+            // Lọc theo ngày nếu có
+            if (dateTime != DateTime.MinValue)
+            {
+                query = query.Where(a => a.ScheduleDate.Day == dateTime.Day &&
+                                          a.ScheduleDate.Month == dateTime.Month &&
+                                          a.ScheduleDate.Year == dateTime.Year);
+            }
+
+            // Lọc theo UserName
+            query = query.Where(v => v.Veterinarian.UserName == x.UserName);
+
+            // Sử dụng Include để tải Veterinarian (không áp dụng điều kiện vào Include)
+            return await query.Include(v => v.Veterinarian).ToListAsync();
+
+        }
     }
 }

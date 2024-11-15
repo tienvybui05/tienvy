@@ -21,6 +21,7 @@ namespace KoiFishServiceCenter.Repositories.Interfaces
         Task<int> CountVetSchedule();
         Task<bool> BundByDate(VetSchedule vetSchedule);
         Task<int> CreateId();
+        Task<List<VetSchedule>> GetWordSchedule(int id, DateTime dateTime);
 
     }
 }

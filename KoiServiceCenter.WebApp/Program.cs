@@ -81,14 +81,16 @@ namespace KoiServiceCenter.WebApp
 					policy => policy.RequireClaim("Manager"));
 				options.AddPolicy("StaffOnly",
 					policy => policy.RequireClaim("Staff"));
-				options.AddPolicy("VeterianOnly",
-					policy => policy.RequireClaim("Veterian"));
+				options.AddPolicy("VeterinarianOnly",
+					policy => policy.RequireClaim("Veterinarian"));
 				options.AddPolicy("ManagerOrStaffOnly", policy =>
 					policy.RequireAssertion(context =>
 						context.User.HasClaim("Manager", "true") ||
 						context.User.HasClaim("Staff", "true")));
-                options.AddPolicy("EveryoneOnly",
-                   policy => policy.RequireClaim("Everyone"));
+                options.AddPolicy("EveryoneOnly", policy =>
+                    policy.RequireAssertion(context =>
+                        context.User.HasClaim("Everyone", "true") ||
+                        context.User.HasClaim("Veterinarian", "true")));
             });
 			// Add services to the container.
 			builder.Services.AddRazorPages();

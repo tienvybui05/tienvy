@@ -56,10 +56,6 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.Account
                     {
                         claims.Add(new Claim("Staff", "true"));
                     }
-                    else if (userAccount.Role == "Veterian")
-                    {
-                        claims.Add(new Claim("Veterian", "true"));
-                    }
                     // Khởi tạo ClaimsIdentity và đăng nhập với cookie
                     var identity = new ClaimsIdentity(claims, "AdminCookieAuth");
                     ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
