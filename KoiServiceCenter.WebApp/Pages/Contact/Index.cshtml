@@ -118,105 +118,160 @@
 <!-- Liên hệ End --> *@
 
 
-<!-- Contact Start -->
+@* <!-- Contact Start -->
 <div class="container-fluid contact bg-light py-5">
     <div class="container py-5">
-        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h5 class="section-title px-3">Contact Us</h5>
-            <h1 class="mb-0">Contact For Any Query</h1>
-        </div>
+            <div class="text-center mb-5" style="max-width: 800px; margin: auto;">
+                <h5 class="section-title text-uppercase mb-3" style="font-weight: bold; color: #13357B; font-size: 1.5rem;">Liên hệ với chúng tôi</h5>
+                <h1 class="display-4 mb-0" style="color: #E63946; font-size: 2.5rem;">Nếu bạn cần giúp đỡ?</h1>
+            </div>
         <div class="row g-5 align-items-center">
             <div class="col-lg-4">
                 <div class="bg-white rounded p-4">
                     <div class="text-center mb-4">
                         <i class="fa fa-map-marker-alt fa-3x text-primary"></i>
-                        <h4 class="text-primary"><Address></Address></h4>
-                        <p class="mb-0">123 ranking Street, <br> New York, USA</p>
+                        <h4 class="text-primary">Địa chỉ</h4>
+                        <p class="mb-0">70 Đ. Tô Ký, Tân Chánh Hiệp, Quận 12,<br> Hồ Chí Minh, Việt Nam</p>
                     </div>
                     <div class="text-center mb-4">
                         <i class="fa fa-phone-alt fa-3x text-primary mb-3"></i>
-                        <h4 class="text-primary">Mobile</h4>
-                        <p class="mb-0">+012 345 67890</p>
-                        <p class="mb-0">+012 345 67890</p>
+                        <h4 class="text-primary">Số điện thoại</h4>
+                        <p class="mb-0">094 288 23 24</p>
                     </div>
 
                     <div class="text-center">
                         <i class="fa fa-envelope-open fa-3x text-primary mb-3"></i>
                         <h4 class="text-primary">Email</h4>
-                        <p class="mb-0">info@example.com</p>
-                        <p class="mb-0">info@example.com</p>
+                        <p class="mb-0">ut-hcmc@ut.edu.vn</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-8">
-                <h3 class="mb-2">Send us a message</h3>
-                <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                <form method="post">
-                    <div class="row g-3">
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                        <div class="col-md-6">
+                <h3 class="mb-2">Gửi tin nhắn cho chúng tôi!</h3>
+                <p class="mb-4">Khi cá của bạn đang gặp vấn đề về sức khỏe và cần sự chăm sóc đặc biệt, hãy đưa ngay chúng đến phòng khám tại địa chỉ được cung cấp hoặc gọi đến hotline <strong>094 288 23 24</strong> để được hỗ trợ kịp thời.</p>
 
-                            <div class="form-floating">
+               <div class="col-lg-12" style="background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/about-img-1.png);
+                               background-size: cover;
+                               padding: 40px 20px;
+                               text-align: center;
+                               color: black;
+                               border-radius: 10px;
+                               margin: 20px auto;
+                               max-width: 800px;">
 
-                                <select asp-for="ServiceHistory.CustomerId" class="form-control bg-white border-0"
-                                        asp-items="ViewBag.CustomerId"></select>
-                                <label asp-for="ServiceHistory.CustomerId" class="control-label">Customer</label>
-                            </div>
+                        <h4 style="margin-bottom: 20px;">
+                            <b>
+                                Hãy liên hệ ngay với chúng tôi để nhận tư vấn miễn phí về những dịch vụ chăm sóc
+                                cá Koi.
+                            </b>
+                        </h4>
 
-                        </div>
-                        @* <div class="col-md-6">
-                        <div class="form-floating">
-                        <input asp-for="ServiceHistory.HistoryId" class="form-control bg-white border-0" readonly />
-                        <label asp-for="ServiceHistory.HistoryId" class="control-label"></label>
-                        <span asp-validation-for="ServiceHistory.HistoryId" class="text-danger"></span>
-                        </div>
-                        </div> *@
-                        <input asp-for="ServiceHistory.HistoryId" type="hidden" />
+                        <a href="tel:0942882324" style="display: inline-block;
+                              padding: 12px 24px;
+                              background-color: #c00;
+                              color: #fff;
+                              border-radius: 10px;
+                              text-decoration: none;
+                              font-size: 18px;
+                              margin-right: 10px;
+                              transition: background-color 0.3s ease;">
+                            <i class="fa fa-phone" aria-hidden="true"></i> Gọi ngay
+                        </a>
 
-                        <div class="col-md-6">
-                            <div class="form-floating date" id="date3" data-target-input="nearest">
-                                <input asp-for="ServiceHistory.ServiceDate" type="date" class="form-control"
-                                       value="" />
-                                <label asp-for="ServiceHistory.ServiceDate" class="control-label"></label>
-                                <span asp-validation-for="ServiceHistory.ServiceDate" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <select asp-for="ServiceHistory.ServiceId" class="form-control bg-white border-0"
-                                        asp-items="ViewBag.ServiceId"></select>
-                                <label asp-for="ServiceHistory.ServiceId" class="control-label"></label>
+                        <a href="https://www.facebook.com/TruongDHGiaothongvantaiTPHCM" style="display: inline-block;
+                              padding: 12px 24px;
+                              background-color: #0056b3;
+                              color: #fff;
+                              border-radius: 10px;
+                              text-decoration: none;
+                              font-size: 18px;
+                              transition: background-color 0.3s ease;">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Nhắn tin
+                        </a>
+               </div>
+            </div>  
+        </div>
+    </div>
+</div>
+<!-- Contact End  *@-->
 
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <select asp-for="ServiceHistory.VeterinarianId"
-                                        class="form-control bg-white border-0"
-                                        asp-items="ViewBag.VeterinarianId"></select>
-                                <label asp-for="ServiceHistory.VeterinarianId" class="control-label"></label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-floating">
-                                <input asp-for="ServiceHistory.Result" class="form-control bg-white border-0" />
-                                <label asp-for="ServiceHistory.Result" class="control-label"></label>
-                                <span asp-validation-for="ServiceHistory.Result" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <input type="submit" value="Book Now" class="btn btn-primary text-white w-100 py-3" />
-                        </div>
+<!-- Contact Start -->
+<div class="container-fluid contact bg-light py-5">
+    <div class="container py-5">
+        <div class="text-center mb-5" style="max-width: 700px; margin: auto;">
+            <h5 class="section-title text-uppercase mb-3" style="font-weight: bold; color: #13357B; font-size: 1.5rem;">Liên hệ với chúng tôi</h5>
+            <h1 class="display-4 mb-0" style="color: #E63946; font-size: 2.5rem;">Bạn cần giúp đỡ?</h1>
+        </div>
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-4">
+                <div class="bg-white rounded shadow-sm p-4">
+                    <div class="text-center mb-4">
+                        <i class="fa fa-map-marker-alt fa-3x text-primary"></i>
+                        <h4 class="text-primary">Địa chỉ</h4>
+                        <p class="mb-0">70 Đ. Tô Ký, Tân Chánh Hiệp, Quận 12, Hồ Chí Minh, Việt Nam</p>
                     </div>
-                </form>
-            </div>
-            <div class="col-12">
-                <div class="rounded">
-                    <iframe class="rounded w-100"
-                            style="height: 450px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1694259649153!5m2!1sen!2sbd"
-                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="text-center mb-4">
+                        <i class="fa fa-phone-alt fa-3x text-primary mb-3"></i>
+                        <h4 class="text-primary">Số điện thoại</h4>
+                        <p class="mb-0">094 288 23 24</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fa fa-envelope-open fa-3x text-primary mb-3"></i>
+                        <h4 class="text-primary">Email</h4>
+                        <p class="mb-0">ut-hcmc@ut.edu.vn</p>
+                    </div>
                 </div>
             </div>
+            <div class="col-lg-8">
+                
+
+                <div class="contact-highlight" style="
+        background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(img/about-img-1.png);
+        background-size: cover;
+        background-position: center;
+        padding: 40px 20px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 800px;
+    "> 
+                    <h3 class="mb-3" style="font-weight: bold;">Gửi tin nhắn cho chúng tôi!</h3>
+                    <p class="mb-4">
+                        Khi cá của bạn gặp các vấn đề về sức khỏe như dấu hiệu mệt mỏi, kém ăn, hoặc xuất hiện các vết thương trên cơ thể, hãy liên hệ ngay để nhận được sự hỗ trợ từ các chuyên gia của chúng tôi. Phòng khám chuyên nghiệp của chúng tôi được trang bị đầy đủ thiết bị hiện đại và đội ngũ chuyên viên dày dặn kinh nghiệm trong việc chăm sóc và điều trị cá Koi. Chúng tôi hiểu rằng sức khỏe của cá Koi không chỉ là một yếu tố quan trọng trong việc nuôi dưỡng, mà còn ảnh hưởng đến vẻ đẹp và giá trị của hồ cá của bạn. Đừng ngần ngại, hãy liên hệ ngay hôm nay để nhận được sự tư vấn tận tình và nhanh chóng.
+                    </p>
+                    <h4 class="mb-3">Hãy liên hệ ngay với chúng tôi để nhận tư vấn miễn phí về dịch vụ chăm sóc cá Koi.</h4>
+                    <p style="margin-bottom: 20px;">
+                        Chúng tôi cam kết mang đến cho bạn dịch vụ chất lượng cao nhất với chi phí hợp lý. Đội ngũ chuyên gia của chúng tôi sẵn sàng trả lời mọi thắc mắc và hỗ trợ bạn bất cứ lúc nào.
+                    </p>
+                    <a href="tel:0942882324" style="
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #e63946;
+            color: #fff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        ">
+                        <i class="fa fa-phone" aria-hidden="true"></i> Gọi ngay
+                    </a>
+                    <a href="https://www.facebook.com/TruongDHGiaothongvantaiTPHCM" style="
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #0073e6;
+            color: #fff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        ">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Nhắn tin
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
