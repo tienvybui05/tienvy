@@ -1,37 +1,82 @@
 ﻿@page
 @model KoiServiceCenter.WebApp.Pages.Admin.useraccount.DetailsModel
 
-<div>
-    <h4>UserAccount</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UserAccount.UserName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UserAccount.UserName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UserAccount.Password)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UserAccount.Password)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UserAccount.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UserAccount.Email)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UserAccount.Role)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UserAccount.Role)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.UserAccount.UserId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+<html lang="en">
+<head>
+    <title>User Details</title>
+    <style>
+
+        .page-content {
+            max-width: 600px;
+            margin: auto;
+            padding-top: 30px;
+        }
+
+        .title-bordered {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .button-group {
+            display: inline-flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-content">
+        <h4 class="title-bordered">Chi tiết tài khoản</h4>
+        <hr />
+
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Username</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.UserAccount.UserName)</dd>
+
+                    <dt class="col-sm-4">Password</dt>
+                    <dd class="col-sm-8">
+                        <span id="password" class="text-muted">●●●●●●</span>
+                        <button type="button" class="btn btn-link btn-sm" onclick="togglePassword()">
+                            <i id="toggleIcon" class="fas fa-eye"></i>
+                        </button>
+                    </dd>
+
+                    <dt class="col-sm-4">Email</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.UserAccount.Email)</dd>
+
+                    <dt class="col-sm-4">Role</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.UserAccount.Role)</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.UserAccount.UserId">Sửa</a>
+            <a class="btn btn-secondary" asp-page="./Index">Quay lại</a>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide password function with icon toggle
+        function togglePassword() {
+            const passwordElement = document.getElementById("password");
+            const toggleIcon = document.getElementById("toggleIcon");
+
+            if (passwordElement.textContent === "●●●●●●") {
+                passwordElement.textContent = "@Model.UserAccount.Password";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordElement.textContent = "●●●●●●";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
+        }
+    </script>
+</body>
+</html>
