@@ -1,7 +1,9 @@
 ﻿using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Services.Interfaces;
+using KoiFishServiceCenter.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace KoiServiceCenter.WebApp.Pages.Services.Dieutribenhchoca
 {
@@ -9,21 +11,36 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Dieutribenhchoca
     {
         private readonly IServiceHistoryService _service;
         private readonly IVetScheduleService _vetScheduleService;
-        public IndexModel(IServiceHistoryService service, IVetScheduleService vetScheduleService)
+        private readonly ICustomerService _customerService;
+        public IndexModel(IServiceHistoryService service, IVetScheduleService vetScheduleService,ICustomerService customerService)
         {
             _service = service;
             _vetScheduleService = vetScheduleService;
+            _customerService = customerService;
         }
 
         public async Task<IActionResult> OnGet()
         {
-            int ranDumID;
-            ranDumID = await _service.CreateId();
-
-            ServiceHistory = new ServiceHistory
+            if (User.Identity.IsAuthenticated)
             {
-                HistoryId = ranDumID
-            };
+
+                var customerId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                customer = await _customerService.GetCustomer(int.Parse(customerId));
+                if (customer != null)
+                {
+
+                    int ranDumID;
+                    ranDumID = await _service.CreateId();
+                    ServiceHistory = new ServiceHistory
+                    {
+                        HistoryId = ranDumID,
+                        CustomerId = customer.CustomerId
+
+
+                    };
+
+                }
+            }
 
             // Load các ViewData khác nếu cần
             ViewData["CustomerId"] = _service.GetServiceHistorySelect("CustomerId");
@@ -36,22 +53,25 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Dieutribenhchoca
         [BindProperty]
         public ServiceHistory ServiceHistory { get; set; }
         public VetSchedule VetSchedule { get; set; }
-
+        public Customer customer { get; set; }
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!User.Identity.IsAuthenticated)
             {
-                return Page();
+                return Challenge(); // Yêu cầu đăng nhập
             }
 
             //await _service.AddServiceHistory(ServiceHistory);
-            var checkID = await _service.GetServiceHistoryById(ServiceHistory.HistoryId);
+            var customerId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            customer = await _customerService.GetCustomer(int.Parse(customerId));
+            ServiceHistory.CustomerId = customer.CustomerId;
             var checkDateTime = await _service.BundByDate(ServiceHistory);
-            if (checkID != null)
+            DateTime currentDate = DateTime.Today;
+            if (ServiceHistory.ServiceDate < currentDate)
             {
-                ModelState.AddModelError("ServiceHistory.HistoryId", "Mã đơn dịch vụ đã tồn tại. Vui lòng nhập mã khác.");
+                ModelState.AddModelError("ServiceHistory.ServiceDate", "Ngày nhập vào không hợp lệ. Vui lòng chọn ngày khác.");
                 ViewData["CustomerId"] = _service.GetServiceHistorySelect("CustomerId");
                 ViewData["ServiceId"] = _service.GetServiceHistorySelect("ServiceId");
                 ViewData["VeterinarianId"] = _service.GetServiceHistorySelect("VeterinarianId");
