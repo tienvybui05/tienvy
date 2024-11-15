@@ -38,7 +38,9 @@
     font-weight: 600;
     transition: .5s;
 }
-
+.footer-item {
+    align-items: flex-start; /* Căn lề trái cho nội dung trong mỗi phần */
+}
 .btn-square {
     width: 32px;
     height: 32px;
