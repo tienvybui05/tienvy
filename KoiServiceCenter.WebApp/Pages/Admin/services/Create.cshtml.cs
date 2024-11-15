@@ -21,8 +21,12 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.services
             _service = service;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            Service = new Service
+            {
+                ServiceId = await _service.CreateId()
+            };
             return Page();
         }
 
