@@ -1,4 +1,4 @@
-(function ($) {
+﻿(function ($) {
     "use strict";
 
     // Spinner
@@ -55,13 +55,13 @@
 
     // packages carousel
     $(".packages-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
+        autoplay: false,
+        smartSpeed: 0,
         center: false,
         dots: false,
-        loop: true,
+        loop: false,
         margin: 25,
-        nav : true,
+        nav : false,
         navText : [
             '<i class="bi bi-arrow-left"></i>',
             '<i class="bi bi-arrow-right"></i>'
@@ -114,7 +114,7 @@
         }
     });
 
-    
+
    // Back to top button
    $(window).scroll(function () {
     if ($(this).scrollTop() > 300) {
