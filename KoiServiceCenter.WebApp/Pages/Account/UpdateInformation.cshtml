@@ -6,46 +6,53 @@
 <hr />
 <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <form method="post" class="shadow-lg p-5 rounded bg-white border">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
 
-            <!-- Hidden CustomerId field -->
             <input type="hidden" asp-for="Customer.CustomerId" />
 
-            <!-- Full Name -->
-            <div class="form-group">
-                <label asp-for="Customer.FullName" class="control-label">Họ và tên</label>
-                <input asp-for="Customer.FullName" class="form-control form-control-lg shadow-sm border-light rounded-3" placeholder="Nhập họ và tên" />
-                <span asp-validation-for="Customer.FullName" class="text-danger"></span>
+            <div class="form-group mb-4">
+                <label asp-for="Customer.FullName" class="control-label text-secondary fw-bold">Họ và Tên</label>
+                <input asp-for="Customer.FullName" class="form-control bg-light border-0 shadow-sm" placeholder="Nhập họ và tên" />
+                <span asp-validation-for="Customer.FullName" class="text-danger small"></span>
             </div>
 
-            <!-- Phone Number -->
-            <div class="form-group">
-                <label asp-for="Customer.PhoneNumber" class="control-label">Số điện thoại</label>
-                <input asp-for="Customer.PhoneNumber" class="form-control form-control-lg shadow-sm border-light rounded-3" placeholder="Nhập số điện thoại" />
-                <span asp-validation-for="Customer.PhoneNumber" class="text-danger"></span>
+            <div class="form-group mb-4">
+                <label asp-for="Customer.PhoneNumber" class="control-label text-secondary fw-bold">Số điện thoại</label>
+                <input asp-for="Customer.PhoneNumber" class="form-control bg-light border-0 shadow-sm" placeholder="Nhập số điện thoại" />
+                <span asp-validation-for="Customer.PhoneNumber" class="text-danger small"></span>
             </div>
 
-            <!-- Address -->
-            <div class="form-group">
-                <label asp-for="Customer.Address" class="control-label">Địa chỉ</label>
-                <input asp-for="Customer.Address" class="form-control form-control-lg shadow-sm border-light rounded-3" placeholder="Nhập địa chỉ" />
-                <span asp-validation-for="Customer.Address" class="text-danger"></span>
+            <div class="form-group mb-4">
+                <label asp-for="Customer.Address" class="control-label text-secondary fw-bold">Địa chỉ</label>
+                <input asp-for="Customer.Address" class="form-control bg-light border-0 shadow-sm" placeholder="Nhập địa chỉ" />
+                <span asp-validation-for="Customer.Address" class="text-danger small"></span>
             </div>
 
-            <!-- Email (Readonly) -->
-            <div class="form-group">
-                <label asp-for="Customer.Email" class="control-label">Email</label>
-                <input asp-for="Customer.Email" class="form-control form-control-lg shadow-sm border-light rounded-3" readonly />
-                <span asp-validation-for="Customer.Email" class="text-danger"></span>
+            <div class="form-group mb-4">
+                <label asp-for="Customer.Email" class="control-label text-secondary fw-bold">Email</label>
+                <input asp-for="Customer.Email" class="form-control bg-light border-0 shadow-sm" placeholder="Nhập email" />
+                <span asp-validation-for="Customer.Email" class="text-danger small"></span>
             </div>
 
-            <!-- Submit and Return Buttons in Same Row -->
-            <div class="form-group d-flex justify-content-between align-items-center text-center">
-                <input type="submit" value="Lưu thông tin" class="btn btn-primary btn-md rounded-pill px-4 py-2 shadow-sm transition-all hover:scale-105" />
-                <a asp-page="/Account/CustomerInformation" class="btn btn-outline-secondary btn-md rounded-pill px-4 py-2 shadow-sm transition-all hover:scale-105">Quay lại</a>
+            <div class="form-group mb-4">
+                <label asp-for="Customer.User" class="control-label text-secondary fw-bold">Người dùng</label>
+                <select class="form-select bg-light border-0 shadow-sm" asp-for="Customer.UserId" asp-items="ViewBag.UserId" disabled>
+                    <option selected>
+                        @ViewBag.SelectedUserName 
+                    </option>
+                </select>
+                <!-- Hidden input để giữ giá trị khi submit -->
+                <input type="hidden" asp-for="Customer.UserId" />
+                <span asp-validation-for="Customer.User" class="text-danger small"></span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-5">
+                <a asp-page="./Index" class="btn btn-outline-secondary rounded-pill px-4 py-2 shadow-sm transition-link">Quay lại</a>
+                <input type="submit" value="Lưu" class="btn btn-primary rounded-pill px-5 py-2 shadow-lg transition-button" />
             </div>
         </form>
+
     </div>
 </div>
 
