@@ -1,46 +1,86 @@
 ﻿@page
 @model KoiServiceCenter.WebApp.Pages.Admin.report.DeleteModel
 
-<h3>Are you sure you want to delete this report?</h3>
-<div>
-    <h4>Report</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Report.ReportDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Report.ReportDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Report.TotalCustomers)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Report.TotalCustomers)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Report.TotalServices)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Report.TotalServices)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Report.AverageRating)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Report.AverageRating)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Report.Notes)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Report.Notes)
-        </dd>
-    </dl>
+<html lang="en">
+<head>
+    <title>Delete Report</title>
+    <style>
+        .page-content {
+            max-width: 600px;
+            margin: auto;
+            padding-top: 30px;
+        }
 
-    <form method="post">
-        <input type="hidden" asp-for="Report.ReportId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
-    </form>
-</div>
+        .title-bordered {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .button-group {
+            display: inline-flex;
+            gap: 10px;
+        }
+
+        .card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .warning-text {
+            color: red;
+            font-size: small;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-content">
+        <h4 class="title-bordered">Xác nhận xóa báo cáo</h4>
+        <p class="warning-text">
+            Bạn có chắc chắn muốn xóa báo cáo này không? Thao tác này không thể hoàn tác!
+        </p>
+        <hr />
+
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Ngày báo cáo</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Report.ReportDate)</dd>
+
+                    <dt class="col-sm-4">Tổng khách hàng</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Report.TotalCustomers)</dd>
+
+                    <dt class="col-sm-4">Tổng dịch vụ</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Report.TotalServices)</dd>
+
+                    <dt class="col-sm-4">Đánh giá trung bình</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Report.AverageRating)</dd>
+
+                    <dt class="col-sm-4">Ghi chú</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Report.Notes)</dd>
+                </dl>
+            </div>
+        </div>
+
+        <form method="post">
+            <input type="hidden" asp-for="Report.ReportId" />
+            <div class="button-group">
+                <input type="submit" value="Xóa" class="btn btn-danger" />
+                <a class="btn btn-secondary" asp-page="./Index">Quay lại danh sách</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

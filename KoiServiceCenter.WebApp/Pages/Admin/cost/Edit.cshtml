@@ -1,39 +1,45 @@
 ﻿@page
 @model KoiServiceCenter.WebApp.Pages.Admin.cost.EditModel
 
-<h4>Cost</h4>
+<h4 class="mb-4 text-primary">Chi phí</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Cost.CostId" />
-            <div class="form-group">
-                <label asp-for="Cost.ServiceId" class="control-label"></label>
-                <select asp-for="Cost.ServiceId" class="form-control" asp-items="ViewBag.ServiceId"></select>
-                <span asp-validation-for="Cost.ServiceId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cost.Cost1" class="control-label"></label>
-                <input asp-for="Cost.Cost1" class="form-control" />
-                <span asp-validation-for="Cost.Cost1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cost.AdditionalFees" class="control-label"></label>
-                <input asp-for="Cost.AdditionalFees" class="form-control" />
-                <span asp-validation-for="Cost.AdditionalFees" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" class="shadow-lg p-4 rounded bg-white border">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <input type="hidden" asp-for="Cost.CostId" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Cost.ServiceId" class="control-label text-secondary"></label>
+                    <select asp-for="Cost.ServiceId" class="form-control bg-light" asp-items="ViewBag.ServiceId"></select>
+                    <span asp-validation-for="Cost.ServiceId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Cost.Cost1" class="control-label text-secondary"></label>
+                    <input asp-for="Cost.Cost1" class="form-control bg-light" />
+                    <span asp-validation-for="Cost.Cost1" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Cost.AdditionalFees" class="control-label text-secondary"></label>
+                    <input asp-for="Cost.AdditionalFees" class="form-control bg-light" />
+                    <span asp-validation-for="Cost.AdditionalFees" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <a asp-page="./Index" class="btn btn-outline-secondary rounded-pill px-3 py-2 transition-link">Quay lại</a>
+                    <input type="submit" value="Lưu" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm transition-button" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

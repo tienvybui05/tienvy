@@ -1,45 +1,65 @@
 ﻿@page
 @model KoiServiceCenter.WebApp.Pages.Admin.report.DetailsModel
 
-<div>
-    <h4>Report</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Report.ReportDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Report.ReportDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Report.TotalCustomers)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Report.TotalCustomers)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Report.TotalServices)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Report.TotalServices)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Report.AverageRating)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Report.AverageRating)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Report.Notes)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Report.Notes)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Report.ReportId" class="btn btn-sm btn-warning mx-1">
-        <i class="bi bi-pencil-square"></i> Edit
-    </a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+<html lang="en">
+<head>
+    <title>Chi tiết Báo cáo</title>
+    <style>
+        .page-content {
+            max-width: 600px;
+            margin: auto;
+            padding-top: 30px;
+        }
+
+        .title-bordered {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .button-group {
+            display: inline-flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-content">
+        <h4 class="title-bordered">Chi tiết Báo cáo</h4>
+        <hr />
+
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Ngày Báo cáo</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Report.ReportDate)</dd>
+
+                    <dt class="col-sm-4">Tổng số Khách hàng</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Report.TotalCustomers)</dd>
+
+                    <dt class="col-sm-4">Tổng số Dịch vụ</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Report.TotalServices)</dd>
+
+                    <dt class="col-sm-4">Xếp hạng Trung bình</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Report.AverageRating)</dd>
+
+                    <dt class="col-sm-4">Ghi chú</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Report.Notes)</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <a asp-page="./Edit" asp-route-id="@Model.Report.ReportId" class="btn btn-warning">
+                <i class="bi bi-pencil-square"></i> Sửa
+            </a>
+            <a asp-page="./Index" class="btn btn-secondary">Quay lại</a>
+        </div>
+    </div>
+
+</body>
+</html>
