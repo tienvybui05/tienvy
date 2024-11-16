@@ -10,6 +10,7 @@ public partial class Report
     [Required(ErrorMessage = "{0} Vui lòng nhập")]
     [DisplayName("Mã báo cáo")]
     public int ReportId { get; set; }
+    [Required(ErrorMessage = "{0} Vui lòng nhập")]
     [DisplayName("Ngày làm")]
     public DateTime ReportDate { get; set; }
     [DisplayName("Tổng khách hàng")]
@@ -18,6 +19,8 @@ public partial class Report
     public int? TotalServices { get; set; }
     [DisplayName("Điểm đánh giá")]
     public decimal? AverageRating { get; set; }
+
+    [Required(ErrorMessage = "{0} không được để trống")]
     [DisplayName("Ghi chú")]
     public string? Notes { get; set; }
 }

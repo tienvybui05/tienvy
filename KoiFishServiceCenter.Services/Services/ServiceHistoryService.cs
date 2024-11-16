@@ -17,9 +17,14 @@ namespace KoiFishServiceCenter.Services.Services
         {
             _repository = repository;
         }
-        public Task<bool> AddServiceHistory(ServiceHistory serviceHistory)
+        public async Task<bool> AddServiceHistory(ServiceHistory serviceHistory)
         {
-           return _repository.AddServiceHistory(serviceHistory);
+            DateTime currentDate = DateTime.Today;
+            if(serviceHistory.ServiceDate < currentDate)
+            {
+                return false;
+            }
+            return await _repository.AddServiceHistory(serviceHistory);
         }
 
         public Task<bool> DelServiceHistory(int Id)
@@ -42,9 +47,14 @@ namespace KoiFishServiceCenter.Services.Services
             return _repository.GetServiceHistoryById(Id);
         }
 
-        public Task<bool> UpdateServiceHistory(ServiceHistory serviceHistory)
+        public async Task<bool> UpdateServiceHistory(ServiceHistory serviceHistory)
         {
-            return _repository.UpdateServiceHistory(serviceHistory);
+            DateTime currentDate = DateTime.Today;
+            if (serviceHistory.ServiceDate < currentDate)
+            {
+                return false;
+            }
+            return await _repository.UpdateServiceHistory(serviceHistory);
         }
         public SelectList GetServiceHistorySelect(string viewData)
         {

@@ -41,11 +41,31 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.report
             {
                 return Page();
             }
+            void AddValidationError(bool condition, string key, string errorMessage)
+            {
+                if (condition)
+                {
+                    ModelState.AddModelError(key, errorMessage);
+                }
+            }
 
+            
+            AddValidationError(Report.TotalServices < 0, "Report.TotalServices", "Không được nhập số âm. Vui lòng chọn ngày khác.");
+            AddValidationError(Report.TotalCustomers < 0, "Report.TotalCustomers", "Không được nhập số âm. Vui lòng chọn ngày khác.");
+            AddValidationError(Report.AverageRating < 0 || Report.AverageRating > 5, "Report.AverageRating", "Chỉ được phép nhập từ 1 đến 5 *");
 
-            await _service.AddReportAsync(Report);
+            if (!await _service.AddReportAsync(Report))
+            {
+                AddValidationError(true, "Report.ReportDate", "Không hợp lệ, vui lòng nhập ngày mới");
+            }
 
-            return RedirectToPage("./Index");
+           
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            return RedirectToPage("./Index"); 
         }
     }
 }

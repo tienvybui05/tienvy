@@ -73,7 +73,14 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.servicehistory
             }
             else
             {
-                await _service.AddServiceHistory(ServiceHistory);
+                if(await _service.AddServiceHistory(ServiceHistory)==false)
+                {
+                    ModelState.AddModelError("ServiceHistory.ServiceDate", "Không hợp lệ. Vui lòng chọn ngày khác.");
+                    ViewData["CustomerId"] = _service.GetServiceHistorySelect("CustomerId");
+                    ViewData["ServiceId"] = _service.GetServiceHistorySelect("ServiceId");
+                    ViewData["VeterinarianId"] = _service.GetServiceHistorySelect("VeterinarianId");
+                    return Page();
+                }
                 bool check = false;
                 Random random = new Random();
                 int ranDumID;
