@@ -118,7 +118,8 @@
     </div>
 </div>
 <!-- Services End -->
-<!-- testimonial start -->
+
+<!-- danhgia start --> 
 <div class="container-fluid bg-light testimonial py-5">
     <div class="container py-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
@@ -126,94 +127,43 @@
             <h1 class="mb-0">Đánh Giá Của Khách Hàng</h1>
         </div>
         <div class="testimonial-carousel owl-carousel">
-            <div class="testimonial-item text-center rounded pb-4">
-                <div class="testimonial-comment bg-light rounded p-4">
-                    <p class="text-center mb-5">
-                        Tôi rất hài lòng với dịch vụ chăm sóc cá Koi tại trung tâm! Các chuyên gia rất tận tâm, kiểm tra kỹ lưỡng từng chú cá trong hồ của tôi và đưa ra những hướng dẫn chăm sóc cụ thể, dễ hiểu. Nhờ dịch vụ này mà cá của tôi khỏe mạnh hơn hẳn, màu sắc cũng rực rỡ và tươi sáng hơn trước. Nhân viên cũng tư vấn rất chu đáo về dinh dưỡng và cách phòng ngừa bệnh. Tôi cảm thấy yên tâm và chắc chắn sẽ tiếp tục sử dụng dịch vụ này trong tương lai!
-                    </p>
-                </div>
-                <div class="testimonial-img p-1">
-                    <img src="~/img/testimonial-1.jpg" class="img-fluid rounded-circle" alt="image">
-                </div>
-                <div style="margin-top: -35px;">
-                    <h5 class="mb-0">Bùi Tiến Vỹ</h5>
-                    <p class="mb-0">Quận Bình Thạnh, TP.HCM</p>
-                    <div class="d-flex justify-content-center">
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
+            
+            @foreach (var item in Model.Feedback)
+            {
+                @if (item.Rating >= 4)
+                {
+                    <div class="testimonial-item text-center rounded pb-4">
+                        <div class="testimonial-comment bg-light rounded p-4">
+                            <p class="text-center mb-5">
+                                @Html.DisplayFor(modelItem => item.Comments)
+                            </p>
+                        </div>
+                        <div class="testimonial-img p-1">
+                            <img src="~/img/testimonial-1.jpg" class="img-fluid rounded-circle" alt="image">
+                        </div>
+                        <div style="margin-top: -35px;">
+                            <h5 class="mb-0">@Html.DisplayFor(modelItem => item.Customer.FullName)</h5>
+                            <p class="mb-0">@Html.DisplayFor(modelItem => item.Service.Description)</p>
+                            <div class="d-flex justify-content-center">
+                            
+                                @for (int i = 0; i < item.Rating; i++)
+                                {
+                                    <i class="fas fa-star text-primary"></i>
+                                }
+                                @for (int? i = item.Rating; i < 5; i++)
+                                {                                                             
+                                    <i class="far fa-star text-muted"></i>
+                                }
+                            
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="testimonial-item text-center rounded pb-4">
-                <div class="testimonial-comment bg-light rounded p-4">
-                    <p class="text-center mb-5">
-                        Tôi thực sự ấn tượng với dịch vụ tư vấn và đánh giá hồ cá Koi của trung tâm! Đội ngũ nhân viên rất chuyên nghiệp, từ khâu tư vấn thiết kế đến việc lắp đặt đều rất chi tiết và tỉ mỉ. Họ đã giúp tôi chọn được vị trí và thiết kế hồ phù hợp với không gian nhà, đảm bảo sự hài hòa và thẩm mỹ. Các hệ thống lọc nước và oxy được lắp đặt hoàn hảo, giữ cho nước luôn trong và sạch. Sau khi hoàn thành, họ còn hướng dẫn tôi cách bảo dưỡng hồ và chăm sóc cá. Một trải nghiệm tuyệt vời, tôi hoàn toàn hài lòng và cảm ơn sự tận tâm của đội ngũ!
-                    </p>
-                </div>
-                <div class="testimonial-img p-1">
-                    <img src="~/img/testimonial-2.jpg" class="img-fluid rounded-circle" alt="image">
-                </div>
-                <div style="margin-top: -35px;">
-                    <h5 class="mb-0">Nguyễn Hữu Nhất Duy</h5>
-                    <p class="mb-0">Quận 7, TP.HCM</p>
-                    <div class="d-flex justify-content-center">
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item text-center rounded pb-4">
-                <div class="testimonial-comment bg-light rounded p-4">
-                    <p class="text-center mb-5">
-                        Dịch vụ tư vấn trực tuyến của trung tâm thật tuyệt vời! Tôi rất bận rộn nên không có nhiều thời gian đến trực tiếp, nhưng nhờ tư vấn trực tuyến, tôi vẫn có thể nhận được lời khuyên chuyên nghiệp ngay tại nhà. Các chuyên gia rất nhiệt tình, giải đáp chi tiết từng câu hỏi của tôi, từ chế độ ăn, cách phòng bệnh, đến việc xử lý nước trong hồ. Nhờ có buổi tư vấn mà tôi đã kịp thời nhận ra vấn đề sức khỏe của cá và xử lý ngay. Rất cảm ơn sự hỗ trợ tận tâm và chuyên môn cao của trung tâm!
-                    </p>
-                </div>
-                <div class="testimonial-img p-1">
-                    <img src="~/img/testimonial-3.jpg" class="img-fluid rounded-circle" alt="image">
-                </div>
-                <div style="margin-top: -35px;">
-                    <h5 class="mb-0">Võ Cao Tấn Ngọc</h5>
-                    <p class="mb-0">Quận Bình Tân, TP.HCM</p>
-                    <div class="d-flex justify-content-center">
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item text-center rounded pb-4">
-                <div class="testimonial-comment bg-light rounded p-4">
-                    <p class="text-center mb-5">
-                        Tôi không thể diễn tả hết sự biết ơn đối với trung tâm vì dịch vụ chăm sóc cá Koi tuyệt vời của họ. Một trong những chú cá Koi của tôi đột nhiên có dấu hiệu yếu đi, không ăn và bơi lờ đờ. Tôi đã liên hệ với trung tâm và được các chuyên gia tư vấn ngay lập tức. Họ đã hướng dẫn tôi cách kiểm tra sức khỏe cá và phát hiện ra rằng cá bị nhiễm một loại ký sinh trùng nguy hiểm. Nhờ vào sự can thiệp kịp thời của đội ngũ, cá của tôi đã hồi phục và khỏe mạnh trở lại. Tôi thực sự cảm kích và sẽ luôn tin tưởng trung tâm này trong việc chăm sóc cá Koi của mình!
-                    </p>
-                </div>
-                <div class="testimonial-img p-1">
-                    <img src="~/img/testimonial-4.jpg" class="img-fluid rounded-circle" alt="image">
-                </div>
-                <div style="margin-top: -35px;">
-                    <h5 class="mb-0">Đinh Quốc Đạt</h5>
-                    <p class="mb-0">Quận 12, TP.HCM</p>
-                    <div class="d-flex justify-content-center">
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                        <i class="fas fa-star text-primary"></i>
-                    </div>
-                </div>
-            </div>
+                } 
+            }
         </div>
     </div>
 </div>
-<!-- testimonial end -->
+<!-- danhgia end -->
 <!-- Tour Booking Start -->
 <div class="container-fluid booking py-5">
     <div class="container py-5">
