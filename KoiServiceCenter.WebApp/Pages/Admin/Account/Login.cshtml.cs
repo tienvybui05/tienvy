@@ -70,11 +70,13 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.Account
         }
         public class Credential
         {
-            [Required]
-            [Display(Name = "Tài khoản")]
+            [Required(ErrorMessage = "Vui lòng nhập tên người dùng.")]
+            [Display(Name = "Tên người dùng")]
             public string UserName { get; set; }
-            [Required]
+            [Required(ErrorMessage = "Vui lòng nhập mật khẩu.")]
+            [StringLength(50, ErrorMessage = "{0} phải dài ít nhất là {2} và tối đa {1} ký tự.", MinimumLength = 6)]
             [Display(Name = "Mật khẩu")]
+            [RegularExpression(@"^\S*$", ErrorMessage = "Mật khẩu không được chứa khoảng trắng.")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
         }

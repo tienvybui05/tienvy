@@ -38,25 +38,29 @@ namespace KoiServiceCenter.WebApp.Pages.Account
 		}
 		public class InputModel
 		{
-			[Required]
-			[Display(Name = "Tên người dùng")]
-			public string UserName { get; set; }
+            [Required(ErrorMessage = "Vui lòng nhập tên người dùng.")]
+            [Display(Name = "Tên người dùng")]
+            [RegularExpression(@"^\S*$", ErrorMessage = "Mật khẩu không được chứa khoảng trắng.")]
+            [StringLength(50, ErrorMessage = "Tên người dùng không được vượt quá 50 ký tự.")]
+            public string UserName { get; set; }
 
-			[Required]
-			[EmailAddress]
-			[Display(Name = "Email")]
-			public string Email { get; set; }
+            [Required(ErrorMessage = "Vui lòng nhập email.")]
+            [EmailAddress(ErrorMessage = "Địa chỉ email không hợp lệ.")]
+            [Display(Name = "Email")]
+            public string Email { get; set; }
 
-			[Required]
-			[StringLength(100, ErrorMessage = "{0} phải dài ít nhất là {2} và tối đa {1} ký tự.", MinimumLength = 6)]
-			[DataType(DataType.Password)]
-			[Display(Name = "Mật khẩu")]
-			public string Password { get; set; }
+            [Required(ErrorMessage = "Vui lòng nhập mật khẩu.")]
+            [StringLength(50, ErrorMessage = "{0} phải dài ít nhất là {2} và tối đa {1} ký tự.", MinimumLength = 6)]
+            [DataType(DataType.Password)]
+            [Display(Name = "Mật khẩu")]
+            [RegularExpression(@"^\S*$", ErrorMessage = "Mật khẩu không được chứa khoảng trắng.")]
+            public string Password { get; set; }
 
-			[DataType(DataType.Password)]
-			[Display(Name = "Xác nhận mật khẩu")]
-			[Compare("Password", ErrorMessage = "Mật khẩu và mật khẩu xác nhận không khớp.")]
-			public string ConfirmPassword { get; set; }
-		}
+            [Required(ErrorMessage = "Vui lòng xác nhận lại mật khẩu.")]
+            [DataType(DataType.Password)]
+            [Display(Name = "Xác nhận mật khẩu")]
+            [Compare("Password", ErrorMessage = "Mật khẩu và mật khẩu xác nhận không khớp.")]
+            public string ConfirmPassword { get; set; }
+        }
 	}
 }
