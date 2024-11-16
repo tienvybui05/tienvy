@@ -42,15 +42,13 @@ namespace KoiFishServiceCenter.Services
             return await _userAccountRepository.GetUserByUsernameAsync(username);
         }
 
-        public async Task<int> AddUserAccountAsync(UserAccount userAccount)
+        public async Task<bool> AddUserAccountAsync(UserAccount userAccount)
         {
-            if (userAccount == null)
+            var listAccount = await _userAccountRepository.GetUserAccountsAsync();
+            var exists = listAccount.FirstOrDefault(x => x.UserName == userAccount.UserName);
+            if (exists != null)
             {
-                throw new ArgumentNullException(nameof(userAccount), "Tài khoản không thể null");
-            }
-            if (string.IsNullOrWhiteSpace(userAccount.UserName))
-            {
-                throw new ArgumentException("Tên người dùng không thể rỗng", nameof(userAccount.UserName));
+                return false;
             }
 
             return await _userAccountRepository.AddUserAccountAsync(userAccount);
@@ -66,17 +64,16 @@ namespace KoiFishServiceCenter.Services
             return await _userAccountRepository.DeleteUserAccountAsync(userId);
         }
 
-        public async Task<int> UpdateUserAccountAsync(UserAccount userAccount)
+        public async Task<bool> UpdateUserAccountAsync(UserAccount userAccount)
         {
-            if (userAccount == null)
+            var listAccount = await _userAccountRepository.GetUserAccountsAsync();
+            var y = listAccount;
+            var exists = listAccount.FirstOrDefault(x => x.UserName == userAccount.UserName && x.UserId != userAccount.UserId);
+            var emailExists = y.FirstOrDefault(x => x.Email == userAccount.Email && x.UserId != userAccount.UserId);
+            if (exists != null || emailExists != null)
             {
-                throw new ArgumentNullException(nameof(userAccount), "Tài khoản không thể null");
+                return false;
             }
-            if (userAccount.UserId <= 0)
-            {
-                throw new ArgumentException("ID không hợp lệ", nameof(userAccount.UserId));
-            }
-
             return await _userAccountRepository.UpdateUserAccountAsync(userAccount);
         }
         public Task<string> CheckAccount(string username, string password)
@@ -86,7 +83,13 @@ namespace KoiFishServiceCenter.Services
 
         public async Task<int> CountUserAccount()
         {
-            return await _userAccountRepository.CountUserAccount();
+            var listAccount = await _userAccountRepository.GetUserAccountsAsync();
+            int count = 0;
+            foreach (var account in listAccount)
+            {
+                count++;
+            }
+            return count;
         }
         public Task<List<UserAccount>> SearcheAsync(string searchString)
         {
@@ -97,19 +100,33 @@ namespace KoiFishServiceCenter.Services
             return _userAccountRepository.GetRoleSelect();
         }
 
-		public Task<UserAccount> Account(string username, string password)
+		public async Task<UserAccount> Account(string username, string password)
 		{
-			return _userAccountRepository.Account(username, password);
-		}
+            var listAccount = await _userAccountRepository.GetUserAccountsAsync();
+            var exists = listAccount.FirstOrDefault(p => p.UserName == username && p.Password == password);
+            if (exists == null)
+            {
+                return null;
+            }
+            return exists;
+        }
 
 		public Task<bool> CreateAccount(string userName, string passWord, string email)
 		{
 			return _userAccountRepository.CreateAccount(userName, passWord, email);
 		}
 
-        public Task<bool> checkEmail(string email)
+        public async Task<bool> checkEmail(string email)
         {
-            return _userAccountRepository.checkEmail(email);    
+            var listAccount = await _userAccountRepository.GetUserAccountsAsync();
+
+            var emailExists = listAccount.FirstOrDefault(x => x.Email == email);
+
+            if (emailExists != null)
+            {
+                return false;
+            }
+            return true;
         }
         public Task<bool> DeleteUserAccount(UserAccount userAccount)
         {

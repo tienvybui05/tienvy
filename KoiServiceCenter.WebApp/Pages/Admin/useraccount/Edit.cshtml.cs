@@ -53,7 +53,13 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
             }
 
             ViewData["Role"] = _service.GetRoleSelect();
-            await _service.UpdateUserAccountAsync(UserAccount);
+            if (await _service.UpdateUserAccountAsync(UserAccount) == false)
+            {
+                ModelState.AddModelError("UserAccount.UserName", "Tên người dùng đã tồn tại. Vui lòng chọn ngày khác.");
+                ViewData["Role"] = _service.GetRoleSelect();
+                return Page();
+            }
+
             try
             {
                 //await _context.SaveChangesAsync();

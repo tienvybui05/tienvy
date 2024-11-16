@@ -18,12 +18,13 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<int> AddUserAccountAsync(UserAccount userAccount)
+        public async Task<bool> AddUserAccountAsync(UserAccount userAccount)
         {
             try
             {
                 await _dbContext.UserAccounts.AddAsync(userAccount);
-                return await _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync();
+                return true;
             }
             catch (Exception ex)
             {
@@ -93,12 +94,23 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             }
         }
 
-        public async Task<int> UpdateUserAccountAsync(UserAccount userAccount)
+        public async Task<bool> UpdateUserAccountAsync(UserAccount userAccount)
         {
             try
             {
-                _dbContext.UserAccounts.Update(userAccount);
-                return await _dbContext.SaveChangesAsync();
+                var existingEntity = await _dbContext.UserAccounts.FindAsync(userAccount.UserId);
+                if (existingEntity != null)
+                {
+                    _dbContext.Entry(existingEntity).State = EntityState.Detached; // Gỡ theo dõi thực thể cũ
+                }
+
+                // Đính kèm (attach) thực thể mới và đánh dấu nó đã bị chỉnh sửa
+                _dbContext.UserAccounts.Attach(userAccount);
+                _dbContext.Entry(userAccount).State = EntityState.Modified;
+
+                //_dbContext.UserAccounts.Update(userAccount);
+                await _dbContext.SaveChangesAsync();
+                return true;
             }
             catch (Exception ex)
             {
@@ -116,16 +128,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return x.Role;
         }
 
-        public async Task<int> CountUserAccount()
-        {
-            int count = 0;
-            var ojb = await _dbContext.UserAccounts.ToListAsync();
-            foreach (var i in ojb)
-            {
-                count++;
-            }
-            return count;
-        }
+       
         public async Task<List<UserAccount>> SearcheAsync(string searchString)
         {
             return await _dbContext.UserAccounts
@@ -143,16 +146,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return new SelectList(roles);
         }
 
-        public async Task<UserAccount> Account(string username, string password)
-        {
-            var ojb = await _dbContext.UserAccounts.FirstOrDefaultAsync(p => p.UserName == username && p.Password == password);
-
-            if (ojb == null)
-            {
-                return null;
-            }
-            return ojb;
-        }
+       
 
         public async Task<bool> CreateAccount(string userName, string passWord, string email)
         {
@@ -205,15 +199,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
             return true;
         }
 
-        public async Task<bool> checkEmail(string email)
-        {
-            var emailExists = await _dbContext.UserAccounts.FirstOrDefaultAsync(m => m.Email == email);
-            if (emailExists != null)
-            {
-                return false;
-            }
-            return true;
-        }
+       
 
         public async Task<bool> DeleteUserAccount(UserAccount userAccount)
         {
