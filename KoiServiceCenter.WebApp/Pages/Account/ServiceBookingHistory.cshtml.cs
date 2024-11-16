@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace KoiServiceCenter.WebApp.Pages.Account
 {
-    [Authorize(Policy = "EveryoneOnly")]
+    [Authorize(Policy = "CustomerOnly")]
     public class ServiceBookingHistoryModel : PageModel
     {
         private readonly IServiceHistoryService _service;

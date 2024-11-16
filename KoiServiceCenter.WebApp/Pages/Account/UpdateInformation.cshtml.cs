@@ -1,11 +1,13 @@
 using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace KoiServiceCenter.WebApp.Pages.Account
 {
+    [Authorize(Policy = "CustomerOnly")]
     public class UpdateInformationModel : PageModel
     {
         private readonly ICustomerService _service;

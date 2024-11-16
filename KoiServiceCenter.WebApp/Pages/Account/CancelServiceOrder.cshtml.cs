@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KoiServiceCenter.WebApp.Pages.Account
 {
-    [Authorize(Policy = "EveryoneOnly")]
+    [Authorize(Policy = "CustomerOnly")]
     public class CancelServiceOrderModel : PageModel
     {
         readonly IServiceHistoryService _service;

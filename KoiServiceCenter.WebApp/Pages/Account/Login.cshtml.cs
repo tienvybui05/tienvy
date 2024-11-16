@@ -35,7 +35,7 @@ namespace KoiServiceCenter.WebApp.Pages.Account
 
                 return Page();
             }
-            if (userAccount != null)
+            if (userAccount != null&&(userAccount.Role == "Veterinarian" || userAccount.Role == "Customer"))
             {
                 List<Claim> claims = new List<Claim>
                 {
@@ -50,7 +50,7 @@ namespace KoiServiceCenter.WebApp.Pages.Account
                 }
                 else
                 {
-                    claims.Add(new Claim("Everyone", "true"));
+                    claims.Add(new Claim("Customer", "true"));
                 }
                 var identity = new ClaimsIdentity(claims, "CustomerCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);

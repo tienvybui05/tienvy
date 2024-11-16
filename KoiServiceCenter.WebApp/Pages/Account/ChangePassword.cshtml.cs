@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace KoiServiceCenter.WebApp.Pages.Account
 {
-    [Authorize(Policy = "EveryoneOnly")]
+    [Authorize(Policy = "CustomerOnly")]
     public class ChangePasswordModel : PageModel
     {
         private readonly IUserAccountService _service;
