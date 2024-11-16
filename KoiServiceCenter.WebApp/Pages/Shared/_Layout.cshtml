@@ -91,7 +91,6 @@
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <!-- User is logged in -->
                         <small class="me-3 text-light">Chào, @User.Identity.Name</small>
                         <div class="dropdown">
                             <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown">
@@ -99,21 +98,30 @@
                             </a>
                             <div class="dropdown-menu rounded">
                                 <a href="/thong-tin-tai-khoan" class="dropdown-item">
-                                    <i class="fas fa-user-alt me-2"></i> Thông tin
-                                    tài khoản</a>
-                                <a href="/lich-su-dat" class="dropdown-item">
-                                    <i class="fas fa-user-alt me-2"></i> Lịch sử đặt 
-                                </a>
-                                <a href="/doi-mat-khau" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> Đổi mật
-                                    khẩu</a>
-                                <a href="/dang-xuat" class="dropdown-item"><i class="fas fa-power-off me-2"></i> Đăng
-                                    xuất</a>
+                                    <i class="fas fa-user-alt me-2"></i> Thông tin tài khoản</a>
+
+                                @if (User.HasClaim("Veterinarian", "true"))
+                                {
+                                    <!-- Hiển thị lịch làm việc cho bác sĩ thú y -->
+                                    <a href="/lich-lam-viec" class="dropdown-item">
+                                        <i class="fas fa-calendar-alt me-2"></i> Lịch làm việc</a>
+                                }
+                                else if (User.HasClaim("Customer", "true"))
+                                {
+                                    <!-- Hiển thị lịch sử đặt dịch vụ cho khách hàng -->
+                                    <a href="/lich-su-dat" class="dropdown-item">
+                                        <i class="fas fa-history me-2"></i> Lịch sử dịch vụ</a>
+                                }
+
+                                <a href="/doi-mat-khau" class="dropdown-item">
+                                    <i class="fas fa-key me-2"></i> Đổi mật khẩu</a>
+                                <a href="/dang-xuat" class="dropdown-item">
+                                    <i class="fas fa-power-off me-2"></i> Đăng xuất</a>
                             </div>
                         </div>
                     }
                     else
                     {
-                        <!-- User is not logged in -->
                         <a href="/register"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Đăng
                                 Ký</small></a>
                         <a href="/dang-nhap"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Đăng

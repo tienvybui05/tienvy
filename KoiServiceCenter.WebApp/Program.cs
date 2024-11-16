@@ -32,68 +32,68 @@ namespace KoiServiceCenter.WebApp
             //DI Services
             builder.Services.AddScoped<ICostService, CostService>();
             builder.Services.AddScoped<IFeedbackService, FeedbackService>();
-            builder.Services.AddScoped<ICustomerService,CustomerService > ();
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddScoped<IReportService, ReportService>();
             builder.Services.AddScoped<IUserAccountService, UserAccountService>();
             builder.Services.AddScoped<IServiceService, ServiceService>();
             builder.Services.AddScoped<IVetScheduleService, VetScheduleService>();
             builder.Services.AddScoped<IServiceHistoryService, ServiceHistoryService>();
             //
-                 builder.Services.AddAuthentication(options =>
-                 {
+            builder.Services.AddAuthentication(options =>
+            {
                 // Sử dụng PolicyScheme làm scheme mặc định
                 options.DefaultScheme = "DynamicScheme";
                 options.DefaultChallengeScheme = "DynamicScheme";
-                })
-                // PolicyScheme để chọn scheme động dựa trên URL
-                .AddPolicyScheme("DynamicScheme", "Dynamic Authentication Scheme", options =>
-                {
+            })
+           // PolicyScheme để chọn scheme động dựa trên URL
+           .AddPolicyScheme("DynamicScheme", "Dynamic Authentication Scheme", options =>
+           {
                options.ForwardDefaultSelector = context =>
-               {
-                   // Nếu đường dẫn bắt đầu bằng /Admin, sử dụng AdminCookieAuth
-                   if (context.Request.Path.StartsWithSegments("/Admin"))
-                   {
-                       return "AdminCookieAuth";
-                   }
-                   // Ngược lại, sử dụng CustomerCookieAuth cho các phần khác
-                   return "CustomerCookieAuth";
-               };
-               })
-              .AddCookie("CustomerCookieAuth", options =>
-             {
-                    options.Cookie.Name = "CustomerCookieAuth";
-                    options.LoginPath = "/dang-nhap";
-                    options.AccessDeniedPath = "/Account/AccessDenied";
-             })
-             .AddCookie("AdminCookieAuth", options =>
-            {
-            options.Cookie.Name = "AdminCookieAuth";
-            options.LoginPath = "/Admin/Account/Login";
-            options.AccessDeniedPath = "/Admin/Account/AccessDenied";
-            });
+                    {
+                        // Nếu đường dẫn bắt đầu bằng /Admin, sử dụng AdminCookieAuth
+              if (context.Request.Path.StartsWithSegments("/Admin"))
+              {
+                  return "AdminCookieAuth";
+              }
+                        // Ngược lại, sử dụng CustomerCookieAuth cho các phần khác
+              return "CustomerCookieAuth";
+          };
+           })
+         .AddCookie("CustomerCookieAuth", options =>
+        {
+            options.Cookie.Name = "CustomerCookieAuth";
+            options.LoginPath = "/dang-nhap";
+            options.AccessDeniedPath = "/Account/AccessDenied";
+        })
+        .AddCookie("AdminCookieAuth", options =>
+       {
+           options.Cookie.Name = "AdminCookieAuth";
+           options.LoginPath = "/Admin/Account/Login";
+           options.AccessDeniedPath = "/Admin/Account/AccessDenied";
+       });
 
 
             //
             // phân quyền
             builder.Services.AddAuthorization(options =>
-			{
-				options.AddPolicy("ManagerOnly",
-					policy => policy.RequireClaim("Manager"));
-				options.AddPolicy("StaffOnly",
-					policy => policy.RequireClaim("Staff"));
-				options.AddPolicy("VeterinarianOnly",
-					policy => policy.RequireClaim("Veterinarian"));
-				options.AddPolicy("ManagerOrStaffOnly", policy =>
-					policy.RequireAssertion(context =>
-						context.User.HasClaim("Manager", "true") ||
-						context.User.HasClaim("Staff", "true")));
+            {
+                options.AddPolicy("ManagerOnly",
+                    policy => policy.RequireClaim("Manager"));
+                options.AddPolicy("StaffOnly",
+                    policy => policy.RequireClaim("Staff"));
+                options.AddPolicy("VeterinarianOnly",
+                    policy => policy.RequireClaim("Veterinarian"));
+                options.AddPolicy("ManagerOrStaffOnly", policy =>
+                    policy.RequireAssertion(context =>
+                        context.User.HasClaim("Manager", "true") ||
+                        context.User.HasClaim("Staff", "true")));
                 options.AddPolicy("EveryoneOnly", policy =>
                     policy.RequireAssertion(context =>
                         context.User.HasClaim("Everyone", "true") ||
                         context.User.HasClaim("Veterinarian", "true")));
             });
-			// Add services to the container.
-			builder.Services.AddRazorPages();
+            // Add services to the container.
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
 
