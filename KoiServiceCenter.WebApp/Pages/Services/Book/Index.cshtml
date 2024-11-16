@@ -46,74 +46,84 @@
                     🌐 Website: <a href="https://localhost:7012/" style="color: aqua">Koi Services</a>
                 <p class="text-white mb-4">
                     Hân hạnh được phục vụ Quý khách! ❤️❤️❤️❤️❤️
-
                 </p>
-                </p>
-                <a href="#" class="btn btn-light text-primary rounded-pill py-3 px-5 mt-2">Read More</a>
             </div>
             <div class="col-lg-6">
                 <h1 class="text-white mb-3">Đặt dịch vụ với nhiều ưu đãi lớn</h1>
                 <p class="text-white mb-4">GIẢM <span class="text-warning">50%</span> với những khách hàng lần đầu đặt dịch vụ.</p>
 
                 <form method="post">
-                    <div class="row g-3">
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                        <div class="col-md-6">
+                    @{
+                        var isAuthenticated = User.Identity.IsAuthenticated;
+                    }
 
-                            <div class="form-floating">
+                    @if (isAuthenticated)
+                    {
+                        <div class="row g-3">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                            <div class="col-md-6">
 
-                                <select asp-for="ServiceHistory.CustomerId" class="form-control bg-white border-0"
-                                        asp-items="ViewBag.CustomerId"></select>
-                                <label asp-for="ServiceHistory.CustomerId" class="control-label">Customer</label>
-                            </div>
-
-                        </div>
-                        @* <div class="col-md-6">
-                            <div class="form-floating">
-                            <input asp-for="ServiceHistory.HistoryId" class="form-control bg-white border-0" readonly />
-                            <label asp-for="ServiceHistory.HistoryId" class="control-label"></label>
-                            <span asp-validation-for="ServiceHistory.HistoryId" class="text-danger"></span>
-                            </div>
-                            </div> *@
-                        <input asp-for="ServiceHistory.HistoryId" type="hidden" />
-
-                        <div class="col-md-6">
-                            <div class="form-floating date" id="date3" data-target-input="nearest">
-                                <input asp-for="ServiceHistory.ServiceDate" type="date" class="form-control"
-                                       value="" />
-                                <label asp-for="ServiceHistory.ServiceDate" class="control-label"></label>
-                                <span asp-validation-for="ServiceHistory.ServiceDate" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <select asp-for="ServiceHistory.ServiceId" class="form-control bg-white border-0"
-                                        asp-items="ViewBag.ServiceId"></select>
-                                <label asp-for="ServiceHistory.ServiceId" class="control-label"></label>
+                                <div class="form-floating">
+                                    <select asp-for="ServiceHistory.CustomerId" class="form-control bg-white border-0"
+                                            asp-items="ViewBag.CustomerId" disabled></select>
+                                    <label asp-for="ServiceHistory.CustomerId" class="control-label">Customer</label>
+                                </div>
 
                             </div>
+                            @* <div class="col-md-6">
+                        <div class="form-floating">
+                        <input asp-for="ServiceHistory.HistoryId" class="form-control bg-white border-0" readonly />
+                        <label asp-for="ServiceHistory.HistoryId" class="control-label"></label>
+                        <span asp-validation-for="ServiceHistory.HistoryId" class="text-danger"></span>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <select asp-for="ServiceHistory.VeterinarianId"
-                                        class="form-control bg-white border-0"
-                                        asp-items="ViewBag.VeterinarianId"></select>
-                                <label asp-for="ServiceHistory.VeterinarianId" class="control-label"></label>
+                        </div> *@
+                            <input asp-for="ServiceHistory.HistoryId" type="hidden" />
+
+                            <div class="col-md-6">
+                                <div class="form-floating date" id="date3" data-target-input="nearest">
+                                    <input asp-for="ServiceHistory.ServiceDate" type="date" class="form-control"
+                                           value="" />
+                                    <label asp-for="ServiceHistory.ServiceDate" class="control-label"></label>
+                                    <span asp-validation-for="ServiceHistory.ServiceDate" class="text-danger"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-floating">
-                                <input asp-for="ServiceHistory.Result" class="form-control bg-white border-0" />
-                                <label asp-for="ServiceHistory.Result" class="control-label"></label>
-                                <span asp-validation-for="ServiceHistory.Result" class="text-danger"></span>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select asp-for="ServiceHistory.ServiceId" class="form-control bg-white border-0"
+                                            asp-items="ViewBag.ServiceId"></select>
+                                    <label asp-for="ServiceHistory.ServiceId" class="control-label"></label>
+
+                                </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select asp-for="ServiceHistory.VeterinarianId"
+                                            class="form-control bg-white border-0"
+                                            asp-items="ViewBag.VeterinarianId"></select>
+                                    <label asp-for="ServiceHistory.VeterinarianId" class="control-label"></label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input asp-for="ServiceHistory.Result" class="form-control bg-white border-0" />
+                                    <label asp-for="ServiceHistory.Result" class="control-label"></label>
+                                    <span asp-validation-for="ServiceHistory.Result" class="text-danger"></span>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="col-12">
-                            <input type="submit" value="ĐẶT NGAY" class="btn btn-primary text-white w-100 py-3" />
-                        </div>
+                    }
+                    else
+                    {
+                        <!-- Nếu chưa đăng nhập, không hiển thị gì hoặc hiển thị một thông báo -->
+                        <p>Vui lòng đăng nhập để xem thông tin khách hàng.</p>
+                    }
+                    <div class="col-12">
+                        <input type="submit" value="ĐẶT NGAY" class="btn btn-primary text-white w-100 py-3" />
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<!-- Tour Booking End -->
