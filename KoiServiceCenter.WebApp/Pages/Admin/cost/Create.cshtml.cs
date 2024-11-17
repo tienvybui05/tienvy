@@ -41,8 +41,22 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.cost
             {
                 return Page();
             }
+            if(Cost.Cost1<0)
+            {
+                ModelState.AddModelError("Cost.Cost1", "Không được phép âm.");
 
-            await _service.AddCostAsync(Cost);
+            } 
+            if(Cost.AdditionalFees<0)
+            {
+                ModelState.AddModelError("Cost.AdditionalFees", "Không được phép âm.");
+              
+            }    
+            if(await _service.AddCostAsync(Cost)==false)
+            {
+                ViewData["ServiceId"] = _service.GetCostSelect("ServiceId");
+                ModelState.AddModelError(string.Empty, "Thêm dữ liệu không thành công. Vui lòng thử lại.");
+                return Page();
+            }    
 
             return RedirectToPage("./Index");
         }

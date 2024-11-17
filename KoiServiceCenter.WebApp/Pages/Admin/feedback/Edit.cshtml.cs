@@ -58,11 +58,17 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.feedback
                 return Page();
             }
 
-            await _service.UpdateFeedback(Feedback);
+            if(await _service.UpdateFeedback(Feedback)==false)
+            {
+                ModelState.AddModelError("Feedback.Rating", "Không hợp lệ.");
+                ViewData["CustomerId"] = _service.GetFeedbackSelect("CustomerId");
+                ViewData["ServiceId"] = _service.GetFeedbackSelect("ServiceId");
+                return Page();
+            }    
 
             try
             {
-                //await _context.SaveChangesAsync();
+                
             }
             catch (DbUpdateConcurrencyException)
             {

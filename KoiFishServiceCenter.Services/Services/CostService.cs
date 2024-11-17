@@ -18,9 +18,13 @@ namespace KoiFishServiceCenter.Services.Services
             _costRepository = costRepository;
         }
 
-        public Task<bool> AddCostAsync(Cost cost)
+        public async Task<bool> AddCostAsync(Cost cost)
         {
-            return _costRepository.AddCostAsync(cost);
+            if(cost.Cost1<0||cost.AdditionalFees<0)
+            {
+                return false;
+            }    
+            return await _costRepository.AddCostAsync(cost);
         }
         public Task<bool> DeleteCostAsync(Cost cost)
         {
@@ -34,9 +38,13 @@ namespace KoiFishServiceCenter.Services.Services
         {
             return _costRepository.DeleteCostByIdAsync(costId);
         }
-        public Task<bool> UpdateCostAsync(Cost cost)
+        public async Task<bool> UpdateCostAsync(Cost cost)
         {
-            return _costRepository.UpdateCostAsync(cost);
+            if (cost.Cost1 < 0 || cost.AdditionalFees < 0)
+            {
+                return false;
+            }
+            return await _costRepository.UpdateCostAsync(cost);
         }
 
         public Task<int> CountCostAsync()

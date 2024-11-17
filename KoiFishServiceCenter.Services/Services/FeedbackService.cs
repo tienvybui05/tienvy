@@ -32,14 +32,22 @@ namespace KoiFishServiceCenter.Services.Services
             return _repository.DelFeedback(feedback);
         }
 
-        public Task<bool> AddFeedback(Feedback feedback)
+        public async Task<bool> AddFeedback(Feedback feedback)
         {
-            return _repository.AddFeedback(feedback);
+            if (feedback.Rating < 1 || feedback.Rating > 5)
+            {
+                return false;
+            }
+            return await _repository.AddFeedback(feedback);
         }
 
-        public Task< bool> UpdateFeedback(Feedback feedback)
+        public async Task< bool> UpdateFeedback(Feedback feedback)
         {
-            return _repository.UpdateFeedback(feedback);
+            if (feedback.Rating < 1 || feedback.Rating > 5)
+            {
+                return false;
+            }
+            return await _repository.UpdateFeedback(feedback);
         }
 
         public Task<Feedback> GetFeedbackById(int Id)

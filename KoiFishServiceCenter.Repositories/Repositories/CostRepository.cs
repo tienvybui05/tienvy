@@ -85,9 +85,7 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         public async Task<int> CountCostAsync()
         {
             int count = 0;
-            var ojb = await _dbContext.ServiceHistories.Include(s => s.Customer)
-                .Include(s => s.Service)
-                .Include(s => s.Veterinarian).ToListAsync();
+            var ojb = await GetCostsAsync();
             foreach (var i in ojb)
             {
                 count++;

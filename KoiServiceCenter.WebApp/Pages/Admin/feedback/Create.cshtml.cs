@@ -42,9 +42,13 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.feedback
             {
                 return Page();
             }
-            await _service.AddFeedback(Feedback);
-            //_context.Feedbacks.Add(Feedback);
-            //await _context.SaveChangesAsync();
+            if(await _service.AddFeedback(Feedback)==false)
+            {
+                ViewData["CustomerId"] = _service.GetFeedbackSelect("CustomerId");
+                ViewData["ServiceId"] = _service.GetFeedbackSelect("ServiceId");
+                return Page();
+            }    
+        
 
             return RedirectToPage("./Index");
         }

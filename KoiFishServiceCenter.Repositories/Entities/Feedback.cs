@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace KoiFishServiceCenter.Repositories.Entities;
 
@@ -12,6 +13,7 @@ public partial class Feedback
     public int? CustomerId { get; set; }
 
     public int? ServiceId { get; set; }
+    [Range(0, 5, ErrorMessage = "Vui lòng nhập giá trị nhỏ hơn hoặc bằng 5.")]
     [DisplayName("Sao")]
     public int? Rating { get; set; }
     [DisplayName("Đánh giá")]

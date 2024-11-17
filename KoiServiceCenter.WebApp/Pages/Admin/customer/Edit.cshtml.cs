@@ -53,6 +53,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.customer
             }
 
             await _service.UpdateCustomerAsync(Customer);
+              
 
             try
             {

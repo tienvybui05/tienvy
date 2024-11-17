@@ -16,9 +16,10 @@ public partial class ServiceHistory
     public int? ServiceId { get; set; }
 
     public int? VeterinarianId { get; set; }
+    [Required(ErrorMessage = "{0} Vui lòng nhập")]
     [DisplayName("Ngày hẹn")]
     public DateTime ServiceDate { get; set; }
-    [DisplayName("Kết quả")]
+    [DisplayName("Ghi chú")]
     public string? Result { get; set; }
     [DisplayName("Khách hàng")]
     public virtual Customer? Customer { get; set; }

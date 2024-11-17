@@ -42,9 +42,6 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.customer
             {
                 return Page();
             }
-
-            //_context.Customers.Add(Customer);
-            //await _context.SaveChangesAsync();
             await _service.AddCustomerAsync(Customer);
             return RedirectToPage("./Index");
         }

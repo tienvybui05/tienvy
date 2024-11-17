@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -77,9 +78,9 @@ namespace KoiFishServiceCenter.Services.Services
             return await _repsitory.SearcheAsync(searchString);
         }
 
-        public Task<bool> UpdateCustomerAsync(Customer customer)
+        public async Task<bool> UpdateCustomerAsync(Customer customer)
         {
-            return _repsitory.UpdateCustomer(customer);
+            return await _repsitory.UpdateCustomer(customer);
         }
     }
 }
