@@ -46,7 +46,8 @@ namespace KoiFishServiceCenter.Services
         {
             var listAccount = await _userAccountRepository.GetUserAccountsAsync();
             var exists = listAccount.FirstOrDefault(x => x.UserName == userAccount.UserName);
-            if (exists != null)
+            var mail = listAccount.FirstOrDefault(x => x.Email == userAccount.Email); 
+            if (exists != null||mail != null)
             {
                 return false;
             }

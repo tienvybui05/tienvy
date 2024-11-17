@@ -55,12 +55,16 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
             }
 
 
-            AddValidationError(!await _service.checkEmail(UserAccount.Email), "UserAccount.Email", "Email đã tồn tại. Vui lòng nhập lại.");
-
-            if (!await _service.AddUserAccountAsync(UserAccount))
+            if (await _service.AddUserAccountAsync(UserAccount) == false)
             {
                 AddValidationError(true, "UserAccount.UserName", "Tên người dùng đã tồn tại. Vui lòng nhập lại.");
             }
+            if (await _service.checkEmail(UserAccount.Email) == false)
+            {
+                AddValidationError(true, "UserAccount.Email", "Email đã tồn tại. Vui lòng nhập lại.");
+            }
+           
+
 
 
             if (!ModelState.IsValid)

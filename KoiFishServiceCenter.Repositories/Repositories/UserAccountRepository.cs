@@ -36,7 +36,9 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             try
             {
+               
                 var userAccount = await _dbContext.UserAccounts.FindAsync(userId);
+              
                 if (userAccount != null)
                 {
                     _dbContext.UserAccounts.Remove(userAccount);
