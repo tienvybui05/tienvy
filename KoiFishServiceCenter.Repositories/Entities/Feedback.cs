@@ -15,8 +15,10 @@ public partial class Feedback
     public int? ServiceId { get; set; }
     [Range(0, 5, ErrorMessage = "Vui lòng nhập giá trị nhỏ hơn hoặc bằng 5.")]
     [DisplayName("Sao")]
+    [Required(ErrorMessage = "{0} Vui lòng nhập")]
     public int? Rating { get; set; }
     [DisplayName("Đánh giá")]
+    [Required(ErrorMessage = "{0} Vui lòng nhập")]
     public string? Comments { get; set; }
     [DisplayName("Khách hàng")]
     public virtual Customer? Customer { get; set; }

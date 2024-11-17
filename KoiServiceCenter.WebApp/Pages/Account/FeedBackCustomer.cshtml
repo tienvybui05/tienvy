@@ -1,0 +1,139 @@
+﻿@page
+@model KoiServiceCenter.WebApp.Pages.Account.FeedBackCustomerModel
+<!-- header start -->
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4">
+            Lịch sử đặt dịch vụ
+        </h3>
+    </div>
+</div>
+<!-- header end -->
+<h4 class="mb-4 text-primary fw-bold">Đánh giá</h4>
+<hr class="mb-4" />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" class="shadow-lg p-4 rounded bg-white border">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+       
+                <div class="form-group mb-3">
+                    <label asp-for="Feedback.FeedbackId" class="control-label text-secondary fw-bold">Mã đánh giá</label>
+                    <input asp-for="Feedback.FeedbackId" class="form-control bg-light rounded-pill" readonly />
+                    <span asp-validation-for="Feedback.FeedbackId" class="text-danger"></span>
+                </div>
+
+              
+                <div class="form-group mb-3">
+                    <label asp-for="Feedback.Customer" class="control-label text-secondary fw-bold">Họ và tên</label>
+                    <select asp-for="Feedback.CustomerId" class="form-control bg-light rounded-pill" asp-items="ViewBag.CustomerId" disabled></select>
+                    <input type="hidden" asp-for="Feedback.CustomerId" />
+                    <span asp-validation-for="Feedback.Customer" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Feedback.Service" class="control-label text-secondary fw-bold">Dịch vụ</label>
+                    <select asp-for="Feedback.ServiceId" class="form-control bg-light rounded-pill" asp-items="ViewBag.ServiceId" disabled></select>
+                    <input type="hidden" asp-for="Feedback.ServiceId" />
+                    <span asp-validation-for="Feedback.Service" class="text-danger"></span>
+                </div>
+
+               
+                <div class="form-group mb-3">
+                    <label asp-for="Feedback.Rating" class="control-label text-secondary fw-bold">Đánh giá (1-5 sao)</label>
+                    <input asp-for="Feedback.Rating" class="form-control bg-light rounded-pill" placeholder="Nhập số từ 1 đến 5" />
+                    <span asp-validation-for="Feedback.Rating" class="text-danger"></span>
+                </div>
+
+               
+                <div class="form-group mb-3">
+                    <label asp-for="Feedback.Comments" class="control-label text-secondary fw-bold">Nhận xét</label>
+                    <textarea asp-for="Feedback.Comments" class="form-control bg-light rounded" rows="3" placeholder="Nhập nhận xét của bạn..."></textarea>
+                    <span asp-validation-for="Feedback.Comments" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <a asp-page="/Account/ServiceBookingHistory" class="btn btn-outline-secondary rounded-pill px-3 py-2 transition-link shadow-sm">
+                        <i class="bi bi-arrow-left"></i> Quay lại
+                    </a>
+                    <input type="submit" value="Gửi" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm transition-button" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<style>
+    /* Căn chỉnh nội dung chính cho màn hình rộng */
+    /*  .main-content {
+            width: 95%; /* Sử dụng 95% chiều rộng màn hình */
+    max-width: 1600px; /* Giới hạn tối đa chiều rộng */
+    margin: 0 auto;
+    padding: 20px;
+    }
+
+    /* Tiêu đề */
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Khung chứa bảng rộng hơn */
+    .table-container {
+        overflow-x: auto;
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Bảng lịch sử dịch vụ */
+    .service-history-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 18px;
+    }
+
+        /* Cách đều các ô và tạo style cho tiêu đề */
+        .service-history-table th,
+        .service-history-table td {
+            padding: 18px 20px;
+            text-align: left;
+        }
+
+        /* Màu nền cho tiêu đề bảng */
+        .service-history-table th {
+            background-color: #004080;
+            color: #ffffff;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Màu nền xen kẽ các dòng và hiệu ứng hover */
+        .service-history-table tr:nth-child(even) {
+            background-color: #f4f6f9;
+        }
+
+        .service-history-table tr:hover {
+            background-color: #eaf4fc;
+            cursor: pointer;
+        }
+
+    /* Thông báo khi không có lịch sử */
+    .no-history-message {
+        font-size: 18px;
+        color: #555;
+        text-align: center;
+        margin-top: 20px;
+    }
+</style> */
