@@ -1,6 +1,7 @@
 ﻿using KoiFishServiceCenter.Repositories.Entities;
 using KoiFishServiceCenter.Services.Interfaces;
 using KoiFishServiceCenter.Services.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
@@ -12,11 +13,13 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Danhgiavatuvanhoca
         private readonly IServiceHistoryService _service;
         private readonly IVetScheduleService _vetScheduleService;
         private readonly ICustomerService _customerService;
-        public IndexModel(IServiceHistoryService service, IVetScheduleService vetScheduleService, ICustomerService customerService)
+        private readonly IAuthorizationService _authorizationService;
+        public IndexModel(IServiceHistoryService service, IVetScheduleService vetScheduleService, ICustomerService customerService, IAuthorizationService authorizationService)
         {
             _service = service;
             _vetScheduleService = vetScheduleService;
             _customerService = customerService;
+            _authorizationService = authorizationService;
         }
         public async Task<IActionResult> OnGet()
         {
@@ -61,10 +64,18 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Danhgiavatuvanhoca
             {
                 return Challenge(); // Yêu cầu đăng nhập
             }
-
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, "CustomerOnly");
+            if (!authorizationResult.Succeeded)
+            {
+                return Forbid(); // Từ chối truy cập nếu không phải Customer
+            }
             //await _service.AddServiceHistory(ServiceHistory);
             var customerId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             customer = await _customerService.GetCustomer(int.Parse(customerId));
+            if (customer == null)
+            {
+                return Forbid(); // Từ chối nếu không tìm thấy thông tin customer
+            }
             ServiceHistory.CustomerId = customer.CustomerId;
             var checkDateTime = await _service.BundByDate(ServiceHistory);
              DateTime currentDate = DateTime.Today;

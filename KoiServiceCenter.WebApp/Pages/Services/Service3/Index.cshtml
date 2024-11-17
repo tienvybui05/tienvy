@@ -108,9 +108,10 @@
                     <form method="post">
                         @{
                             var isAuthenticated = User.Identity.IsAuthenticated;
+                            var isCustomer = User.HasClaim("Customer", "true");
                         }
 
-                        @if (isAuthenticated)
+                        @if (isAuthenticated && isCustomer)
                         {
                             <div class="row g-3">
                                 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
@@ -156,12 +157,16 @@
                                         <span asp-validation-for="ServiceHistory.Result" class="text-danger"></span>
                                     </div>
                                 </div>
-
                             </div>
+                        }
+                        else if (isAuthenticated)
+                        {
+                            <!-- Nếu người dùng đã đăng nhập nhưng không phải Customer -->
+                            <p style="color: red;">Bạn không có quyền đặt lịch. Chỉ khách hàng mới có thể sử dụng chức năng này.</p>
                         }
                         else
                         {
-                            <!-- Nếu chưa đăng nhập, không hiển thị gì hoặc hiển thị một thông báo -->
+                            <!-- Nếu chưa đăng nhập -->
                             <p style="color: red;">Vui lòng đăng nhập để có thể đặt lịch.</p>
                         }
                         <div class="col-12 my-3">
