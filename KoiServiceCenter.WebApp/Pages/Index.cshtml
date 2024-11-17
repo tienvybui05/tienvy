@@ -27,7 +27,7 @@
                             cấp."
                         </p>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">
+                            <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="/gioi-thieu">
                                 Tìm hiểu
                                 thêm
                             </a>
@@ -52,7 +52,7 @@
                             của bạn."
                         </p>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">
+                            <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="/gioi-thieu">
                                 Tìm hiểu
                                 thêm
                             </a>
@@ -77,7 +77,7 @@
                             đầu."
                         </p>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">
+                            <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="/gioi-thieu">
                                 Tìm hiểu
                                 thêm
                             </a>
@@ -97,7 +97,7 @@
     </div>
 </div>
 <!-- carousel end -->
-</div>
+@* </div>
 <div class="container-fluid search-bar position-relative" style="top: -50%; transform: translatey(-50%);">
     <div class="container">
         <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
@@ -108,7 +108,29 @@
             </button>
         </div>
     </div>
+</div> *@
+
+<div class="container-fluid search-bar position-relative" style="top: -50%; transform: translatey(-50%);">
+    <div class="container">
+        <form method="get" asp-page-handler="Search">
+            <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
+                <!-- Input tìm kiếm -->
+                <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5"
+                       type="text"
+                       name="keyword"
+                       placeholder="Tìm kiếm"
+                       value="@Request.Query["keyword"]" />
+
+                <!-- Nút submit -->
+                <button type="submit" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2"
+                        style="top: 50%; right: 46px; transform: translatey(-50%);">
+                    Search
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
+
 <!-- navbar & hero end -->
 <!-- About Start -->
 <div class="container-fluid about py-3">

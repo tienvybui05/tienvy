@@ -94,7 +94,9 @@ namespace KoiServiceCenter.WebApp
             builder.Services.AddRazorPages();
 
             var app = builder.Build();
-
+            app.MapControllerRoute(
+                                name: "default",
+                                pattern: "{controller=Home}/{action=Index}/{id?}");
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
