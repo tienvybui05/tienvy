@@ -127,17 +127,10 @@
                                     <div class="form-floating">
                                         <select asp-for="ServiceHistory.CustomerId" class="form-control bg-white border-0"
                                                 asp-items="ViewBag.CustomerId" disabled></select>
-                                        <label asp-for="ServiceHistory.CustomerId" class="control-label">Customer</label>
+                                        <label asp-for="ServiceHistory.CustomerId" class="control-label">Khách hàng</label>
                                     </div>
 
                                 </div>
-                                @* <div class="col-md-6">
-                            <div class="form-floating">
-                            <input asp-for="ServiceHistory.HistoryId" class="form-control bg-white border-0" readonly />
-                            <label asp-for="ServiceHistory.HistoryId" class="control-label"></label>
-                            <span asp-validation-for="ServiceHistory.HistoryId" class="text-danger"></span>
-                            </div>
-                            </div> *@
                                 <input asp-for="ServiceHistory.HistoryId" type="hidden" />
 
                                 <div class="col-md-6">
@@ -152,7 +145,7 @@
                                     <div class="form-floating">
                                         <select asp-for="ServiceHistory.ServiceId" class="form-control bg-white border-0"
                                                 asp-items="ViewBag.ServiceId"></select>
-                                        <label asp-for="ServiceHistory.ServiceId" class="control-label"></label>
+                                        <label asp-for="ServiceHistory.ServiceId" class="control-label">Dịch vụ</label>
 
                                     </div>
                                 </div>
@@ -161,13 +154,13 @@
                                         <select asp-for="ServiceHistory.VeterinarianId"
                                                 class="form-control bg-white border-0"
                                                 asp-items="ViewBag.VeterinarianId"></select>
-                                        <label asp-for="ServiceHistory.VeterinarianId" class="control-label"></label>
+                                        <label asp-for="ServiceHistory.VeterinarianId" class="control-label">Bác sĩ</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <input asp-for="ServiceHistory.Result" class="form-control bg-white border-0" />
-                                        <label asp-for="ServiceHistory.Result" class="control-label"></label>
+                                        <label asp-for="ServiceHistory.Result" class="control-label">Ghi chú</label>
                                         <span asp-validation-for="ServiceHistory.Result" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -177,11 +170,12 @@
                         else
                         {
                             <!-- Nếu chưa đăng nhập, không hiển thị gì hoặc hiển thị một thông báo -->
-                            <p>Vui lòng đăng nhập để xem thông tin khách hàng.</p>
+                            <p style="color: red;">Vui lòng đăng nhập để có thể đặt lịch.</p>
                         }
-                        <div class="col-12">
+                        <div class="col-12 my-3">
                             <input type="submit" value="ĐẶT NGAY" class="btn btn-primary text-white w-100 py-3" />
                         </div>
+
                     </form>
                 </div>
             </div>
