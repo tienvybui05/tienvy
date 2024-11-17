@@ -2,13 +2,30 @@
 @model KoiServiceCenter.WebApp.Pages.Account.AccessDeniedModel
 @{
 }
-<div class="container text-center mt-5">
-    <div class="border p-5 shadow-lg bg-light rounded" style="max-width: 500px; margin: auto;">
-        <i class="fas fa-exclamation-triangle text-warning" style="font-size: 3rem;"></i>
-        <h1 class="mt-3 text-danger font-weight-bold">Truy Cập Bị Từ Chối</h1>
-        <p class="mt-3 text-muted">Bạn không có quyền truy cập vào trang này.</p>
+
+<!-- header start -->
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4">
+            Lỗi truy cập
+        </h3>
     </div>
 </div>
-
-<!-- Font Awesome cho biểu tượng cảnh báo (tuỳ chọn) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<!-- header end -->
+<!-- Access Denied Start -->
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, rgba(255, 87, 34, 0.3), rgba(244, 67, 54, 0.3)); object-fit: cover;">
+    <div class="container py-5 text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="mb-4">
+                    <i class="bi bi-exclamation-triangle-fill display-1 text-warning"></i>
+                </div>
+                <h1 class="display-4 text-danger">Truy Cập Bị Từ Chối</h1>
+                <h2 class="mb-4 text-dark">Bạn không có quyền truy cập vào trang này</h2>
+                <p class="mb-4 text-secondary">Xin lỗi vì sự bất tiện này. Vui lòng kiểm tra quyền truy cập hoặc liên hệ quản trị viên để biết thêm thông tin. Chúng tôi mong muốn hỗ trợ bạn tốt nhất.</p>
+                <a class="btn btn-danger rounded-pill py-3 px-5" href="/">Quay về trang chủ</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Access Denied End -->

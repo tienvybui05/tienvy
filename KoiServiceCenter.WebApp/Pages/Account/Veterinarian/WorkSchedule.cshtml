@@ -2,12 +2,20 @@
 @model KoiServiceCenter.WebApp.Pages.Account.Veterinarian.WorkScheduleModel
 @{
 }
+<!-- header start -->
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4">
+            Lịch làm việc 
+        </h3>
+    </div>
+</div>
+<!-- header end -->
 @{
     ViewData["Title"] = "Các lịch làm việc";
     int i = 1;
 }
 <div class="container py-4">
-    <h1 class="my-4 text-primary text-center fw-bold border-bottom pb-3">Lịch Làm Việc</h1>
 
     <!-- Search Form -->
     <div class="d-flex mb-4 align-items-center justify-content-between flex-wrap shadow-sm p-3 bg-light rounded">
