@@ -48,7 +48,9 @@
         </div>
 
         <div class="button-group">
-            <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.Cost.CostId">Sửa</a>
+            <a asp-page="./Edit" asp-route-id="@Model.Cost.CostId" class="btn btn-warning">
+                <i class="bi bi-pencil-square"></i> Sửa
+            </a>
             <a class="btn btn-secondary" asp-page="./Index">Quay lại</a>
         </div>
     </div>

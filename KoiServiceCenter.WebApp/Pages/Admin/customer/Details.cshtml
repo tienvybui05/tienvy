@@ -19,6 +19,7 @@
             border-radius: 5px;
             font-weight: bold;
         }
+
         .button-group {
             display: inline-flex;
             gap: 10px;
@@ -53,8 +54,10 @@
         </div>
 
         <div class="button-group">
-            <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.Customer.CustomerId">Sửa</a>
-            <a class="btn btn-secondary" asp-page="./Index">Quay lại</a>
+            <a asp-page="./Edit" asp-route-id="@Model.Customer.CustomerId" class="btn btn-warning">
+                <i class="bi bi-pencil-square"></i> Sửa
+            </a>
+            <a asp-page="./Index" class="btn btn-secondary">Quay lại</a>
         </div>
     </div>
 
