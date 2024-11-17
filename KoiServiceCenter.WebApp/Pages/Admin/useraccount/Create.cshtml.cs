@@ -46,17 +46,30 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
                 return Page();
             }
             ViewData["Role"] = _service.GetRoleSelect();
-            if (await _service.AddUserAccountAsync(UserAccount) == false)
+            void AddValidationError(bool condition, string key, string errorMessage)
             {
-                ModelState.AddModelError("UserAccount.UserName", "Tên người dùng đã tồn tại. Vui lòng nhập lại.");
+                if (condition)
+                {
+                    ModelState.AddModelError(key, errorMessage);
+                }
+            }
+
+
+            AddValidationError(!await _service.checkEmail(UserAccount.Email), "UserAccount.Email", "Email đã tồn tại. Vui lòng nhập lại.");
+
+            if (!await _service.AddUserAccountAsync(UserAccount))
+            {
+                AddValidationError(true, "UserAccount.UserName", "Tên người dùng đã tồn tại. Vui lòng nhập lại.");
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                ViewData["Role"] = _service.GetRoleSelect();
                 return Page();
             }
-            if (await _service.checkEmail(UserAccount.Email) == false)
-            {
-                ModelState.AddModelError("UserAccount.Email", "Email đã tồn tại. Vui lòng nhập lại.");
-                return Page();
-            }
-           
+
+            
             return RedirectToPage("./Index");
         }
     }
