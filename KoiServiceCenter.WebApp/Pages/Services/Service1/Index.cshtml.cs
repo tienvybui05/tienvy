@@ -114,7 +114,7 @@ namespace KoiServiceCenter.WebApp.Pages.Services.Tuvantructuyen
                 ViewData["VeterinarianId"] = _vetScheduleService.GetVeterinarianSelect();
                 await _vetScheduleService.AddVetSchedule(VetSchedule);// Thêm vào lịch làm việc của bác sĩ
 
-                return Redirect(Url.Page("/Services/Datlichthanhcong/Index"));
+                return Redirect(Url.Page("/Services/BookingSuccessfully/Index"));
             }
         }
     }

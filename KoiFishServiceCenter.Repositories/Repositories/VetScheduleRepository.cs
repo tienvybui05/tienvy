@@ -97,11 +97,6 @@ namespace KoiFishServiceCenter.Repositories.Repositories
         {
             try
             {
-                DateTime currentDate = DateTime.Today;
-                if (vetSchedule.ScheduleDate < currentDate)
-                {
-                    return false;
-                }
                 _dbContext.VetSchedules.Update(vetSchedule);
                 await _dbContext.SaveChangesAsync();
                 return true;
