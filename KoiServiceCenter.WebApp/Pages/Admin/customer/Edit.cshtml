@@ -37,7 +37,7 @@
 
                 <div class="form-group mb-3">
                     <label asp-for="Customer.User" class="control-label text-secondary"></label>
-                    <select asp-for="Customer.UserId" class="form-control bg-light" asp-items="ViewBag.UserId"></select>
+                    <select asp-for="Customer.UserId" class="form-control bg-light" asp-items="ViewBag.UserId" disabled></select>
                     <span asp-validation-for="Customer.User" class="text-danger"></span>
                 </div>
 
