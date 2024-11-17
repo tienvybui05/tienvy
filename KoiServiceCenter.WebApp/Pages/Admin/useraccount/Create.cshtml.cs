@@ -54,16 +54,16 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
                 }
             }
 
-
-            if (await _service.AddUserAccountAsync(UserAccount) == false)
-            {
-                AddValidationError(true, "UserAccount.UserName", "Tên người dùng đã tồn tại. Vui lòng nhập lại.");
-            }
             if (await _service.checkEmail(UserAccount.Email) == false)
             {
                 AddValidationError(true, "UserAccount.Email", "Email đã tồn tại. Vui lòng nhập lại.");
             }
-           
+            if(await _service.checkUserName(UserAccount.UserName) == false)
+            {
+                AddValidationError(true, "UserAccount.UserName", "Tên người dùng đã tồn tại. Vui lòng nhập lại.");
+            }
+
+
 
 
 
@@ -73,7 +73,7 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
                 return Page();
             }
 
-            
+            await _service.AddUserAccountAsync(UserAccount);
             return RedirectToPage("./Index");
         }
     }

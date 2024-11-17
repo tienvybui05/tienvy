@@ -23,6 +23,7 @@ namespace KoiFishServiceCenter.Services.Interfaces
         SelectList GetRoleSelect();
 		Task<bool> CreateAccount(string userName, string passWord, string email);
         Task<bool> checkEmail(string email);
+        Task<bool> checkUserName(string userName);
         Task<bool> DeleteUserAccount(UserAccount userAccount);
         Task<bool> ChangePasswordAsync(string OldPassWord, string NewPassWord, int id);
         Task<int> CreateId();

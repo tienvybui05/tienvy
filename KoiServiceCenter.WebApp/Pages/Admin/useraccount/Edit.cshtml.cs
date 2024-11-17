@@ -55,7 +55,8 @@ namespace KoiServiceCenter.WebApp.Pages.Admin.useraccount
             ViewData["Role"] = _service.GetRoleSelect();
             if (await _service.UpdateUserAccountAsync(UserAccount) == false)
             {
-                ModelState.AddModelError("UserAccount.UserName", "Tên người dùng đã tồn tại. Vui lòng chọn ngày khác.");
+                
+                ModelState.AddModelError("UserAccount.Role", "Tên người dùng hoặc email đã tồn tại. Vui lòng nhập lại.");
                 ViewData["Role"] = _service.GetRoleSelect();
                 return Page();
             }

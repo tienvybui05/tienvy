@@ -44,14 +44,6 @@ namespace KoiFishServiceCenter.Services
 
         public async Task<bool> AddUserAccountAsync(UserAccount userAccount)
         {
-            var listAccount = await _userAccountRepository.GetUserAccountsAsync();
-            var exists = listAccount.FirstOrDefault(x => x.UserName == userAccount.UserName);
-            var mail = listAccount.FirstOrDefault(x => x.Email == userAccount.Email); 
-            if (exists != null||mail != null)
-            {
-                return false;
-            }
-
             return await _userAccountRepository.AddUserAccountAsync(userAccount);
         }
 
@@ -141,6 +133,19 @@ namespace KoiFishServiceCenter.Services
         public Task<int> CreateId()
         {
             return _userAccountRepository.CreateId();
+        }
+
+        public async Task<bool> checkUserName(string userName)
+        {
+            var listAccount = await _userAccountRepository.GetUserAccountsAsync();
+
+            var userNameExists = listAccount.FirstOrDefault(x => x.UserName == userName);
+
+            if (userNameExists != null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
