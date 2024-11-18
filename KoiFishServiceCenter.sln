@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KoiFishServiceCenter.Reposi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KoiFishServiceCenter.Services", "KoiFishServiceCenter.Services\KoiFishServiceCenter.Services.csproj", "{CC05AF18-4403-4FCB-9237-EFDC2548E5BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{B48291AB-37A6-48A7-9D6E-73B7FA9E790D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAdmin", "UnitTest\TestAdmin.csproj", "{B48291AB-37A6-48A7-9D6E-73B7FA9E790D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDangnhap", "TestDangnhap\TestDangnhap.csproj", "{A33D01D9-45B0-421F-A688-A07E5F87221A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B48291AB-37A6-48A7-9D6E-73B7FA9E790D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B48291AB-37A6-48A7-9D6E-73B7FA9E790D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B48291AB-37A6-48A7-9D6E-73B7FA9E790D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A33D01D9-45B0-421F-A688-A07E5F87221A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A33D01D9-45B0-421F-A688-A07E5F87221A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A33D01D9-45B0-421F-A688-A07E5F87221A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A33D01D9-45B0-421F-A688-A07E5F87221A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
