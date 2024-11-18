@@ -37,12 +37,12 @@ namespace TestAdmin
             UserNameInput.Clear();
             Thread.Sleep(2000);
 
-            UserNameInput.SendKeys("manager1");
+            UserNameInput.SendKeys("tienvybui05");
             Thread.Sleep(2000);
 
             var PasswordInput = driver.FindElement(By.Name("credential.Password"));
             PasswordInput.Clear();
-            PasswordInput.SendKeys("managerpass");
+            PasswordInput.SendKeys("abc123");
             Thread.Sleep(2000);
 
             IWebElement loginButton = driver.FindElement(By.CssSelector("input.btn.btn-primary.btn-lg.w-100"));
@@ -521,7 +521,7 @@ namespace TestAdmin
         }
 
 
-        [Test,Order(11)]
+        [Test, Order(11)]
         public void dienthongtin()
         {
             // Khởi tạo WebDriverWait
@@ -666,7 +666,7 @@ namespace TestAdmin
 
         }
 
-        [Test,Order(12)]
+        [Test, Order(12)]
         public void ThemLichLam()
         {
             WebDriverWait waitL = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -780,7 +780,7 @@ namespace TestAdmin
             IWebElement errorMessage = driver.FindElement(By.XPath("//span[text()='Bác sĩ đã có lịch. Vui lòng chọn ngày khác.']"));
         }
 
-        [Test,Order(14)]
+        [Test, Order(14)]
         public void thongtin3() //// đăng ký lịch - đúng định dạng ngày và không trùng lịch
         {
             WebDriverWait waitL = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -834,7 +834,7 @@ namespace TestAdmin
             Thread.Sleep(5000);
         }
 
-        [Test,Order(15)]
+        [Test, Order(15)]
         public void editlichlam()
         {
             WebDriverWait waitL = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
@@ -873,8 +873,155 @@ namespace TestAdmin
 
         }
 
-        //tạo chi phí: tạo thành công
-        [Test,Order(16)]
+        //tạo báo cáo : tạo thành công
+        [Test, Order(16)]
+        public void AddReport()
+        {
+            // Chờ 10 giây cho tới khi các phần tử xuất hiện
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            IWebElement ReportLink = driver.FindElement(By.CssSelector("a.dropdown-toggle.no-arrow[href='/admin/report']"));
+            ReportLink.Click();
+            Thread.Sleep(8000);
+
+            // Tìm và nhấn vào liên kết "Tạo báo cáo"
+            IWebElement createAccountButton = driver.FindElement(By.CssSelector("a.btn.btn-success[href='/Admin/report/Create']"));
+            createAccountButton.Click();
+            Thread.Sleep(8000);
+
+            // Điền thông tin vào các trường nhập liệu trong form tạo báo cáo
+            var reportDateInput = driver.FindElement(By.Id("Report_ReportDate"));
+            reportDateInput.SendKeys("11-18-2024");
+            Thread.Sleep(2000);
+
+            var totalCustomersInput = driver.FindElement(By.Id("Report_TotalCustomers"));
+            totalCustomersInput.SendKeys("100");
+            Thread.Sleep(2000);
+
+            var totalServicesInput = driver.FindElement(By.Id("Report_TotalServices"));
+            totalServicesInput.SendKeys("200");
+            Thread.Sleep(2000);
+
+            var averageRatingInput = driver.FindElement(By.Id("Report_AverageRating"));
+            averageRatingInput.SendKeys("4");
+            Thread.Sleep(2000);
+
+            var notesInput = driver.FindElement(By.Id("Report_Notes"));
+            notesInput.SendKeys("Báo cáo tháng 11");
+            Thread.Sleep(2000);
+
+            // Nhấn nút "Lưu" để tạo báo cáo
+            IWebElement saveButton = driver.FindElement(By.CssSelector("input.btn.btn-primary"));
+            saveButton.Click();
+            Thread.Sleep(5000);  // Chờ 5 giây để đảm bảo báo cáo đã được tạo
+
+            // Kiểm tra xem báo cáo có xuất hiện trong danh sách hay không
+            NUnit.Framework.Assert.That(driver.Url, Is.EqualTo("http://localhost:5100/Admin/report"));
+
+        }
+
+        //chỉnh sửa báo cáo: chỉnh thành công
+        [Test, Order(17)]
+        public void EditReport()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            // Mở trang báo cáo
+            IWebElement reportLink = driver.FindElement(By.CssSelector("a[href='/admin/report']"));
+            reportLink.Click();
+            Thread.Sleep(5000);
+
+            // Chờ báo cáo cần chỉnh sửa
+            IWebElement newRow = wait.Until(d => d.FindElement(By.XPath("//tr[td[contains(text(), '100')] and td[contains(text(), '4.00')]]")));
+
+            IWebElement editButton = newRow.FindElement(By.XPath(".//a[contains(@href, 'Edit')]"));
+            editButton.Click();
+            Thread.Sleep(5000);
+
+            // Sửa thông tin báo cáo
+            var totalCustomersInput = driver.FindElement(By.Id("Report_TotalCustomers"));
+            totalCustomersInput.Clear();
+            totalCustomersInput.SendKeys("120");
+            Thread.Sleep(2000);
+
+            var totalServicesInput = driver.FindElement(By.Id("Report_TotalServices"));
+            totalServicesInput.Clear();
+            totalServicesInput.SendKeys("220");
+            Thread.Sleep(2000);
+
+            var RatingInput = driver.FindElement(By.Id("Report_AverageRating"));
+            RatingInput.Clear();
+            RatingInput.SendKeys("3");
+            Thread.Sleep(2000);
+
+            var saveButton = driver.FindElement(By.CssSelector("input.btn.btn-primary"));
+            saveButton.Click();
+            Thread.Sleep(5000);
+
+            // Kiểm tra báo cáo đã được sửa thành công
+            IWebElement updatedReportRow = wait.Until(d => d.FindElement(By.XPath("//tr[td[contains(text(), '120')]]")));
+            IWebElement EditReportRow = wait.Until(d => d.FindElement(By.XPath("//tr[td[contains(text(), '220')]]")));
+            NUnit.Framework.Assert.That(driver.Url, Is.EqualTo("http://localhost:5100/Admin/report"));
+        }
+        //xem chi tiết báo cáo: xem thành công
+        [Test, Order(18)]
+        public void DetailsReport()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            // Mở trang báo cáo
+            IWebElement reportLink = driver.FindElement(By.CssSelector("a[href='/admin/report']"));
+            reportLink.Click();
+            Thread.Sleep(5000);
+
+            // Chờ đến báo cáo cần xem chi tiết
+            IWebElement newRow = wait.Until(d => d.FindElement(By.XPath("//tr[td[contains(text(), '120')] and td[contains(text(), '3.00')]]")));
+
+            IWebElement detailsButton = newRow.FindElement(By.XPath(".//a[contains(@href, 'Details')]"));
+            detailsButton.Click();
+            Thread.Sleep(5000);
+
+            // Xác minh rằng các chi tiết báo cáo hiển thị đúng trên trang chi tiết
+            IWebElement totalCustomersDetailElement = driver.FindElement(By.XPath("//dd[text()='120']"));
+            IWebElement totalServicesDetailElement = driver.FindElement(By.XPath("//dd[text()='220']"));
+
+            // Kỳ vọng số khách hàng và số dịch vụ phải xuất hiện trong chi tiết
+            string expectedTotalCustomers = "120"; // Tổng số khách hàng mong đợi
+            string expectedTotalServices = "220";   // Tổng số dịch vụ mong đợi
+
+            // Lấy giá trị thực tế từ trang chi tiết
+            string actualTotalCustomers = totalCustomersDetailElement.Text;
+            string actualTotalServices = totalServicesDetailElement.Text;
+
+            // Xác minh kết quả
+            NUnit.Framework.Assert.That(actualTotalCustomers, Is.EqualTo(expectedTotalCustomers), $"Tổng số khách hàng không đúng. Mong đợi: {expectedTotalCustomers}, nhưng nhận được: {actualTotalCustomers}");
+            NUnit.Framework.Assert.That(actualTotalServices, Is.EqualTo(expectedTotalServices), $"Tổng số dịch vụ không đúng. Mong đợi: {expectedTotalServices}, nhưng nhận được: {actualTotalServices}");
+        }
+        // xóa báo cáo : xóa thành công
+        [Test, Order(19)]
+        public void DeleteReport()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            // Mở trang báo cáo
+            IWebElement reportLink = driver.FindElement(By.CssSelector("a[href='/admin/report']"));
+            reportLink.Click();
+            Thread.Sleep(5000);
+
+            // Chờ đến báo cáo cần xóa
+            IWebElement newRow = wait.Until(d => d.FindElement(By.XPath("//tr[td[contains(text(), '120')] and td[contains(text(), '3.00')]]")));
+            IWebElement deleteButton = newRow.FindElement(By.XPath(".//a[contains(@href, 'Delete')]"));
+            deleteButton.Click();
+            Thread.Sleep(5000);
+
+            IWebElement confirmDeleteButton = driver.FindElement(By.XPath("//input[@type='submit' and @value='Xóa']"));
+            confirmDeleteButton.Click();
+            Thread.Sleep(5000);
+
+            // Kiểm tra báo cáo đã bị xóa
+            NUnit.Framework.Assert.That(driver.Url, Is.EqualTo("http://localhost:5100/Admin/report"));
+        }
+
+        [Test, Order(20)]
         public void AddCost()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -927,7 +1074,7 @@ namespace TestAdmin
 
         }
         //Sửa chi phí: sửa thành công
-        [Test,Order(17)]
+        [Test, Order(21)]
         public void EditCost()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -961,7 +1108,7 @@ namespace TestAdmin
 
             NUnit.Framework.Assert.That(driver.Url, Is.EqualTo("http://localhost:5100/Admin/cost"));
         }
-        [Test,Order(18)]
+        [Test, Order(22)]
         public void DetailsCost()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -990,7 +1137,7 @@ namespace TestAdmin
             NUnit.Framework.Assert.That(actualCost, Is.EqualTo(expectedCost), $"Chi phí không đúng. Mong đợi: {expectedCost}, nhưng nhận được: {actualCost}");
             NUnit.Framework.Assert.That(actualAdditionalFees, Is.EqualTo(expectedAdditionalFees), $"Phí phụ không đúng. Mong đợi: {expectedAdditionalFees}, nhưng nhận được: {actualAdditionalFees}");
         }
-        [Test,Order(19)]
+        [Test, Order(23)]
         public void DeleteCost()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -1009,192 +1156,6 @@ namespace TestAdmin
             Thread.Sleep(5000);
 
             NUnit.Framework.Assert.That(driver.Url, Is.EqualTo("http://localhost:5100/Admin/cost"));
-        }
-
-        //tạo báo cáo : tạo thành công
-        [Test,Order(20)]
-        public void AddReport()
-        {
-            // Chờ 10 giây cho tới khi các phần tử xuất hiện
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            IWebElement ReportLink = driver.FindElement(By.CssSelector("a.dropdown-toggle.no-arrow[href='/admin/report']"));
-            ReportLink.Click();
-            Thread.Sleep(8000);
-
-            // Tìm và nhấn vào liên kết "Tạo báo cáo"
-            IWebElement createAccountButton = driver.FindElement(By.CssSelector("a.btn.btn-success[href='/Admin/report/Create']"));
-            createAccountButton.Click();
-            Thread.Sleep(8000);
-
-            // Điền thông tin vào các trường nhập liệu trong form tạo báo cáo
-            var reportDateInput = driver.FindElement(By.Id("Report_ReportDate"));
-            reportDateInput.SendKeys("11-18-2024");
-
-            var totalCustomersInput = driver.FindElement(By.Id("Report_TotalCustomers"));
-            totalCustomersInput.SendKeys("100");
-
-            var totalServicesInput = driver.FindElement(By.Id("Report_TotalServices"));
-            totalServicesInput.SendKeys("200");
-
-            var averageRatingInput = driver.FindElement(By.Id("Report_AverageRating"));
-            averageRatingInput.SendKeys("4");
-
-            var notesInput = driver.FindElement(By.Id("Report_Notes"));
-            notesInput.SendKeys("Báo cáo tháng 11");
-
-            // Nhấn nút "Lưu" để tạo báo cáo
-            IWebElement saveButton = driver.FindElement(By.CssSelector("input.btn.btn-primary"));
-            saveButton.Click();
-            Thread.Sleep(5000);  // Chờ 5 giây để đảm bảo báo cáo đã được tạo
-
-            // Kiểm tra xem báo cáo có xuất hiện trong danh sách hay không
-            NUnit.Framework.Assert.That(driver.Url, Is.EqualTo("http://localhost:5100/Admin/report"));
-
-        }
-        //tạo báo cáo: số sao phải <=1 và >=5
-        [Test,Order(21)]
-        public void AddReport1()
-        {
-            // Chờ 10 giây cho tới khi các phần tử xuất hiện
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            IWebElement ReportLink = driver.FindElement(By.CssSelector("a.dropdown-toggle.no-arrow[href='/admin/report']"));
-            ReportLink.Click();
-            Thread.Sleep(8000);
-
-            // Tìm và nhấn vào liên kết "Tạo báo cáo"
-            IWebElement createAccountButton = driver.FindElement(By.CssSelector("a.btn.btn-success[href='/Admin/report/Create']"));
-            createAccountButton.Click();
-            Thread.Sleep(8000);
-
-            // Điền thông tin vào các trường nhập liệu trong form tạo báo cáo
-            var reportDateInput = driver.FindElement(By.Id("Report_ReportDate"));
-            reportDateInput.SendKeys("10-20-2024");
-
-            var totalCustomersInput = driver.FindElement(By.Id("Report_TotalCustomers"));
-            totalCustomersInput.SendKeys("50");
-
-            var totalServicesInput = driver.FindElement(By.Id("Report_TotalServices"));
-            totalServicesInput.SendKeys("51");
-
-            // Ràng buộc giá trị `AverageRating`
-            var averageRating = 6; // Giá trị cần kiểm tra
-            NUnit.Framework.Assert.That(averageRating >= 1 && averageRating <= 5,
-                Is.True,
-                $"Điểm đánh giá trung bình phải nằm trong khoảng từ 1 đến 5. Giá trị hiện tại: {averageRating}");
-
-            var averageRatingInput = driver.FindElement(By.Id("Report_AverageRating"));
-            averageRatingInput.SendKeys(averageRating.ToString());
-
-            var notesInput = driver.FindElement(By.Id("Report_Notes"));
-            notesInput.SendKeys("Báo cáo tháng 10");
-
-            // Nhấn nút "Lưu" để tạo báo cáo
-            IWebElement saveButton = driver.FindElement(By.CssSelector("input.btn.btn-primary"));
-            saveButton.Click();
-            Thread.Sleep(5000);  // Chờ 5 giây để đảm bảo báo cáo đã được tạo
-
-            // Kiểm tra xem báo cáo có xuất hiện trong danh sách hay không
-            NUnit.Framework.Assert.That(driver.Url, Is.EqualTo("http://localhost:5100/Admin/report"));
-        }
-
-        //chỉnh sửa báo cáo: chỉnh thành công
-        [Test,Order(22)]
-        public void EditReport()
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
-            // Mở trang báo cáo
-            IWebElement reportLink = driver.FindElement(By.CssSelector("a[href='/admin/report']"));
-            reportLink.Click();
-            Thread.Sleep(5000);
-
-            // Chờ báo cáo cần chỉnh sửa
-            IWebElement newRow = wait.Until(d => d.FindElement(By.XPath("//tr[td[contains(text(), '100')] and td[contains(text(), '4')]]")));
-
-            IWebElement editButton = newRow.FindElement(By.XPath(".//a[contains(@href, 'Edit')]"));
-            editButton.Click();
-            Thread.Sleep(5000);
-
-            // Sửa thông tin báo cáo
-            var totalCustomersInput = driver.FindElement(By.Id("Report_TotalCustomers"));
-            totalCustomersInput.Clear();
-            totalCustomersInput.SendKeys("120");
-
-            var totalServicesInput = driver.FindElement(By.Id("Report_TotalServices"));
-            totalServicesInput.Clear();
-            totalServicesInput.SendKeys("220");
-
-            var RatingInput = driver.FindElement(By.Id("Report_AverageRating"));
-            RatingInput.Clear();
-            RatingInput.SendKeys("3");
-
-            var saveButton = driver.FindElement(By.CssSelector("input.btn.btn-primary"));
-            saveButton.Click();
-            Thread.Sleep(5000);
-
-            // Kiểm tra báo cáo đã được sửa thành công
-            IWebElement updatedReportRow = wait.Until(d => d.FindElement(By.XPath("//tr[td[contains(text(), '120')]]")));
-            IWebElement EditReportRow = wait.Until(d => d.FindElement(By.XPath("//tr[td[contains(text(), '220')]]")));
-            IWebElement rateRow = wait.Until(d => d.FindElement(By.XPath("//tr[td[contains(text(), '3')]]")));
-            NUnit.Framework.Assert.That(driver.Url, Is.EqualTo("http://localhost:5100/Admin/report"));
-        }
-        //xem chi tiết báo cáo: xem thành công
-        [Test,Order(23)]
-        public void DetailsReport()
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
-            // Mở trang báo cáo
-            IWebElement reportLink = driver.FindElement(By.CssSelector("a[href='/admin/report']"));
-            reportLink.Click();
-            Thread.Sleep(5000);
-
-            // Chờ đến báo cáo cần xem chi tiết
-            IWebElement newRow = wait.Until(d => d.FindElement(By.XPath("//tr[td[contains(text(), '120')] and td[contains(text(), '3')]]")));
-
-            IWebElement detailsButton = newRow.FindElement(By.XPath(".//a[contains(@href, 'Details')]"));
-            detailsButton.Click();
-            Thread.Sleep(5000);
-
-            // Xác minh rằng các chi tiết báo cáo hiển thị đúng trên trang chi tiết
-            IWebElement totalCustomersDetailElement = driver.FindElement(By.XPath("//dd[text()='120']"));
-            IWebElement totalServicesDetailElement = driver.FindElement(By.XPath("//dd[text()='220']"));
-
-            // Kỳ vọng số khách hàng và số dịch vụ phải xuất hiện trong chi tiết
-            string expectedTotalCustomers = "120"; // Tổng số khách hàng mong đợi
-            string expectedTotalServices = "220";   // Tổng số dịch vụ mong đợi
-
-            // Lấy giá trị thực tế từ trang chi tiết
-            string actualTotalCustomers = totalCustomersDetailElement.Text;
-            string actualTotalServices = totalServicesDetailElement.Text;
-
-            // Xác minh kết quả
-            NUnit.Framework.Assert.That(actualTotalCustomers, Is.EqualTo(expectedTotalCustomers), $"Tổng số khách hàng không đúng. Mong đợi: {expectedTotalCustomers}, nhưng nhận được: {actualTotalCustomers}");
-            NUnit.Framework.Assert.That(actualTotalServices, Is.EqualTo(expectedTotalServices), $"Tổng số dịch vụ không đúng. Mong đợi: {expectedTotalServices}, nhưng nhận được: {actualTotalServices}");
-        }
-        // xóa báo cáo : xóa thành công
-        [Test,Order(24)]
-        public void DeleteReport()
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
-            // Mở trang báo cáo
-            IWebElement reportLink = driver.FindElement(By.CssSelector("a[href='/admin/report']"));
-            reportLink.Click();
-            Thread.Sleep(5000);
-
-            // Chờ đến báo cáo cần xóa
-            IWebElement newRow = wait.Until(d => d.FindElement(By.XPath("//tr[td[contains(text(), '120')] and td[contains(text(), '3')]]")));
-            IWebElement deleteButton = newRow.FindElement(By.XPath(".//a[contains(@href, 'Delete')]"));
-            deleteButton.Click();
-            Thread.Sleep(5000);
-
-            IWebElement confirmDeleteButton = driver.FindElement(By.XPath("//input[@type='submit' and @value='Xóa']"));
-            confirmDeleteButton.Click();
-            Thread.Sleep(5000);
-
-            // Kiểm tra báo cáo đã bị xóa
-            NUnit.Framework.Assert.That(driver.Url, Is.EqualTo("http://localhost:5100/Admin/report"));
         }
 
         //// Tài khoản admin : Xem chi tiết đánh giá
